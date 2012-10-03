@@ -33,14 +33,6 @@ public class Saferefactor {
 		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
 	}
 
-//		public Saferefactor(String source, String target, String bin, String src, String lib, String classes) {
-//			start = System.currentTimeMillis();
-//			pinfo = new ProjectInfo(source, target, bin, src, lib, classes, 0);
-//			analyzer = new Analyzer(pinfo);
-//	
-//			this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
-//		}
-
 	public Saferefactor(String source, String target, String bin, String src, String lib, String classes, int maxTests, Criteria criteria) {
 		start = System.currentTimeMillis();
 		pinfo = new ProjectInfo(source, target, bin, src, lib, classes, maxTests, criteria);
