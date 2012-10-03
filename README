@@ -1,0 +1,20 @@
+Instruções de Uso. 
+
+
+classe principal: br.edu.ufcg.dsc.saferefactor.CommandLine
+
+em "Run Configurations...": 
+
+aba arguments: coloque os seguintes argumentos para execução da classe acima:
+
+	program arguments: "pasta-do-projeto-original" "pasta-do-projeto-refatorado" tempoEmSegundos
+
+	VM arguments: -Xms512m -Xmx800m
+	
+aba classpath: clique em "user entries" e "add" então selecione o jar "ant-junit" na pasta "br.edu.ufcg.saferefactor.commandline/lib"
+
+clique em "run"
+
+(Deve funcionar, testado no Mac OS)
+
+ 
