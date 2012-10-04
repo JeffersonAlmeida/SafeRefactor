@@ -13,7 +13,8 @@ public class SafeRefactorTest {
 		String source = "C:/WorkspaceSPL/ProjectWithoutRefactoring";
 		String target = "C:/WorkspaceSPL/ProjectWithRefactoring";
 		Saferefactor sr = new Saferefactor(source, target, "bin", "src", "lib");
-		sr.isRefactoring("30", true);
+		sr.generateTests(source, target, sr.getPinfo().getBinDir(), sr.getPinfo().getSrcDir(), sr.getPinfo().getLib(), sr.getPinfo().getClassesString(), sr.getPinfo().getMaxTestsPerMethod(), sr.getPinfo().getCriteria());
+		//sr.isRefactoring("30", true);
 		//assertEquals(false, sr.isRefactoring("30", true));
 	}
 	

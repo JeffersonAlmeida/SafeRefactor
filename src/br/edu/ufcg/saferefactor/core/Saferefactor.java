@@ -29,7 +29,6 @@ public class Saferefactor {
 		start = System.currentTimeMillis();
 		pinfo = new ProjectInfo(source, target, bin, src, lib);
 		analyzer = new Analyzer(pinfo);
-
 		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
 	}
 
@@ -37,7 +36,6 @@ public class Saferefactor {
 		start = System.currentTimeMillis();
 		pinfo = new ProjectInfo(source, target, bin, src, lib, classes, maxTests, criteria);
 		analyzer = new Analyzer(pinfo);
-
 		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
 	}
 
@@ -62,6 +60,18 @@ public class Saferefactor {
 		Project p = new Project();
 
 		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		
+		/*      
+        <arg value="${source}" /> -
+		<arg value="${target}" /> - 
+		<arg value="${bin}" /> - 
+		<arg value="${src}" /> - 
+		<arg value="${lib}" />
+		<arg value="${timeout}" /> - 
+		<arg value="${classes}" />
+		<arg value="${maxTests}" />
+		<arg value="${criteria}" />       */
+		
 		p.setProperty("source", pinfo.getSource());
 		p.setProperty("target", pinfo.getTarget());
 		p.setProperty("timeout", timeout);
@@ -72,6 +82,8 @@ public class Saferefactor {
 
 		String classes = this.pinfo.getClassesString();
 
+		System.out.println("classes: " + classes);
+		
 		if (classes != null) {
 			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
 			p.setProperty("classes", classes);
@@ -158,15 +170,16 @@ public class Saferefactor {
 			classes = args[6];
 		}
 
-		int maxTestsPerMethods = 0;
+		int maxTestsPerMethods = 2;
 
-		if (args.length > 7) {
+		/*if (args.length > 7) {
 			maxTestsPerMethods = Integer.valueOf(args[7]);
 		}
-
+*/
 		if (args.length > 8) {
 			criteria = Criteria.valueOf(args[8]);
 		}
+		
 
 		Saferefactor safeRefactor = new Saferefactor(source, target, bin, src, lib, classes, maxTestsPerMethods, criteria);
 		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
@@ -186,12 +199,7 @@ public class Saferefactor {
 					"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
 
 			if (maxTestsPerMethods > 0) {
-				//			String[] newArgsRandoop = { "gentests", "--remove-subsequences=false", "--timelimit=" + 100,
-				//					"--inputlimit=" + (maxTestsPerMethods * safeRefactor.getPinfo().getMaxTestsPerMethod()), "--methodlist=" + methodList,
-				//					"--log=/home/felype/workspaceMestrado/saferefactoraj/filewriter.log",
-				//					"--junit-output-dir=" + Constants.TEST, "--output-nonexec=true" };
-
-				String[] newArgsRandoop = {
+						String[] newArgsRandoop = {
 						"gentests",
 						"--methodlist=" + methodList,
 						"--timelimit=" + timeout,
@@ -213,7 +221,59 @@ public class Saferefactor {
 
 	}
 
+	public static void generateTests(String source, String target, String bin, String src, String lib, String classes, int maxTestsPerMethods, Criteria criteria) {
+	    int timeout = 30;
+		System.out.println("\n\nsource: " + source);
+		System.out.println("target: " + target);
+		System.out.println("bin: " + bin);
+		System.out.println("src: " + src);
+		System.out.println("lib: " + lib);
+		System.out.println("classes: " + classes);
+		System.out.println("maxTestsPerMethods: " + maxTestsPerMethods);
+		System.out.println("criteria: " + criteria+ "\n\n");
+		
+		Saferefactor safeRefactor = new Saferefactor(source, target, bin, src, lib, classes, maxTestsPerMethods, criteria);
+		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
+
+		if (methodList != null) {
+			Main main2 = new Main();
+
+			String[] argsRandoop = {
+					"gentests",
+					"--methodlist=" + methodList,
+					"--timelimit=" + timeout,
+					"--log=/workspace/saferefactoraj/filewriter.log",
+					"--junit-output-dir=" + Constants.TEST,
+					"--output-nonexec=true",
+					"--inputlimit="
+							+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
+					"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
+
+			if (maxTestsPerMethods > 0) {
+						String[] newArgsRandoop = {
+						"gentests",
+						"--methodlist=" + methodList,
+						"--timelimit=" + timeout,
+						"--log=/workspace/saferefactoraj/filewriter.log",
+						"--junit-output-dir=" + Constants.TEST,
+						"--output-nonexec=true",
+						"--inputlimit="
+								+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
+						"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
+
+				argsRandoop = newArgsRandoop;
+			}
+
+			main2.nonStaticMain(argsRandoop);
+		}
+		else {
+			System.out.println("H� m�todos diferentes entre as vers�es source e target.");
+		}
+	}
+
 	public ProjectInfo getPinfo() {
 		return pinfo;
 	}
+	
+
 }

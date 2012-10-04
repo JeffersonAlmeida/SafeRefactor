@@ -95,14 +95,10 @@ public class Analyzer {
 				for (SConstructor constructor : this.commonConstructors) {
 					String constructorString = constructor.toString();
 
-					if (constructorString.contains(classeParaTestar)
-							&& !this.listContainsString(
-									this.nonDeterministicMethods,
-									constructorString)) {
+					if (constructorString.contains(classeParaTestar) && !this.listContainsString( this.nonDeterministicMethods, constructorString)) {
 						lines.append(constructor + "\n");
 
-						List<String> classParameters = constructor
-								.getParameters();
+						List<String> classParameters = constructor.getParameters();
 
 						for (String classParameter : classParameters) {
 							if (!classesParaTestar.contains(classParameter)) {
@@ -135,10 +131,8 @@ public class Analyzer {
 		} else {
 			// Se a lista estiver vazia, teste todos os m�todos e construtores.
 			for (SConstructor constructor : commonConstructors) {
-				if (!this.listContainsString(this.nonDeterministicMethods,
-						constructor.toString())) {
+				if (!this.listContainsString(this.nonDeterministicMethods, constructor.toString())) {
 					lines.append(constructor + "\n");
-
 					quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
 				}
 			}
@@ -157,8 +151,7 @@ public class Analyzer {
 
 		this.pinfo.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
 
-		return FileUtil
-				.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString());
+		return FileUtil.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString());
 	}
 
 	private boolean listContainsString(List<String> listClasses,
@@ -220,25 +213,36 @@ public class Analyzer {
 		return result;
 	}
 
-	private Map<String, SClass> mapClasses(String filesDir)
-			throws MalformedURLException {
+	private Map<String, SClass> mapClasses(String filesDir) throws MalformedURLException {
+		
 		Map<String, SClass> result = new HashMap<String, SClass>();
-
+		
+	
+		
 		File root = new File(filesDir);
 		File bin = new File(root, this.pinfo.getBinDir());
+		System.out.println("File Root: " + root.getName());
+		System.out.println("File Bin: " + bin.getName());
+		
+		String srcFiles = filesDir + Constants.FILE_SEPARATOR + this.pinfo.getSrcDir();
+		
+		System.out.println("Source Files Directory: " + srcFiles);
 
-		String binFiles = filesDir + Constants.FILE_SEPARATOR
-				+ this.pinfo.getSrcDir();
+		String libFiles = filesDir + Constants.FILE_SEPARATOR + this.pinfo.getLib();
 
-		String libFiles = filesDir + Constants.FILE_SEPARATOR
-				+ this.pinfo.getLib();
-
+		System.out.println("Library Files Directory: " + libFiles);
+		
 		URL urls[] = {};
 		FileClassLoader cl = new FileClassLoader(urls);
 		cl.addJarFiles(libFiles);
 		cl.addClass(bin);
-		List<String> listClassNames = FileUtil.listClassNames(binFiles, "");
-
+		List<String> listClassNames = FileUtil.listClassNames(srcFiles, "");
+		
+		Iterator<String> i = listClassNames.iterator();
+		while(i.hasNext()){
+			String c = i.next();
+			System.out.println("\n\n-> " + c);
+		}System.out.println("\n\n");
 		for (String className : listClassNames) {
 
 			// TODO: hack for BerkeleyDB. Make it generic.
@@ -255,7 +259,9 @@ public class Analyzer {
 				if (className.contains(sourceDot)) {
 					className = className.split(sourceDot)[1];
 				}
-
+				
+				System.out.println("className: " + className);
+				
 				Class<?> c = cl.loadClass(className);
 
 				// nao considera interface
