@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
 
 import randoop.main.Main;
+import randoop.util.Command;
 import br.edu.ufcg.saferefactor.core.util.Constants;
 import br.edu.ufcg.saferefactor.core.util.FileUtil;
 
@@ -155,7 +158,7 @@ public class Saferefactor {
 		return report.isSameBehavior();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		String source = args[0];
 		String target = args[1];
 		String bin = args[2];
@@ -164,7 +167,7 @@ public class Saferefactor {
 		String timeout = args[5];
 		String classes = null;
 
-		Criteria criteria = null;
+		Criteria criteria = Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT;
 
 		if (args.length > 6) {
 			classes = args[6];
@@ -180,49 +183,8 @@ public class Saferefactor {
 			criteria = Criteria.valueOf(args[8]);
 		}
 		
-
 		Saferefactor safeRefactor = new Saferefactor(source, target, bin, src, lib, classes, maxTestsPerMethods, criteria);
-		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
-
-		if (methodList != null) {
-			Main main2 = new Main();
-
-			String[] argsRandoop = {
-					"gentests",
-					"--methodlist=" + methodList,
-					"--timelimit=" + timeout,
-					"--log=/workspace/saferefactoraj/filewriter.log",
-					"--junit-output-dir=" + Constants.TEST,
-					"--output-nonexec=true",
-					"--inputlimit="
-							+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
-					"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
-
-			if (maxTestsPerMethods > 0) {
-						String[] newArgsRandoop = {
-						"gentests",
-						"--methodlist=" + methodList,
-						"--timelimit=" + timeout,
-						"--log=/workspace/saferefactoraj/filewriter.log",
-						"--junit-output-dir=" + Constants.TEST,
-						"--output-nonexec=true",
-						"--inputlimit="
-								+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
-						"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
-
-				argsRandoop = newArgsRandoop;
-			}
-
-			main2.nonStaticMain(argsRandoop);
-		}
-		else {
-			System.out.println("H� m�todos diferentes entre as vers�es source e target.");
-		}
-
-	}
-
-	public static void generateTests(String source, String target, String bin, String src, String lib, String classes, int maxTestsPerMethods, Criteria criteria) {
-	    int timeout = 30;
+		
 		System.out.println("\n\nsource: " + source);
 		System.out.println("target: " + target);
 		System.out.println("bin: " + bin);
@@ -230,10 +192,12 @@ public class Saferefactor {
 		System.out.println("lib: " + lib);
 		System.out.println("classes: " + classes);
 		System.out.println("maxTestsPerMethods: " + maxTestsPerMethods);
-		System.out.println("criteria: " + criteria+ "\n\n");
+		System.out.println("criteria: " + safeRefactor.getPinfo().getCriteria()+ "\n\n");
 		
-		Saferefactor safeRefactor = new Saferefactor(source, target, bin, src, lib, classes, maxTestsPerMethods, criteria);
+		
 		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
+		
+		File listOfMethods = new File("C:/Users/Jefferson/AppData/Local/Temp/safeRefactorAJ/method_list_example.txt");
 
 		if (methodList != null) {
 			Main main2 = new Main();
@@ -242,7 +206,7 @@ public class Saferefactor {
 					"gentests",
 					"--methodlist=" + methodList,
 					"--timelimit=" + timeout,
-					"--log=/workspace/saferefactoraj/filewriter.log",
+					"--log=D:/documentos/Msc/SE/workspace/saferefactoraj/filewriter.log",
 					"--junit-output-dir=" + Constants.TEST,
 					"--output-nonexec=true",
 					"--inputlimit="
@@ -254,21 +218,26 @@ public class Saferefactor {
 						"gentests",
 						"--methodlist=" + methodList,
 						"--timelimit=" + timeout,
-						"--log=/workspace/saferefactoraj/filewriter.log",
+						"--log=D:/documentos/Msc/SE/workspace/saferefactoraj/filewriter.log",
 						"--junit-output-dir=" + Constants.TEST,
 						"--output-nonexec=true",
-						"--inputlimit="
-								+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
+						"--inputlimit=" + (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
 						"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
 
 				argsRandoop = newArgsRandoop;
 			}
-
+			//gentests --testclass=java.util.TreeSet --testclass=java.util.Collections --timelimit=60
+			/* When determining the set of members under test from the --testclass, --classlist or --methodlist options, non-public classes or members are ignored. */
+			String[] argsR = {"gentests", "--methodlist=" + methodList, "--timelimit=10", "--junit-output-dir=" + Constants.TESTSRC, "--output-nonexec=true", "--inputlimit=" + (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()), "--remove-subsequences=false", "--log=D:/documentos/Msc/SE/workspace/saferefactoraj/filewriter.log"};
+			argsRandoop = argsR;
+			
+			System.out.println(" Args Size: " + argsRandoop.length);
 			main2.nonStaticMain(argsRandoop);
 		}
 		else {
-			System.out.println("H� m�todos diferentes entre as vers�es source e target.");
+			System.out.println("Existem metodos diferentes entre as versoes source e target.");
 		}
+
 	}
 
 	public ProjectInfo getPinfo() {

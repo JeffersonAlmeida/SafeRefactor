@@ -1,6 +1,7 @@
 package br.edu.ufcg.saferefactor.test;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Map;
@@ -34,13 +35,13 @@ public class AnalysisTest {
 	}
 
 	@Test
-	public void testGenerateMethodListFile() {
+	public void testGenerateMethodListFile() throws IOException {
 		File f = a.generateMethodListFile(Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT);
 		assertTrue(f.exists());
 	}
 	
 	@Test
-	public void testAnalyzeChange() {
+	public void testAnalyzeChange() throws IOException {
 		
 		a.analyzeChange(Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT);
 		assertEquals(3, a.getCommonConstructors().size());
@@ -53,7 +54,7 @@ public class AnalysisTest {
 	}
 
 	@Test
-	public void testListSourceAndTargetClasses() {
+	public void testListSourceAndTargetClasses() throws IOException {
 		Map<String, SClass> listSource = a.mapSourceClasses();
 		assertEquals(3, listSource.values().size());
 		

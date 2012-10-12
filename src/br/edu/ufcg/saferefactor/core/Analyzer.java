@@ -14,26 +14,32 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import br.edu.ufcg.saferefactor.classloader.FileClassLoader;
 import br.edu.ufcg.saferefactor.core.ast.SClass;
 import br.edu.ufcg.saferefactor.core.ast.SConstructor;
 import br.edu.ufcg.saferefactor.core.ast.SMethod;
 import br.edu.ufcg.saferefactor.core.util.Constants;
 import br.edu.ufcg.saferefactor.core.util.FileUtil;
 
+
+
 public class Analyzer {
 
+	/* This variable will store a tuple of a class name and a Class Structure to the <TARGET> source code.*/
 	private Map<String, SClass> targetClasses;
+	
+	/* This variable will store a tuple of a class name and a Class Structure to the <SOURCE> source code.*/
 	private Map<String, SClass> sourceClasses;
+	
+	/* It will store the common constructors between two classes. Source Class and the same  Class in the target. */
 	private List<SConstructor> commonConstructors;
+
+    /* It will store the common methods between two classes. Source Class and the same  Class in the target. */
 	private List<SMethod> commonMethods;
 
 	private ProjectInfo pinfo;
@@ -71,9 +77,12 @@ public class Analyzer {
 		this.commonMethods = commonMethods;
 	}
 
-	public File generateMethodListFile(Criteria criteria) {
+	public File generateMethodListFile(Criteria criteria) throws IOException {
+	
+		/* Looks for the common methods and constructors between the classes. */
 		boolean checkingCanProceed = analyzeChange(criteria);
-
+		
+		/* It asks if any existing method in the source is always present in the target*/
 		if (!checkingCanProceed) {
 			return null;
 		}
@@ -82,6 +91,8 @@ public class Analyzer {
 
 		int quantityOfMethodsToTest = 0;
 
+		if(this.pinfo.getClasses().isEmpty()){ System.out.println(" Classes is Empty !!");}
+		
 		if (!this.pinfo.getClasses().isEmpty()) {
 			List<String> classesParaTestar = new ArrayList<String>();
 			classesParaTestar.addAll(this.pinfo.getClasses());
@@ -129,19 +140,21 @@ public class Analyzer {
 				}
 			}
 		} else {
-			// Se a lista estiver vazia, teste todos os m�todos e construtores.
+			// Se a lista estiver vazia, teste todos os metodos e construtores.
 			for (SConstructor constructor : commonConstructors) {
+				
+				System.out.println("\nCommon constructor between Source and Target: " + constructor);
+				
 				if (!this.listContainsString(this.nonDeterministicMethods, constructor.toString())) {
 					lines.append(constructor + "\n");
 					quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
 				}
 			}
-
+			System.out.println("\n\n");
 			for (SMethod method : commonMethods) {
-				if (!this.listContainsString(this.nonDeterministicMethods,
-						method.toString())) {
+				System.out.println("\nCommon method between Source and Target: " + method);
+				if (!this.listContainsString(this.nonDeterministicMethods, method.toString())) {
 					lines.append(method + "\n");
-
 					quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
 				}
 			}
@@ -149,6 +162,7 @@ public class Analyzer {
 
 		System.out.println(lines.toString());
 
+		System.out.println("\n\nAmount of tests to test: " + quantityOfMethodsToTest);
 		this.pinfo.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
 
 		return FileUtil.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString());
@@ -166,34 +180,36 @@ public class Analyzer {
 	}
 
 	public List<Member> listCommonMethods() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Map<String, SClass> mapSourceClasses() {
+	/**
+	 * This methods will try to mapp all classes from the Source and puts inside Sclass all class name, superclass name, methods and Constructors of each Class.
+	 * @return
+	 * @throws IOException
+	 */
+	public Map<String, SClass> mapSourceClasses() throws IOException {
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		try {
 			result = mapClasses(this.pinfo.getSource());
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
 	}
 
-	public Map<String, SClass> mapTargetClasses() {
+	public Map<String, SClass> mapTargetClasses() throws IOException {
 		Map<String, SClass> result = new HashMap<String, SClass>();
-		// try {
-		// result = mapClasses(this.pinfo.getTarget());
-		// } catch (MalformedURLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
+		
 		try {
+			result = mapClasses(this.pinfo.getTarget());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		/*try {
 			// use buffering
-			InputStream file = new FileInputStream(Constants.TEST
-					+ Constants.FILE_SEPARATOR + "mapClasses2.ser");
+			InputStream file = new FileInputStream(Constants.TEST + Constants.FILE_SEPARATOR + "mapClasses2.ser");
 			InputStream buffer = new BufferedInputStream(file);
 			ObjectInput input = new ObjectInputStream(buffer);
 			try {
@@ -202,46 +218,73 @@ public class Analyzer {
 				// display its data
 
 			} finally {
-
 				input.close();
 			}
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		}
+		}*/
 		return result;
 	}
 
-	private Map<String, SClass> mapClasses(String filesDir) throws MalformedURLException {
+	/**
+	 * This methods maps all classes from the Source and puts inside Sclass all class name, superclass name, methods and Constructors of each Class.
+	 * @param filesDir Source Directory
+	 * @return
+	 * @throws IOException
+	 */
+	private Map<String, SClass> mapClasses(String filesDir) throws IOException {
 		
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		
-	
+	    System.out.println("File Directory: " + filesDir);
 		
 		File root = new File(filesDir);
-		File bin = new File(root, this.pinfo.getBinDir());
+		String binPath = filesDir+System.getProperty("file.separator")+this.pinfo.getBinDir();
+		
+		String classDirectory = binPath + System.getProperty("file.separator") + "br/cin/core/Main.class";
+		System.out.println("Class Directory: " + classDirectory);
+		
+		File bin = new File(binPath);
+		System.out.println("bin Path: " + binPath);
+		File binFiles = new File(classDirectory);
 		System.out.println("File Root: " + root.getName());
-		System.out.println("File Bin: " + bin.getName());
+		System.out.println("File Bin: " + bin.getAbsolutePath());
+		System.out.println("File Bin Directory: " + binFiles.getName());
 		
 		String srcFiles = filesDir + Constants.FILE_SEPARATOR + this.pinfo.getSrcDir();
 		
 		System.out.println("Source Files Directory: " + srcFiles);
+		
 
 		String libFiles = filesDir + Constants.FILE_SEPARATOR + this.pinfo.getLib();
 
 		System.out.println("Library Files Directory: " + libFiles);
 		
-		URL urls[] = {};
-		FileClassLoader cl = new FileClassLoader(urls);
-		cl.addJarFiles(libFiles);
-		cl.addClass(bin);
+		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
+		Class clazz = loader.createClass(binFiles); 
+		
+		if(clazz==null){
+			System.out.println("clazz : " + clazz);
+		}
+		
+		String clazzName = clazz.getCanonicalName();
+		int levels = clazzName.replaceAll("[^.]*", "").length();
+		File raiz = binFiles.getParentFile();
+		for (int i = 0; i < levels; i++) {
+			raiz = raiz.getParentFile();
+		}
+		loader.addURL(raiz.toURI().toURL());
+		
 		List<String> listClassNames = FileUtil.listClassNames(srcFiles, "");
+		
+		System.out.println("class loader toString: " + loader.toString());
 		
 		Iterator<String> i = listClassNames.iterator();
 		while(i.hasNext()){
 			String c = i.next();
-			System.out.println("\n\n-> " + c);
+			System.out.println("\n-> " + c);
 		}System.out.println("\n\n");
 		for (String className : listClassNames) {
 
@@ -260,10 +303,10 @@ public class Analyzer {
 					className = className.split(sourceDot)[1];
 				}
 				
-				System.out.println("className: " + className);
+				System.out.println("\nclassName: " + className);
 				
-				Class<?> c = cl.loadClass(className);
-
+				 Class<?> c = loader.loadClass(className); 
+				
 				// nao considera interface
 				if (c.isInterface())
 					continue;
@@ -277,27 +320,30 @@ public class Analyzer {
 				SClass sc = new SClass();
 				sc.setFullName(c.getName());
 				sc.setParent(c.getSuperclass().getName());
-
+				
+				
+				System.out.println("\n\n** S. Class ** ");
+				System.out.println("Full Name: " + sc.getFullName() + " Parent: " + sc.getParent());
+				
 				Constructor<?>[] constructors = c.getConstructors();
-				List<SConstructor> sconsList = new ArrayList<SConstructor>(
-						constructors.length);
+				List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
 
-				// do not consider constructors of abstract classes
+				/* Do not consider constructors of abstract classes */
 				if (!Modifier.isAbstract(modifiers))
 					for (Constructor<?> constructor : constructors) {
 						SConstructor scons = new SConstructor();
-						scons.setDeclaringClass(constructor.getDeclaringClass()
-								.getName());
+						scons.setDeclaringClass(constructor.getDeclaringClass().getName());
 						scons.setName(constructor.getName());
 
-						Class<?>[] parameterTypes = constructor
-								.getParameterTypes();
-						List<String> parameters = new ArrayList<String>(
-								parameterTypes.length);
+						Class<?>[] parameterTypes = constructor.getParameterTypes();
+						List<String> parameters = new ArrayList<String>(parameterTypes.length);
 						for (Class<?> param : parameterTypes) {
 							parameters.add(param.getName());
 						}
 						scons.setParameters(parameters);
+						
+						System.out.println("Constructor: " + scons.getName());
+						
 						sconsList.add(scons);
 					}
 				sc.setConstructors(sconsList);
@@ -306,24 +352,23 @@ public class Analyzer {
 				List<SMethod> smList = new ArrayList<SMethod>(methods.length);
 				for (Method method : methods) {
 
-					if (method.getDeclaringClass().getName().equals(
-							"java.lang.Object"))
+					System.out.println("Method: " + method);
+					
+					if (method.getDeclaringClass().getName().equals("java.lang.Object"))
 						continue;
 
 					// HACK: do not consider ArrayList methods due to randoop
 					// problems with generics
-					if (method.getDeclaringClass().getName().equals(
-							"java.util.ArrayList"))
+					if (method.getDeclaringClass().getName().equals("java.util.ArrayList"))
 						continue;
 
 					boolean hasGenericParam = false;
-					Type[] genericParameterTypes = method
-							.getGenericParameterTypes();
+					Type[] genericParameterTypes = method.getGenericParameterTypes();
 
 					for (Type type : genericParameterTypes) {
 
 						if (type instanceof ParameterizedType) {
-							System.out.println(type);
+							System.out.println("Type: " + type);
 							hasGenericParam = true;
 							break;
 						}
@@ -335,8 +380,7 @@ public class Analyzer {
 					sm.setDeclaringClass(method.getDeclaringClass().getName());
 					sm.setSimpleName(method.getName());
 					Class<?>[] parameterTypes = method.getParameterTypes();
-					List<String> parameters = new ArrayList<String>(
-							parameterTypes.length);
+					List<String> parameters = new ArrayList<String>(parameterTypes.length);
 					for (Class<?> param : parameterTypes) {
 						parameters.add(param.getName());
 					}
@@ -361,14 +405,37 @@ public class Analyzer {
 		return result;
 	}
 
-	public Map<String, SClass> mapClasses2(String filesDir) {
+	public Map<String, SClass> mapClasses2(String filesDir) throws IOException {
+		
 		Map<String, SClass> result = new HashMap<String, SClass>();
-
-		String binFiles = filesDir + Constants.FILE_SEPARATOR
-				+ this.pinfo.getSrcDir();
-
-		List<String> listClassNames = FileUtil.listClassNames(binFiles, "");
-
+		
+		String binPath = filesDir+System.getProperty("file.separator")+this.pinfo.getBinDir();
+		String classDirectory = binPath + System.getProperty("file.separator") + "br/cin/core/Main.class";
+		System.out.println("Class Directory: " + classDirectory);
+		
+		File binFiles = new File(classDirectory);
+		
+		List<String> listClassNames = FileUtil.listClassNames(binPath, "");
+		Iterator<String> i = listClassNames.iterator();
+		while(i.hasNext()){
+			String c = i.next();
+			System.out.println("\n\n-> " + c);
+		}System.out.println("\n\n");
+		
+		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
+		Class clazz = loader.createClass(binFiles); 
+		if(clazz==null){
+			System.out.println("clazz : " + clazz);
+		}
+		
+		String clazzName = clazz.getCanonicalName();
+		int levels = clazzName.replaceAll("[^.]*", "").length();
+		File raiz = binFiles.getParentFile();
+		for (int i1 = 0; i1 < levels; i1++) {
+			raiz = raiz.getParentFile();
+		}
+		loader.addURL(raiz.toURI().toURL());
+		
 		List<String> uncheckedClasses = new ArrayList<String>();
 
 		for (String className : listClassNames) {
@@ -389,7 +456,8 @@ public class Analyzer {
 					className = className.split(Pattern.quote(sourceDot))[1];
 				}
 
-				Class<?> c = Class.forName(className);
+				//Class<?> c = Class.forName(className);
+				 Class<?> c = loader.loadClass(className); 
 
 				// nao considera interface
 				if (c.isInterface())
@@ -407,33 +475,26 @@ public class Analyzer {
 				sc.setParent(c.getSuperclass().getName());
 
 				Constructor<?>[] constructors = c.getConstructors();
-				List<SConstructor> sconsList = new ArrayList<SConstructor>(
-						constructors.length);
+				List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
 
 				if (!Modifier.isAbstract(modifiers))
 					for (Constructor<?> constructor : constructors) {
 						SConstructor scons = new SConstructor();
-						scons.setDeclaringClass(constructor.getDeclaringClass()
-								.getName());
+						scons.setDeclaringClass(constructor.getDeclaringClass().getName());
 						scons.setName(constructor.getName());
 
-						Class<?>[] parameterTypes = constructor
-								.getParameterTypes();
-						List<String> parameters = new ArrayList<String>(
-								parameterTypes.length);
+						Class<?>[] parameterTypes = constructor.getParameterTypes();
+						List<String> parameters = new ArrayList<String>(parameterTypes.length);
 						boolean addMethod = true;
 						for (Class<?> param : parameterTypes) {
 
-							if (param.getName().equals(
-									"com.memorybudget.MemoryBudget"))
+							if (param.getName().equals("com.memorybudget.MemoryBudget"))
 								addMethod = false;
-							if (param.getName().equals(
-									"com.sleepycat.je.log.LogManager"))
+							if (param.getName().equals("com.sleepycat.je.log.LogManager"))
 								addMethod = false;
-							if (param.getName().equals(
-									"com.sleepycat.je.log.SyncedLogManager"))
+							if (param.getName().equals("com.sleepycat.je.log.SyncedLogManager"))
 								addMethod = false;
-							parameters.add(param.getName());
+						     	parameters.add(param.getName());
 						}
 						scons.setParameters(parameters);
 						if (addMethod)
@@ -563,16 +624,40 @@ public class Analyzer {
 		return classes;
 	}
 
-	public boolean analyzeChange(Criteria criteria) {
+	/**
+	 * This method looks for the common methods and constructors between the classes.
+	 * @param criteria
+	 * @return returns if this analysis can be continued: If any existing method in the source is always present in the target.
+	 * @throws IOException
+	 */
+	public boolean analyzeChange(Criteria criteria) throws IOException {
+	
 		boolean checkingCanProceed = true;
-
+		
+		/*try to "parses" all classes from the SOURCE and puts inside Sclass Structure all class name, superclass name, methods and Constructors of each Class.*/
 		this.sourceClasses = mapSourceClasses();
+		Iterator<String> i = this.sourceClasses.keySet().iterator();
+		System.out.println("\n\n\t\tSOURCE Classes:\n");
+		while(i.hasNext()){
+			String s = i.next();
+			System.out.println(s);
+		}
+		
+		/*try to "parses" all classes from the TARGET and puts inside Sclass Structure all class name, superclass name, methods and Constructors of each Class.*/
 		this.targetClasses = mapTargetClasses();
-
-		// analisa cada classe do source
+		if(targetClasses.isEmpty()){ System.out.println("TargetClasses is empty !");}
+		Iterator<String> it = this.targetClasses.keySet().iterator();
+		System.out.println("\n\n\t\tTarget Classes:\n");
+		while(it.hasNext()){
+			String s = it.next();
+			System.out.println(s);
+		}
+		
+		
+		/* It walks through all classes from the source and analyzes each one. */
 		for (SClass sourceClass : this.sourceClasses.values()) {
 
-			// se no target nao tiver essa classe, pula
+			/* If the target does not have this class, this part is jumped. */
 			if (!targetClasses.values().contains(sourceClass)) {
 				if (criteria == Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET) {
 					//Tem lixo vindo entre as classes do source.
@@ -580,94 +665,69 @@ public class Analyzer {
 					//Analisar bug do Safe.
 					if (!sourceClass.toString().contains("PreferencesDialog")) {
 						checkingCanProceed = false;
-
-						System.out.println("\nClasse " + sourceClass
-								+ " não foi encontrado. Classe" + sourceClass.toString().length());
-						System.out.println("Classe " + sourceClass
-								+ " não foi encontrado. Classe");
-						System.out.println("Classe " + sourceClass
-								+ " não foi encontrado. Classe");
-						System.out.println("Classe " + sourceClass
-								+ " não foi encontrado. Classe");
+						System.out.println("\nClasse: " + sourceClass + " NAO foi encontrada. Classe: " + sourceClass.toString().length());
 					}
 				}
-
 				continue;
-			}
+			} /*End if*/
 
-			// classe do target
+			/*Target Class*/
 			SClass targetClass = targetClasses.get(sourceClass.getFullName());
-			// System.out.println("Target: " + sc);
-			// System.out.println("Source: " + tc);
-
+			System.out.println("\n\nTarget Class: " + targetClass);
+			/* Walk through all constructors from the class and Looks for common methods between target and source classes. */
 			for (SConstructor constructor : sourceClass.getConstructors()) {
 				if (targetClass.getConstructors().contains(constructor)) {
+					/* Add it to common method.*/
 					commonConstructors.add(constructor);
 				}
 			}
 
 			if (checkingCanProceed) {
 				if(criteria == Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET){
+					/* Walk through all methods of the target class*/
 					for(SMethod method : targetClass.getMethods()){
+						/* If an existing method in the source is not present in the target It can not be proceeded.*/
 						if(!sourceClass.getMethods().contains(method)){
 							checkingCanProceed = false;
 						}
 					}
 				}
 				
-				
+				/* Walk through all methods of the source class. */
 				for (SMethod method : sourceClass.getMethods()) {
 					
-					// se o source e o target contem o method com a mesma
-					// assinatura, inclui
+					System.out.println("\n\nmethod: " + method);
+					
+					/* If the source and target contains the method with the same signature, include it !! */
 					if (!targetClass.getMethods().contains(method)) {
-						// Se a classe transformada não tem mais o método, a
-						// checagem não pode proceder. Mas esse resultado ainda
-						// pode
-						// ser revertido caso encontre o método em alguma classe
-						// na hierarquia abaixo.
+						/* If an existing method in the source is not present in the target It can not be proceed. */
+						/* However the method can be found in the down hierarchy. */
 						if (criteria == Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET) {
 							//Essa classe existe dos dois lados, mas nao eh encontrada pelo Safe.
 							//Analisar bug do Safe.
 							if (!sourceClass.toString().contains("PreferencesDialog")) {
 								checkingCanProceed = false;
-
-								System.out.println("\nMetodo " + method
-										+ " não foi encontrado. Método");
-								System.out.println("Metodo " + method
-										+ " não foi encontrado. Método");
-								System.out.println("Metodo " + method
-										+ " não foi encontrado. Método");
-								System.out.println("Metodo " + method
-										+ " não foi encontrado. Método");
+								System.out.println("\nMetodo " + method	+ " NAO foi encontrado.");
 							}
 						}
 
-						// senao, verifica se o method existe na hierarquia
+						/*  It verifies if the method exists in the hierarchy. */
 						for (int j = 0; j < targetClass.getMethods().size(); j++) {
-							SMethod targetMethod = targetClass.getMethods()
-									.get(j);
+							SMethod targetMethod = targetClass.getMethods().get(j);
 
 							// existem um method na classe, porem eles estao
 							// definidos em classes diferentes
-							if (targetMethod.getSimpleName().equals(
-									method.getSimpleName())
-									&& method.getParameterList().equals(
-											targetMethod.getParameterList())) {
+							if (targetMethod.getSimpleName().equals(method.getSimpleName())&& method.getParameterList().equals(targetMethod.getParameterList())) {
 
 								// Se achou metodo na hierarquia, deve ser
 								// possível prosseguir com a checagem.
 								checkingCanProceed = true;
 
-								SClass c1 = sourceClasses.get(method
-										.getDeclaringClass());
-								SClass c2 = sourceClasses.get(targetMethod
-										.getDeclaringClass());
+								SClass c1 = sourceClasses.get(method.getDeclaringClass());
+								SClass c2 = sourceClasses.get(targetMethod.getDeclaringClass());
 
-								SClass c3 = targetClasses.get(method
-										.getDeclaringClass());
-								SClass c4 = targetClasses.get(targetMethod
-										.getDeclaringClass());
+								SClass c3 = targetClasses.get(method.getDeclaringClass());
+								SClass c4 = targetClasses.get(targetMethod.getDeclaringClass());
 
 								// a classe do target �� super da classe do
 								// source
@@ -676,50 +736,36 @@ public class Analyzer {
 								if (isSuperClass(c1, c2, sourceClasses)
 										&& isSuperClass(c3, c4, targetClasses)) {
 									if (commonMethods.contains(method)) {
-										int indexOf = commonMethods
-												.indexOf(method);
-										commonMethods
-												.get(indexOf)
-												.getAllowedClasses()
-												.add(method.getDeclaringClass());
+										/*  Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element. */
+										int indexOf = commonMethods.indexOf(method);
+										commonMethods.get(indexOf).getAllowedClasses().add(method.getDeclaringClass());
 									} else {
-										method.getAllowedClasses().add(
-												method.getDeclaringClass());
+										method.getAllowedClasses().add(method.getDeclaringClass());
 										commonMethods.add(method);
 									}
 								} // o inverso
 								// inclui a classe do target no allowed classes
-								else if (isSuperClass(c2, c1, sourceClasses)
-										&& isSuperClass(c4, c3, targetClasses)) {
-									method.getAllowedClasses().add(
-											targetMethod.getDeclaringClass());
-
+								else if (isSuperClass(c2, c1, sourceClasses) && isSuperClass(c4, c3, targetClasses)) {
+									method.getAllowedClasses().add(targetMethod.getDeclaringClass());
 									if (commonMethods.contains(method)) {
-										int indexOf = commonMethods
-												.indexOf(method);
-										commonMethods
-												.get(indexOf)
-												.getAllowedClasses()
-												.add(
-														targetMethod
-																.getDeclaringClass());
+										int indexOf = commonMethods.indexOf(method);
+										commonMethods.get(indexOf).getAllowedClasses().add(targetMethod.getDeclaringClass());
 									} else {
-										method.getAllowedClasses().add(
-												targetMethod
-														.getDeclaringClass());
+										method.getAllowedClasses().add(targetMethod.getDeclaringClass());
 										commonMethods.add(method);
 									}
 								}
 							}
 						}
 					} else {
+						/* If the source and target contains the method with the same signature */
 						if (commonMethods.contains(method)) {
 							int indexOf = commonMethods.indexOf(method);
-							commonMethods.get(indexOf).getAllowedClasses().add(
-									sourceClass.getFullName());
+							/* Add it !! */
+							commonMethods.get(indexOf).getAllowedClasses().add(sourceClass.getFullName());
 						} else {
-							method.getAllowedClasses().add(
-									sourceClass.getFullName());
+							method.getAllowedClasses().add(sourceClass.getFullName());
+							/* Add it !! */
 							commonMethods.add(method);
 						}
 					}

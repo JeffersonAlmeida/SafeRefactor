@@ -45,7 +45,7 @@
 			<arg value="${timeout}" />
 
 			<classpath>
-				<pathelement path="/Users/felype/Documents/CIn/Mestrado/workspaceMestrado/ferramentaLPSSM/bincopy" />
+				<pathelement path="D:/documentos/Msc/SE/workspace/ferramentaLPSSM/bincopy" />
 				<pathelement path="${target}/${bin}" />
 			</classpath>
 			<classpath refid="classpath_source" />
@@ -66,7 +66,7 @@
 			<classpath refid="classpath_source" />
 
 			<classpath>
-				<pathelement path="/Users/felype/Documents/CIn/Mestrado/workspaceMestrado/ferramentaLPSSM/bincopy" />
+				<pathelement path="D:/documentos/Msc/SE/workspace/ferramentaLPSSM/bincopy" />
 				<pathelement path="${source}/${bin}" />
 			</classpath>
 		</java>
