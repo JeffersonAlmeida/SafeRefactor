@@ -227,6 +227,27 @@ public class Analyzer {
 		}*/
 		return result;
 	}
+	
+	private File findFirstClass(File f){
+		System.out.print(" FIle: " + f.getAbsolutePath());
+		if (f.isDirectory()) {
+			System.out.println("\tDIRECTORY!");
+			File[] files = f.listFiles();
+			for (File file : files) {
+				/*Call the same method recursively*/
+				return this.findFirstClass(file);
+			}
+		}else {
+			System.out.println("\tFILE!");
+			/*The whole source file path*/
+			String sourceAbsolutePath = f.getAbsolutePath();
+			if(sourceAbsolutePath.endsWith(".class")){
+				System.out.println("\n I found it! .calss: "+ sourceAbsolutePath);
+				return f;
+			}
+		}
+		return f;
+	}
 
 	/**
 	 * This methods maps all classes from the Source and puts inside Sclass all class name, superclass name, methods and Constructors of each Class.
@@ -243,12 +264,13 @@ public class Analyzer {
 		File root = new File(filesDir);
 		String binPath = filesDir+System.getProperty("file.separator")+this.pinfo.getBinDir();
 		
+		File binFiles = this.findFirstClass(new File(binPath));
+		
 		String classDirectory = binPath + System.getProperty("file.separator") + "br/cin/core/Main.class";
 		System.out.println("Class Directory: " + classDirectory);
 		
 		File bin = new File(binPath);
 		System.out.println("bin Path: " + binPath);
-		File binFiles = new File(classDirectory);
 		System.out.println("File Root: " + root.getName());
 		System.out.println("File Bin: " + bin.getAbsolutePath());
 		System.out.println("File Bin Directory: " + binFiles.getName());
@@ -413,7 +435,8 @@ public class Analyzer {
 		String classDirectory = binPath + System.getProperty("file.separator") + "br/cin/core/Main.class";
 		System.out.println("Class Directory: " + classDirectory);
 		
-		File binFiles = new File(classDirectory);
+		File binFiles = this.findFirstClass(new File(binPath));
+		
 		
 		List<String> listClassNames = FileUtil.listClassNames(binPath, "");
 		Iterator<String> i = listClassNames.iterator();
