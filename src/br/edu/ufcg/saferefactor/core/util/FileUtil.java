@@ -23,11 +23,12 @@ public class FileUtil {
 			File dir = new File(path);
 
 			if (!dir.exists()) {
-				throw new RuntimeException("Dir " + dir.getAbsolutePath()
-						+ " does not exist.");
+				throw new RuntimeException("Dir " + dir.getAbsolutePath() + " does not exist.");
 			}
 
 			File[] arquivos = dir.listFiles();
+			
+			if(arquivos==null){ System.out.println(" lista de arquivos null\n"); } else { System.out.println("\n Lista de arquivos: " + arquivos.length);}
 			
 			int tam = arquivos.length;
 			
@@ -40,15 +41,8 @@ public class FileUtil {
 					result.addAll(listClassNames(arquivos[i].getAbsolutePath(), baseTemp));
 					
 				} else {
-					// only .class files
-					// TODO maybe, we need to consider aspectj files
-					if (arquivos[i].getName().endsWith(".java")
-							&& !arquivos[i].getName().equals(
-									"SVGStorageFormat.java")) {
-						// TODO Diego - TODEL
-						// if(arquivos[i].getName().contains("LogFactory"))
-						// continue;
-
+					
+					if (arquivos[i].getName().endsWith(".class") && !arquivos[i].getName().equals("SVGStorageFormat.java")) {
 						String temp = base + arquivos[i].getName();
 						temp = trataNome(temp);
 
@@ -66,7 +60,7 @@ public class FileUtil {
 
 	// remove a extensao Java (o \\b significa word boundary -- fim da palavra)
 	private static String trataNome(String arquivo) {
-		arquivo = arquivo.replaceAll(".java\\b", "");
+		arquivo = arquivo.replaceAll(".class\\b", "");
 		return arquivo;
 	}
 	

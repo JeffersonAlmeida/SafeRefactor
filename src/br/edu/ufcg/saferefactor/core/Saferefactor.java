@@ -85,8 +85,6 @@ public class Saferefactor {
 
 		String classes = this.pinfo.getClassesString();
 
-		System.out.println("classes: " + classes);
-		
 		if (classes != null) {
 			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
 			p.setProperty("classes", classes);

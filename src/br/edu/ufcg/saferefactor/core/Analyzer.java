@@ -242,8 +242,10 @@ public class Analyzer {
 			/*The whole source file path*/
 			String sourceAbsolutePath = f.getAbsolutePath();
 			if(sourceAbsolutePath.endsWith(".class")){
-				System.out.println("\n I found it! .class: "+ sourceAbsolutePath);
+				System.out.println("\n I found it: "+ sourceAbsolutePath);
 				return f;
+			}else{
+				
 			}
 		}
 		return f;
@@ -256,49 +258,30 @@ public class Analyzer {
 	 * @throws IOException
 	 */
 	private Map<String, SClass> mapClasses(String filesDir) throws IOException {
-		
+		System.out.println("\nMapp Class One\n");
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		
+		filesDir = filesDir + Constants.FILE_SEPARATOR + "bin";
 	    System.out.println("File Directory: " + filesDir);
 		
-		File root = new File(filesDir);
-		String binPath = filesDir+System.getProperty("file.separator")+this.pinfo.getBinDir();
+		File sourceFiles = this.findFirstClass(new File(filesDir));
 		
-		File binFiles = this.findFirstClass(new File(binPath));
-		
-		File bin = new File(binPath);
-		System.out.println("bin Path: " + binPath);
-		System.out.println("File Root: " + root.getName());
-		System.out.println("File Bin: " + bin.getAbsolutePath());
-		System.out.println("File Bin Directory: " + binFiles.getAbsolutePath());
-		
-		String srcFiles = filesDir + Constants.FILE_SEPARATOR + this.pinfo.getSrcDir();
-		
-		System.out.println("Source Files Directory: " + srcFiles);
-		
-
-		String libFiles = filesDir + Constants.FILE_SEPARATOR + this.pinfo.getLib();
-
-		System.out.println("Library Files Directory: " + libFiles);
+		System.out.println("File Source Directory: " + sourceFiles.getAbsolutePath());
 		
 		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
-		Class clazz = loader.createClass(binFiles); 
+		Class clazz = loader.createClass(sourceFiles); 
 		
-		if(clazz==null){
-			System.out.println("clazz : " + clazz);
-		}
 		
 		String clazzName = clazz.getCanonicalName();
 		int levels = clazzName.replaceAll("[^.]*", "").length();
-		File raiz = binFiles.getParentFile();
+		File raiz = sourceFiles.getParentFile();
 		for (int i = 0; i < levels; i++) {
 			raiz = raiz.getParentFile();
 		}
 		loader.addURL(raiz.toURI().toURL());
 		
-		List<String> listClassNames = FileUtil.listClassNames(srcFiles, "");
+		List<String> listClassNames = FileUtil.listClassNames(filesDir, "");
 		
-		System.out.println("class loader toString: " + loader.toString());
 		
 		Iterator<String> i = listClassNames.iterator();
 		while(i.hasNext()){
@@ -425,33 +408,33 @@ public class Analyzer {
 	}
 
 	public Map<String, SClass> mapClasses2(String filesDir) throws IOException {
-		
+		System.out.println("\nMapp Class Two\n");
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		
-		String binPath = filesDir+System.getProperty("file.separator")+this.pinfo.getBinDir();
+		filesDir = filesDir + Constants.FILE_SEPARATOR + "bin";
+		System.out.println("file source: " + filesDir);
+		File sourceFiles = this.findFirstClass(new File(filesDir));
+		System.out.println("File Source Directory: " + sourceFiles.getAbsolutePath());
 		
-		File binFiles = this.findFirstClass(new File(binPath));
-		System.out.println("File Bin Directory: " + binFiles.getAbsolutePath());
-		
-		System.out.println("Bin Path -> " + binPath);
-		List<String> listClassNames = FileUtil.listClassNames(binPath, "");
+		List<String> listClassNames = FileUtil.listClassNames(filesDir, "");
 		
 		if(listClassNames.isEmpty()){
 			System.out.println("\nList Class Name Array is Empty !\n");
 		}
 		
+		System.out.println("\n List of Classes:");
 		Iterator<String> i = listClassNames.iterator();
 		while(i.hasNext()){
 			String c = i.next();
-			System.out.println("\n\n-> " + c);
+			System.out.println("\n-> " + c);
 		}System.out.println("\n\n");
 		
 		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
-		Class clazz = loader.createClass(binFiles); 
+		Class clazz = loader.createClass(sourceFiles); 
 				
 		String clazzName = clazz.getCanonicalName();
 		int levels = clazzName.replaceAll("[^.]*", "").length();
-		File raiz = binFiles.getParentFile();
+		File raiz = sourceFiles.getParentFile();
 		for (int i1 = 0; i1 < levels; i1++) {
 			raiz = raiz.getParentFile();
 		}
@@ -460,7 +443,7 @@ public class Analyzer {
 		List<String> uncheckedClasses = new ArrayList<String>();
 
 		for (String className : listClassNames) {
-
+			System.out.println("class name: " + className);
 			// TODO: hack for BerkeleyDB. Make it generic.
 			if (className.equals("com.memorybudget.MemoryBudget"))
 				continue;

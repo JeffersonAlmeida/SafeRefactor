@@ -108,8 +108,8 @@ public class FileClassLoader extends URLClassLoader {
     * @see #createClass(byte[]) 
     */
    public Class<?> createClass(File file) throws IOException {
-	  file.getAbsolutePath().replaceAll("/", System.getProperty("file.separator"));
 	  System.out.println("-> File Path: " + file.getAbsolutePath());
+	  file.getAbsolutePath().replaceAll("/", System.getProperty("file.separator"));
 	  FileInputStream fis = null;
       try {
          fis = new FileInputStream(file);
