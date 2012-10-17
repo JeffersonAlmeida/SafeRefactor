@@ -28,7 +28,7 @@ public class FileUtil {
 
 			File[] arquivos = dir.listFiles();
 			
-			if(arquivos==null){ System.out.println(" lista de arquivos null\n"); } else { System.out.println("\n Lista de arquivos: " + arquivos.length);}
+			if(arquivos==null){ System.out.println(" lista de arquivos null\n"); } 
 			
 			int tam = arquivos.length;
 			

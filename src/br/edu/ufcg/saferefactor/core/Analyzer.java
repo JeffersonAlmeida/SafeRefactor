@@ -229,16 +229,13 @@ public class Analyzer {
 	}
 	
 	private File findFirstClass(File f){
-		System.out.print(" FIle: " + f.getAbsolutePath());
 		if (f.isDirectory()) {
-			System.out.println("\tDIRECTORY!");
 			File[] files = f.listFiles();
 			for (File file : files) {
 				/*Call the same method recursively*/
 				return this.findFirstClass(file);
 			}
 		}else {
-			System.out.println("\tFILE!");
 			/*The whole source file path*/
 			String sourceAbsolutePath = f.getAbsolutePath();
 			if(sourceAbsolutePath.endsWith(".class")){
