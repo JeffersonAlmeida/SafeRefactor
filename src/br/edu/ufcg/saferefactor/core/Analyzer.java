@@ -242,7 +242,7 @@ public class Analyzer {
 			/*The whole source file path*/
 			String sourceAbsolutePath = f.getAbsolutePath();
 			if(sourceAbsolutePath.endsWith(".class")){
-				System.out.println("\n I found it! .calss: "+ sourceAbsolutePath);
+				System.out.println("\n I found it! .class: "+ sourceAbsolutePath);
 				return f;
 			}
 		}
@@ -266,14 +266,11 @@ public class Analyzer {
 		
 		File binFiles = this.findFirstClass(new File(binPath));
 		
-		String classDirectory = binPath + System.getProperty("file.separator") + "br/cin/core/Main.class";
-		System.out.println("Class Directory: " + classDirectory);
-		
 		File bin = new File(binPath);
 		System.out.println("bin Path: " + binPath);
 		System.out.println("File Root: " + root.getName());
 		System.out.println("File Bin: " + bin.getAbsolutePath());
-		System.out.println("File Bin Directory: " + binFiles.getName());
+		System.out.println("File Bin Directory: " + binFiles.getAbsolutePath());
 		
 		String srcFiles = filesDir + Constants.FILE_SEPARATOR + this.pinfo.getSrcDir();
 		
@@ -432,13 +429,17 @@ public class Analyzer {
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		
 		String binPath = filesDir+System.getProperty("file.separator")+this.pinfo.getBinDir();
-		String classDirectory = binPath + System.getProperty("file.separator") + "br/cin/core/Main.class";
-		System.out.println("Class Directory: " + classDirectory);
 		
 		File binFiles = this.findFirstClass(new File(binPath));
+		System.out.println("File Bin Directory: " + binFiles.getAbsolutePath());
 		
-		
+		System.out.println("Bin Path -> " + binPath);
 		List<String> listClassNames = FileUtil.listClassNames(binPath, "");
+		
+		if(listClassNames.isEmpty()){
+			System.out.println("\nList Class Name Array is Empty !\n");
+		}
+		
 		Iterator<String> i = listClassNames.iterator();
 		while(i.hasNext()){
 			String c = i.next();
@@ -447,10 +448,7 @@ public class Analyzer {
 		
 		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
 		Class clazz = loader.createClass(binFiles); 
-		if(clazz==null){
-			System.out.println("clazz : " + clazz);
-		}
-		
+				
 		String clazzName = clazz.getCanonicalName();
 		int levels = clazzName.replaceAll("[^.]*", "").length();
 		File raiz = binFiles.getParentFile();
@@ -598,8 +596,7 @@ public class Analyzer {
 			}
 		}
 
-		System.out
-				.println("Classes that throw exception and will be not included in the tests: ");
+		System.out.println("Classes that throw exception and will be not included in the tests: ");
 		for (String classe : uncheckedClasses) {
 			System.out.println(classe);
 		}
