@@ -266,21 +266,13 @@ public class Analyzer {
 		System.out.println("File Source Directory: " + sourceFiles.getAbsolutePath());
 		
 		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
-		Class clazz = loader.createClass(sourceFiles); 
-		
-		
-		String clazzName = clazz.getCanonicalName();
-		int levels = clazzName.replaceAll("[^.]*", "").length();
-		File raiz = sourceFiles.getParentFile();
-		for (int i = 0; i < levels; i++) {
-			raiz = raiz.getParentFile();
-		}
+		File raiz = new File(filesDir); 
 		loader.addURL(raiz.toURI().toURL());
 		
 		List<String> listClassNames = FileUtil.listClassNames(filesDir, "");
 		
-		
 		Iterator<String> i = listClassNames.iterator();
+		System.out.println("\nClasses Names: " + listClassNames.size());
 		while(i.hasNext()){
 			String c = i.next();
 			System.out.println("\n-> " + c);
@@ -413,30 +405,24 @@ public class Analyzer {
 		File sourceFiles = this.findFirstClass(new File(filesDir));
 		System.out.println("File Source Directory: " + sourceFiles.getAbsolutePath());
 		
+		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
+		File raiz = new File(filesDir); 
+		loader.addURL(raiz.toURI().toURL());
+		
 		List<String> listClassNames = FileUtil.listClassNames(filesDir, "");
 		
 		if(listClassNames.isEmpty()){
 			System.out.println("\nList Class Name Array is Empty !\n");
 		}
 		
-		System.out.println("\n List of Classes:");
+		System.out.println("\n List of Classes: " + listClassNames.size() + ":");
 		Iterator<String> i = listClassNames.iterator();
 		while(i.hasNext()){
 			String c = i.next();
 			System.out.println("\n-> " + c);
 		}System.out.println("\n\n");
 		
-		br.edu.ufcg.saferefactor.core.FileClassLoader loader = new br.edu.ufcg.saferefactor.core.FileClassLoader();
-		Class clazz = loader.createClass(sourceFiles); 
-				
-		String clazzName = clazz.getCanonicalName();
-		int levels = clazzName.replaceAll("[^.]*", "").length();
-		File raiz = sourceFiles.getParentFile();
-		for (int i1 = 0; i1 < levels; i1++) {
-			raiz = raiz.getParentFile();
-		}
-		loader.addURL(raiz.toURI().toURL());
-		
+			
 		List<String> uncheckedClasses = new ArrayList<String>();
 
 		for (String className : listClassNames) {
@@ -457,9 +443,12 @@ public class Analyzer {
 					className = className.split(Pattern.quote(sourceDot))[1];
 				}
 
-				//Class<?> c = Class.forName(className);
+				 System.out.println("load start");
 				 Class<?> c = loader.loadClass(className); 
-
+				 System.out.println("load stop");
+				 
+				 if(c==null){ System.out.println("\nClass<?> NULL\n");} else { System.out.println("Class<?> Name: " + c.getName());}
+				 
 				// nao considera interface
 				if (c.isInterface())
 					continue;

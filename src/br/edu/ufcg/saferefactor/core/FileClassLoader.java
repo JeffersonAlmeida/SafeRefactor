@@ -109,21 +109,37 @@ public class FileClassLoader extends URLClassLoader {
     */
    public Class<?> createClass(File file) throws IOException {
 	  System.out.println("-> File Path: " + file.getAbsolutePath());
+	  String className = this.getClassName(file.getAbsolutePath());
 	  file.getAbsolutePath().replaceAll("/", System.getProperty("file.separator"));
+	  System.out.println("\nReplaced File Separator !\n");
 	  FileInputStream fis = null;
       try {
          fis = new FileInputStream(file);
-         byte[] bytes = new byte[fis.available()];
+         System.out.println("FIS: " + fis.getChannel().getClass().getCanonicalName());
+         byte[] bytes = new byte[fis.available()]; 
          int read = fis.read(bytes);
          if (read != bytes.length) {
+        	 System.out.println("\nThis method will return NULL, because read != bytes.length.\n");
             return null;
          }
-         return createClass(bytes);
+         return createClass(bytes, className);
       } finally {
          fis.close();
       }
+      
    }
-
+  
+	private String getClassName(String n){
+		System.out.println("String:" + n);
+		String[] split = n.split(".class");
+		String word = split[0].replaceAll("\\\\", ".");
+		word = word.substring(1);
+		String r[] = word.split("bin.");
+		word = r[1];
+		System.out.println("Class Name: " +  word);
+		return word;
+	}
+   
    /**
     * Converts an array of bytes into an instance of class Class and resolves
     * the Class so it can be used.
@@ -138,8 +154,19 @@ public class FileClassLoader extends URLClassLoader {
     * @see ClassLoader#resolveClass(Class) 
     */
    public Class<?> createClass(byte[] bytes) {
-      Class<?> clazz = defineClass(null, bytes, 0, bytes.length);
+	   System.out.println("\n CreateClass Method: \n");
+      Class<?> clazz = defineClass(null, bytes, 0, bytes.length); 
+      System.out.println("clazz: CREATE CLASS: " + clazz.getName());
       resolveClass(clazz);
+      System.out.println("Create Class: clazz: " + clazz.getCanonicalName());
+      return clazz;
+   }
+   public Class<?> createClass(byte[] bytes, String name) {
+	   System.out.println("\n CreateClass Method: \n");
+      Class<?> clazz = defineClass(name, bytes, 0, bytes.length); //defineClass(null, bytes, 0, bytes.length); 
+      System.out.println("clazz: CREATE CLASS: " + clazz.getName());
+      resolveClass(clazz);
+      System.out.println("Create Class: clazz: " + clazz.getCanonicalName());
       return clazz;
    }
 }
