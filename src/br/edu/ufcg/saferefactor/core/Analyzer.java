@@ -567,7 +567,7 @@ public class Analyzer {
 
 		System.out.println("Classes that throw exception and will be not included in the tests: ");
 		for (String classe : uncheckedClasses) {
-			System.out.println(classe);
+			System.out.println("\n not included: " +classe);
 		}
 		result = resultFilter(result, uncheckedClasses);
 

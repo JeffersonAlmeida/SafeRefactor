@@ -17,3 +17,4 @@ ScalabilityTest.properties
 files/
 junitv*.properties
 junit1574*.properties
+junit*.properties
