@@ -1,12 +1,7 @@
 package br.edu.ufcg.saferefactor.core;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
@@ -20,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
 import br.edu.ufcg.saferefactor.core.ast.SClass;
 import br.edu.ufcg.saferefactor.core.ast.SConstructor;
 import br.edu.ufcg.saferefactor.core.ast.SMethod;
@@ -78,7 +74,6 @@ public class Analyzer {
 	}
 
 	public File generateMethodListFile(Criteria criteria) throws IOException {
-	
 		/* Looks for the common methods and constructors between the classes. */
 		boolean checkingCanProceed = analyzeChange(criteria);
 		
@@ -91,7 +86,16 @@ public class Analyzer {
 
 		int quantityOfMethodsToTest = 0;
 
-		if(this.pinfo.getClasses().isEmpty()){ System.out.println(" Classes is Empty !!");}
+		if(this.pinfo.getClasses().isEmpty()){ 
+			System.out.println(" Classes is Empty !!");
+		}else{
+			System.out.println("\nClasse Para Testar:");
+			Iterator<String> i = this.pinfo.getClasses().iterator();
+			while(i.hasNext()){
+				String s = i.next();
+				System.out.println("\nclasse para teste: " + s);
+			}
+		}
 		
 		if (!this.pinfo.getClasses().isEmpty()) {
 			List<String> classesParaTestar = new ArrayList<String>();
@@ -102,7 +106,6 @@ public class Analyzer {
 			// nos par�metros dos construtores dessas classes.
 			for (int i = 0; i < classesParaTestar.size(); i++) {
 				String classeParaTestar = classesParaTestar.get(i);
-
 				for (SConstructor constructor : this.commonConstructors) {
 					String constructorString = constructor.toString();
 
@@ -130,13 +133,10 @@ public class Analyzer {
 
 				if (this.listContainsString(this.pinfo.getClasses(),
 						methodString)) {
-					if (!this.listContainsString(this.nonDeterministicMethods,
-							methodString)) {
+					if (!this.listContainsString(this.nonDeterministicMethods, methodString)) {
 						lines.append(method + "\n");
-
 						quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
 					}
-
 				}
 			}
 		} else {
@@ -160,7 +160,7 @@ public class Analyzer {
 			}
 		}
 
-		System.out.println(lines.toString());
+		System.out.println("lines.toString = " + lines.toString());
 
 		System.out.println("\n\nAmount of tests to test: " + quantityOfMethodsToTest);
 		this.pinfo.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
@@ -272,13 +272,17 @@ public class Analyzer {
 		List<String> listClassNames = FileUtil.listClassNames(filesDir, "");
 		
 		Iterator<String> i = listClassNames.iterator();
-		System.out.println("\nClasses Names: " + listClassNames.size());
+		System.out.println("\nClasses" + "<" + listClassNames.size() + ">: ");
+		int count=1;
 		while(i.hasNext()){
 			String c = i.next();
-			System.out.println("\n-> " + c);
+			System.out.println("\n" +(count++) + " - " + c);
 		}System.out.println("\n\n");
+		count=1;
 		for (String className : listClassNames) {
 
+			 System.out.println("\n# Get All Constructors and methods of the class: " + (count++) + " - " + className + "\n");
+			
 			// TODO: hack for BerkeleyDB. Make it generic.
 			if (className.equals("com.memorybudget.MemoryBudget"))
 				continue;
@@ -293,8 +297,6 @@ public class Analyzer {
 				if (className.contains(sourceDot)) {
 					className = className.split(sourceDot)[1];
 				}
-				
-				System.out.println("\nclassName: " + className);
 				
 				 Class<?> c = loader.loadClass(className); 
 				
@@ -311,10 +313,6 @@ public class Analyzer {
 				SClass sc = new SClass();
 				sc.setFullName(c.getName());
 				sc.setParent(c.getSuperclass().getName());
-				
-				
-				System.out.println("\n\n** S. Class ** ");
-				System.out.println("Full Name: " + sc.getFullName() + " Parent: " + sc.getParent());
 				
 				Constructor<?>[] constructors = c.getConstructors();
 				List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
@@ -631,7 +629,7 @@ public class Analyzer {
 			String s = i.next();
 			System.out.println(s);
 		}
-		
+		System.out.println("************\n");
 		/*try to "parses" all classes from the TARGET and puts inside Sclass Structure all class name, superclass name, methods and Constructors of each Class.*/
 		this.targetClasses = mapTargetClasses();
 		if(targetClasses.isEmpty()){ System.out.println("TargetClasses is empty !");}
@@ -641,11 +639,13 @@ public class Analyzer {
 			String s = it.next();
 			System.out.println(s);
 		}
+		System.out.println("************\n");
 		
+		System.out.println("\nObtem todos os metodos e construtores em comum entre classes source e target:\n\n");
 		
 		/* It walks through all classes from the source and analyzes each one. */
 		for (SClass sourceClass : this.sourceClasses.values()) {
-
+			
 			/* If the target does not have this class, this part is jumped. */
 			if (!targetClasses.values().contains(sourceClass)) {
 				if (criteria == Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET) {
@@ -662,7 +662,7 @@ public class Analyzer {
 
 			/*Target Class*/
 			SClass targetClass = targetClasses.get(sourceClass.getFullName());
-			System.out.println("\n\nTarget Class: " + targetClass);
+			System.out.println("\nSource Class: " + sourceClass + " Target Class: " + targetClass + "\n");
 			/* Walk through all constructors from the class and Looks for common methods between target and source classes. */
 			for (SConstructor constructor : sourceClass.getConstructors()) {
 				if (targetClass.getConstructors().contains(constructor)) {
@@ -684,8 +684,6 @@ public class Analyzer {
 				
 				/* Walk through all methods of the source class. */
 				for (SMethod method : sourceClass.getMethods()) {
-					
-					System.out.println("\n\nmethod: " + method);
 					
 					/* If the source and target contains the method with the same signature, include it !! */
 					if (!targetClass.getMethods().contains(method)) {
@@ -722,8 +720,7 @@ public class Analyzer {
 								// source
 								// nas duas hierarquias
 								// inclui a class do source no allowedclasses
-								if (isSuperClass(c1, c2, sourceClasses)
-										&& isSuperClass(c3, c4, targetClasses)) {
+								if (isSuperClass(c1, c2, sourceClasses) && isSuperClass(c3, c4, targetClasses)) {
 									if (commonMethods.contains(method)) {
 										/*  Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element. */
 										int indexOf = commonMethods.indexOf(method);
@@ -760,9 +757,31 @@ public class Analyzer {
 					}
 				}
 			}
+			printCommonConstructors();
+			printCommonMethods();
 		}
 
 		return checkingCanProceed;
+	}
+
+	private void printCommonMethods() {
+		System.out.println("\nLista de Metodos em comum: ");
+		Iterator<SMethod> i = this.commonMethods.iterator();
+		while(i.hasNext()){
+			SMethod sm = i.next();
+			System.out.println("name: " + sm.getSimpleName());
+		}
+		System.out.println("\n************************");
+	}
+
+	private void printCommonConstructors() {
+		System.out.println("\nLista de Construtores em comum: ");
+		Iterator<SConstructor> i = this.commonConstructors.iterator();
+		while(i.hasNext()){
+			SConstructor sc = i.next();
+			System.out.println("name: " + sc.getName());
+		}
+		System.out.println("\n");
 	}
 
 	// TODO checar se uma classe � subclasse da outra.

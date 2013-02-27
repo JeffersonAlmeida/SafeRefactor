@@ -89,7 +89,7 @@ public class Saferefactor {
 			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
 			p.setProperty("classes", classes);
 		}
-
+		System.out.println("#classes pra teste: " + classes);
 		int maxTestsPerMethod = this.pinfo.getMaxTestsPerMethod();
 
 		if (maxTestsPerMethod > 0) {
@@ -133,6 +133,11 @@ public class Saferefactor {
 		
 		/* Parses the ANT project file, configuring the project as it goes.*/
 		helper.parse(p, file);
+		
+		
+		System.out.println("\nMax Testes: " + maxTestsPerMethod);
+		System.out.println("\nTimeOut: " + timeout);
+		System.out.println("\nClasses: " + classes);
 		
 		/* Execute default target of the project. */
 		p.executeTarget(p.getDefaultTarget());
@@ -193,9 +198,9 @@ public class Saferefactor {
 		System.out.println("criteria: " + safeRefactor.getPinfo().getCriteria()+ "\n\n");
 		
 		
-		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
 		
-		File listOfMethods = new File("C:/Users/Jefferson/AppData/Local/Temp/safeRefactorAJ/method_list_example.txt");
+		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
+		System.out.println("Quantity of method to test: " + safeRefactor.getPinfo().getQuantityOfMethodsToTest());
 
 		if (methodList != null) {
 			Main main2 = new Main();
@@ -204,7 +209,7 @@ public class Saferefactor {
 					"gentests",
 					"--methodlist=" + methodList,
 					"--timelimit=" + timeout,
-					"--log=D:/documentos/Msc/SE/workspace/saferefactoraj/filewriter.log",
+					"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 					"--junit-output-dir=" + Constants.TEST,
 					"--output-nonexec=true",
 					"--inputlimit="
@@ -216,7 +221,7 @@ public class Saferefactor {
 						"gentests",
 						"--methodlist=" + methodList,
 						"--timelimit=" + timeout,
-						"--log=D:/documentos/Msc/SE/workspace/saferefactoraj/filewriter.log",
+						"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 						"--junit-output-dir=" + Constants.TEST,
 						"--output-nonexec=true",
 						"--inputlimit=" + (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
@@ -226,7 +231,7 @@ public class Saferefactor {
 			}
 			//gentests --testclass=java.util.TreeSet --testclass=java.util.Collections --timelimit=60
 			/* When determining the set of members under test from the --testclass, --classlist or --methodlist options, non-public classes or members are ignored. */
-			String[] argsR = {"gentests", "--methodlist=" + methodList, "--timelimit=10", "--junit-output-dir=" + Constants.TESTSRC, "--output-nonexec=true", "--inputlimit=" + (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()), "--remove-subsequences=false", "--log=D:/documentos/Msc/SE/workspace/saferefactoraj/filewriter.log"};
+			String[] argsR = {"gentests", "--methodlist=" + methodList, "--timelimit=10", "--junit-output-dir=" + Constants.TESTSRC, "--output-nonexec=true", "--inputlimit=" + (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()), "--remove-subsequences=false", "--log=/home/jefferson/workspace/saferefactoraj/filewriter.log"};
 			argsRandoop = argsR;
 			
 			System.out.println(" Args Size: " + argsRandoop.length);

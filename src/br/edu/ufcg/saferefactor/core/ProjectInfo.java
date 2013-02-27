@@ -25,9 +25,8 @@ public class ProjectInfo {
 		this.binDir = bin;
 		this.srcDir = src;
 		this.lib = lib;
-		
 		this.criteria = Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET;
-		this.maxTestsPerMethod = 2;
+		this.maxTestsPerMethod = 4;
 	}
 
 	public ProjectInfo(String source, String target, String bin, String src, String lib, String classes, int maxTests, Criteria criteria) {

@@ -1,0 +1,4 @@
+
+    org.jhotdraw.standard.StandardDrawing 2 
+        org.jhotdraw.figures.LineFigure 2 0 0 0 0 NULL NULL 0 0 0  
+        org.jhotdraw.contrib.TextAreaFigure "no_attributes" 0 0 30 15 "" 0 NULL NULL   
