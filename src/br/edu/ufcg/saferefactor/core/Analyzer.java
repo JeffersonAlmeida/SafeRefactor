@@ -157,8 +157,7 @@ public class Analyzer {
 
 		this.pinfo.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
 
-		return FileUtil
-				.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString());
+		return FileUtil.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString());
 	}
 
 	private boolean listContainsString(List<String> listClasses,
