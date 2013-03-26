@@ -186,7 +186,7 @@ public class Saferefactor {
 					"gentests",
 					"--methodlist=" + methodList,
 					"--timelimit=" + timeout,
-					"--log=/workspace/saferefactoraj/filewriter.log",
+					"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 					"--junit-output-dir=" + Constants.TEST,
 					"--output-nonexec=true",
 					"--inputlimit="
@@ -194,16 +194,11 @@ public class Saferefactor {
 					"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
 
 			if (maxTestsPerMethods > 0) {
-				//			String[] newArgsRandoop = { "gentests", "--remove-subsequences=false", "--timelimit=" + 100,
-				//					"--inputlimit=" + (maxTestsPerMethods * safeRefactor.getPinfo().getMaxTestsPerMethod()), "--methodlist=" + methodList,
-				//					"--log=/home/felype/workspaceMestrado/saferefactoraj/filewriter.log",
-				//					"--junit-output-dir=" + Constants.TEST, "--output-nonexec=true" };
-
 				String[] newArgsRandoop = {
 						"gentests",
 						"--methodlist=" + methodList,
 						"--timelimit=" + timeout,
-						"--log=/workspace/saferefactoraj/filewriter.log",
+						"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 						"--junit-output-dir=" + Constants.TEST,
 						"--output-nonexec=true",
 						"--inputlimit="
