@@ -201,7 +201,15 @@ public class Saferefactor {
 		
 		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
 		System.out.println("Quantity of method to test: " + safeRefactor.getPinfo().getQuantityOfMethodsToTest());
-
+		int inputlimit = safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod();
+		
+		System.out.println("\n INPUT LIMIT: " + inputlimit);
+		
+		/**/
+		inputlimit = 500;
+		
+		System.out.println("\n INPUT LIMIT: " + inputlimit);
+		
 		if (methodList != null) {
 			Main main2 = new Main();
 
@@ -212,8 +220,7 @@ public class Saferefactor {
 					"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 					"--junit-output-dir=" + Constants.TEST,
 					"--output-nonexec=true",
-					"--inputlimit="
-							+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
+					"--inputlimit="	+ inputlimit,
 					"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
 
 			if (maxTestsPerMethods > 0) {
@@ -224,14 +231,14 @@ public class Saferefactor {
 						"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 						"--junit-output-dir=" + Constants.TEST,
 						"--output-nonexec=true",
-						"--inputlimit=" + (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
+						"--inputlimit=" + inputlimit,
 						"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
 
 				argsRandoop = newArgsRandoop;
 			}
 			//gentests --testclass=java.util.TreeSet --testclass=java.util.Collections --timelimit=60
 			/* When determining the set of members under test from the --testclass, --classlist or --methodlist options, non-public classes or members are ignored. */
-			String[] argsR = {"gentests", "--methodlist=" + methodList, "--timelimit=10", "--junit-output-dir=" + Constants.TESTSRC, "--output-nonexec=true", "--inputlimit=" + (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()), "--remove-subsequences=false", "--log=/home/jefferson/workspace/saferefactoraj/filewriter.log"};
+			String[] argsR = {"gentests", "--methodlist=" + methodList, "--timelimit=10", "--junit-output-dir=" + Constants.TESTSRC, "--output-nonexec=true", "--inputlimit=" + inputlimit, "--remove-subsequences=false", "--log=/home/jefferson/workspace/saferefactoraj/filewriter.log"};
 			argsRandoop = argsR;
 			
 			System.out.println(" Args Size: " + argsRandoop.length);
