@@ -17,9 +17,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import br.edu.ufcg.saferefactor.classloader.FileClassLoader;
@@ -79,6 +81,8 @@ public class Analyzer {
 		}
 
 		StringBuffer lines = new StringBuffer();
+		Set<String> listOfConstructors = new HashSet<String>();
+		Set<String> listOfMethods = new HashSet<String>();
 
 		int quantityOfMethodsToTest = 0;
 
@@ -91,15 +95,13 @@ public class Analyzer {
 			// nos par�metros dos construtores dessas classes.
 			for (int i = 0; i < classesParaTestar.size(); i++) {
 				String classeParaTestar = classesParaTestar.get(i);
-
+				System.out.println("Classe para ser testada: " + classeParaTestar);
 				for (SConstructor constructor : this.commonConstructors) {
 					String constructorString = constructor.toString();
 
-					if (constructorString.contains(classeParaTestar)
-							&& !this.listContainsString(
-									this.nonDeterministicMethods,
-									constructorString)) {
+					if (constructorString.contains(classeParaTestar) && !this.listContainsString( this.nonDeterministicMethods, constructorString)) {
 						lines.append(constructor + "\n");
+						listOfConstructors.add(constructor.toString());
 
 						List<String> classParameters = constructor
 								.getParameters();
@@ -114,22 +116,19 @@ public class Analyzer {
 					}
 
 					lines.append(constructorString + "\n");
+					listOfConstructors.add(constructorString);
 				}
 			}
 
 			// Test only methods of modified classes.
 			for (SMethod method : commonMethods) {
 				String methodString = method.toString();
-
-				if (this.listContainsString(this.pinfo.getClasses(),
-						methodString)) {
-					if (!this.listContainsString(this.nonDeterministicMethods,
-							methodString)) {
+				if (this.listContainsString(this.pinfo.getClasses(),methodString)) {
+					if (!this.listContainsString(this.nonDeterministicMethods, methodString)) {
 						lines.append(method + "\n");
-
+						listOfMethods.add(method.toString());
 						quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
 					}
-
 				}
 			}
 		} else {
@@ -138,16 +137,15 @@ public class Analyzer {
 				if (!this.listContainsString(this.nonDeterministicMethods,
 						constructor.toString())) {
 					lines.append(constructor + "\n");
-
+					listOfConstructors.add(constructor.toString());
 					quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
 				}
 			}
 
 			for (SMethod method : commonMethods) {
-				if (!this.listContainsString(this.nonDeterministicMethods,
-						method.toString())) {
+				if (!this.listContainsString(this.nonDeterministicMethods, method.toString())) {
 					lines.append(method + "\n");
-
+					listOfMethods.add(method.toString());
 					quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
 				}
 			}
@@ -157,17 +155,15 @@ public class Analyzer {
 
 		this.pinfo.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
 
-		return FileUtil.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString());
+		return FileUtil.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString() );
+		
 	}
 
-	private boolean listContainsString(List<String> listClasses,
-			String contrString) {
+	private boolean listContainsString(List<String> listClasses, String contrString) {
 		boolean result = false;
-
 		for (int i = 0; i < listClasses.size() && !result; i++) {
 			result = contrString.contains(listClasses.get(i));
 		}
-
 		return result;
 	}
 

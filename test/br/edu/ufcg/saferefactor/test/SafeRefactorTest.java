@@ -4,15 +4,19 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import br.edu.ufcg.saferefactor.core.Criteria;
 import br.edu.ufcg.saferefactor.core.Saferefactor;
 
 public class SafeRefactorTest {
 
 	@Test
 	public void test1() {
-		String source = "C:/WorkspaceSPL/ProjectWithoutRefactoring";
-		String target = "C:/WorkspaceSPL/ProjectWithRefactoring";
+		String source = "/home/jefferson/Desktop/workspace/BankEVO/";
+		String target = "/home/jefferson/Desktop/workspace/BankEVO2";
 		Saferefactor sr = new Saferefactor(source, target, "bin", "src", "lib");
+		sr.getPinfo().setCriteria(Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT);
+		sr.getPinfo().setMaxTestsPerMethod(2);
+		sr.getPinfo().setClassesString("org.bank.account.Account");
 		sr.isRefactoring("30", true);
 		//assertEquals(false, sr.isRefactoring("30", true));
 	}

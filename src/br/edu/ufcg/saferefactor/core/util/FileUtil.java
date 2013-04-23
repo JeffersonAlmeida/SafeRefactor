@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class FileUtil {
 
@@ -70,11 +71,45 @@ public class FileUtil {
 		return arquivo;
 	}
 	
+	public static File makeFile(String name, Set<String> texto) {
+		File result = new File(name);
+		try {			
+			FileWriter fw = new FileWriter(result);
+			for(String t: texto){
+				fw.write( t + "\n");	
+			}
+			
+			fw.close();
+		} catch (Exception e) {
+			System.err.println("Erro no metodo FileUtil.gravaArquivo()");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static File makeFile(String name, Set<String> listOfConstructors,  Set<String> listOfMethods) {
+		File result = new File(name);
+		try {			
+			FileWriter fw = new FileWriter(result);
+			for(String t: listOfConstructors){
+				fw.write( t + "\n");	
+			}
+			for(String t: listOfMethods){
+				fw.write( t + "\n");	
+			}
+			fw.close();
+		} catch (Exception e) {
+			System.err.println("Erro no metodo FileUtil.gravaArquivo()");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public static File makeFile(String name, String texto) {
 		File result = new File(name);
 		try {			
 			FileWriter fw = new FileWriter(result);
-			fw.write(texto);
+			fw.write(texto);	
 			fw.close();
 		} catch (Exception e) {
 			System.err.println("Erro no metodo FileUtil.gravaArquivo()");

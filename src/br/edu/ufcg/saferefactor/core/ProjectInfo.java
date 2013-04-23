@@ -28,6 +28,7 @@ public class ProjectInfo {
 	}
 
 	public ProjectInfo(String source, String target, String bin, String src, String lib, String classes, int maxTests, Criteria criteria) {
+		
 		this(source, target, bin, src, lib);
 
 		this.classesString = classes;
@@ -36,8 +37,9 @@ public class ProjectInfo {
 
 		if (classes != null && !classes.contains("{classes}")) {
 			String[] classesArray = classes.split(Pattern.quote("|"));
-
+			System.out.println("ProjectInfo");
 			for (String classe : classesArray) {
+				System.out.println("classe: " + classe);
 				this.classesList.add(classe);
 			}
 		}
@@ -90,4 +92,45 @@ public class ProjectInfo {
 	public Criteria getCriteria() {
 		return this.criteria;
 	}
+
+	public List<String> getClassesList() {
+		return classesList;
+	}
+
+	public void setClassesList(List<String> classesList) {
+		this.classesList = classesList;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
+	}
+
+	public void setBinDir(String binDir) {
+		this.binDir = binDir;
+	}
+
+	public void setSrcDir(String srcDir) {
+		this.srcDir = srcDir;
+	}
+
+	public void setLib(String lib) {
+		this.lib = lib;
+	}
+
+	public void setClassesString(String classesString) {
+		this.classesString = classesString;
+	}
+
+	public void setMaxTestsPerMethod(int maxTestsPerMethod) {
+		this.maxTestsPerMethod = maxTestsPerMethod;
+	}
+
+	public void setCriteria(Criteria criteria) {
+		this.criteria = criteria;
+	}
+	
 }

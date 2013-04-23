@@ -56,7 +56,7 @@ public class Saferefactor {
 	public void setAnalyzer(Analyzer analyzer) {
 		this.analyzer = analyzer;
 	}
-
+	
 	public boolean isRefactoring(String timeout, boolean printReport) {
 
 		FileUtil.createFolders();
