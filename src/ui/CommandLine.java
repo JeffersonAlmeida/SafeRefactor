@@ -35,7 +35,7 @@ public class CommandLine {
 			Saferefactor sr = new Saferefactor(sourceFile.getAbsolutePath(),
 					targetFile.getAbsolutePath(), binPath, srcPath, libPath);
 			
-			if (sr.isRefactoring(timeout, quiet))
+			if (sr.isRefactoring(timeout, quiet, "randoop"))
 				System.out.println("SafeRefactor found no behavioral changes");
 			else { 
 				System.out.println("SafeRefactor found behavioral changes");

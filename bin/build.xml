@@ -68,26 +68,15 @@
 		</delete>
 	</target>
 
-    <target name="generate_with_evosuite" depends="clean_evosuite_tests">
-        <echo>Creating EVOSUITE tests</echo>
-        <java jar="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" fork="true">
-            <arg value="-cp"/>
-            <arg value="${classpath}" />
-            <arg value="-base_dir"/>
-            <arg value="."/>
-            <arg value="-generateSuite"/>
-            <arg value="-class"/>
-            <arg value="${classes}" />
-        </java>
-    </target>
-
     <target name="generate_with_evosuite">
         <echo>Creating EVOSUITE tests</echo>
-        <java jar="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" fork="true">
+        <echo>${classpath}</echo>
+        <echo>${clazz}</echo>
+        <java jar="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" fork="true" dir="${evosuite.tests}">
             <arg value="-cp"/>
             <arg value="${classpath}" />
-            <arg value="-base_dir"/>
-            <arg value="."/>
+             <arg value="-base_dir"/>
+            <arg value="/home/jefferson/workspace/saferefactoraj"/>
             <arg value="-generateSuite"/>
             <arg value="-class"/>
             <arg value="${clazz}" />
@@ -112,7 +101,6 @@
 
     <target name="run_tests_evosuite" depends="compile_tests_evosuite">
 		<echo>Running JUNIT to the EVOSUITE generated files - SOURCE</echo>
-		<echo>${evosuite.compiled.tests}</echo>
 		<junit printsummary="yes" showoutput="yes" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="/home/jefferson/workspace/saferefactoraj">
 			<classpath>
 				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/junit-4.5.jar" />
@@ -155,6 +143,31 @@
 			<classpath refid="classpath_source" />
 			<formatter type="xml" />
 			<batchtest todir="${tests.folder}/target" haltonfailure="no">
+				<fileset dir="${tests.folder}/bin">
+					<include name="**/*.class"/>
+					<exclude name="RandoopTest.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+		<echo>Running JUNIT to the EVOSUITE generated files - SOURCE again</echo>
+		<junit printsummary="yes" showoutput="yes" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="/home/jefferson/workspace/saferefactoraj">
+			<classpath>
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/junit-4.5.jar" />
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant.jar" />
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-junit.jar" />
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-launcher.jar" />
+                <pathelement path="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" />
+				<fileset dir="${source}/${lib}">
+					<include name="**/*.jar" />
+				</fileset>
+				<pathelement location="saferefactor.jar" />
+				<pathelement path="${java.class.path}" />
+				<pathelement location="${source}/${bin}" />
+				<pathelement location="${tests.folder}/bin" />
+			</classpath>
+			<classpath refid="classpath_source" />
+			<formatter type="xml" />
+			<batchtest todir="${tests.folder}/source" haltonfailure="no">
 				<fileset dir="${tests.folder}/bin">
 					<include name="**/*.class"/>
 					<exclude name="RandoopTest.class" />

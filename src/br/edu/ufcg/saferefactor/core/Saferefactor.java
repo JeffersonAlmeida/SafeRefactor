@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,12 +25,18 @@ public class Saferefactor {
 	private ResultComparator comparator;
 
 	private long start;
+	
+	public Saferefactor(ProjectInfo info){
+		start = System.currentTimeMillis();
+		this.pinfo = info;
+		analyzer = new Analyzer(pinfo);
+		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
+	}
 
 	public Saferefactor(String source, String target, String bin, String src, String lib) {
 		start = System.currentTimeMillis();
 		pinfo = new ProjectInfo(source, target, bin, src, lib);
 		analyzer = new Analyzer(pinfo);
-
 		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
 	}
 
@@ -70,7 +77,7 @@ public class Saferefactor {
 		Project p = new Project();
 
 		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
-		String classPath = pinfo.getSource()+pinfo.getBinDir();
+		String classPath = pinfo.getSource()+System.getProperty("file.separator")+pinfo.getBinDir();
 		p.setProperty("classpath",classPath);
 		p.setProperty("source", pinfo.getSource());
 		p.setProperty("target", pinfo.getTarget());
@@ -135,6 +142,13 @@ public class Saferefactor {
 		Report report = new Report();
 		if(generateTestsWith.equals("evosuite")){
 			p.executeTarget("clean_evosuite_tests");
+			Iterator<String> i = this.pinfo.getClassesList().iterator();
+			while(i.hasNext()){
+				String clazz = i.next();
+				System.out.println("Run evosuite for clazz: " + clazz);
+				p.setProperty("clazz", clazz);
+				p.executeTarget("generate_with_evosuite");
+			}
 			p.executeTarget("run_tests_evosuite");
 			report = report(printReport);
 		}else if (generateTestsWith.equals("randoop")){
@@ -167,15 +181,15 @@ public class Saferefactor {
 
 		FileUtil.createFolders();
 		
-		/*Finds a resource with a given name.*/
+		//Finds a resource with a given name.
 		URL file = this.getClass().getResource("/build.xml");
 
 		System.out.println("\n\nANT BUILD DIRECTORY: " + file.getPath());
 		
-		/* Central representation of an Ant project. */
+		 //Central representation of an Ant project. 
 		Project p = new Project();
 
-		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		// Set a property. Any existing property of the same name is overwritten, unless it is a user property. 
 		p.setProperty("source", pinfo.getSource());
 		p.setProperty("target", pinfo.getTarget());
 		p.setProperty("timeout", timeout);
@@ -187,28 +201,28 @@ public class Saferefactor {
 		String classes = this.pinfo.getClassesString();
 
 		if (classes != null) {
-			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		//	 Set a property. Any existing property of the same name is overwritten, unless it is a user property. 
 			p.setProperty("classes", classes);
 		}
 
 		int maxTestsPerMethod = this.pinfo.getMaxTestsPerMethod();
 
 		if (maxTestsPerMethod > 0) {
-			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		//	 Set a property. Any existing property of the same name is overwritten, unless it is a user property. 
 			p.setProperty("maxTests", String.valueOf(maxTestsPerMethod));
 		}
 
-		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		// Set a property. Any existing property of the same name is overwritten, unless it is a user property. 
 		p.setProperty("criteria", this.pinfo.getCriteria().toString());
 
-		/* ANT LOG CONSOLE */
+		// ANT LOG CONSOLE 
 		DefaultLogger consoleLogger = new DefaultLogger();
 		consoleLogger.setErrorPrintStream(System.err);
 		consoleLogger.setOutputPrintStream(System.out);
 		consoleLogger.setMessageOutputLevel(Project.MSG_INFO);
 		p.addBuildListener(consoleLogger);
 
-		/* Writes build events to a PrintStream. Currently, it only writes which targets are being executed, and any messages that get logged. */
+		// Writes build events to a PrintStream. Currently, it only writes which targets are being executed, and any messages that get logged. 
 		DefaultLogger consoleLogger2 = new DefaultLogger();
 		File f = new File(Constants.TEMP + Constants.FILE_SEPARATOR + "log.txt");
 		System.out.println("\n You can find ant build logs in: " + "< " + f.getAbsolutePath() + " >\n");
@@ -227,15 +241,15 @@ public class Saferefactor {
 			Logger.getLogger(Saferefactor.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		/* Initialise ANT project.*/
+		// Initialise ANT project.
 		p.init();
 		ProjectHelper helper = ProjectHelper.getProjectHelper();
 		p.addReference("ant.projectHelper", helper);
 		
-		/* Parses the ANT project file, configuring the project as it goes.*/
+		// Parses the ANT project file, configuring the project as it goes.
 		helper.parse(p, file);
 		
-		/* Execute default target of the project. */
+	//	 Execute default target of the project. 
 		p.executeTarget(p.getDefaultTarget());
 
 		Report report = report(printReport);

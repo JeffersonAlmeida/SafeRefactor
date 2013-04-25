@@ -3,18 +3,20 @@ package br.edu.ufcg.saferefactor.test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import br.edu.ufcg.saferefactor.core.Criteria;
+import br.edu.ufcg.saferefactor.core.ProjectInfo;
 import br.edu.ufcg.saferefactor.core.Saferefactor;
 
 public class SafeRefactorTest {
 
 	@Test
 	public void test1() {
-		String source = "/home/jefferson/Desktop/workspace/Bank1.0/";
-		String target = "/home/jefferson/Desktop/workspace/Bank1.1/";
-		Saferefactor sr = new Saferefactor(source, target, "bin", "src", "lib");
-		sr.getPinfo().setCriteria(Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT);
-		sr.getPinfo().setMaxTestsPerMethod(2);
-		sr.getPinfo().setClassesString("org.bank.account.Account");
+		String source = "/home/jefferson/Desktop/workspace/Bank2.0/";
+		String target = "/home/jefferson/Desktop/workspace/Bank2.1/";
+		String classes = "org.bank.facade.Facade";
+		int maxTests = 2;
+		Criteria criteria = Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT;
+		ProjectInfo info = new ProjectInfo(source,target,"bin", "src", "lib", classes, maxTests, criteria );
+		Saferefactor sr = new Saferefactor(info);
 		sr.isRefactoring("60", true, "evosuite");
 		//assertEquals(false, sr.isRefactoring("30", true));
 	}
