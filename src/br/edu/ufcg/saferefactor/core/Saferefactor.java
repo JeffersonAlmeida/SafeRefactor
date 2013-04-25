@@ -57,6 +57,112 @@ public class Saferefactor {
 		this.analyzer = analyzer;
 	}
 	
+	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) {
+		
+		FileUtil.createFolders();
+		
+		/*Finds a resource with a given name.*/
+		URL file = this.getClass().getResource("/build.xml");
+
+		System.out.println("\n\nANT BUILD DIRECTORY: " + file.getPath());
+		
+		/* Central representation of an Ant project. */
+		Project p = new Project();
+
+		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		String classPath = pinfo.getSource()+pinfo.getBinDir();
+		p.setProperty("classpath",classPath);
+		p.setProperty("source", pinfo.getSource());
+		p.setProperty("target", pinfo.getTarget());
+		p.setProperty("timeout", timeout);
+		p.setProperty("bin", pinfo.getBinDir());
+		p.setProperty("lib", pinfo.getLib());
+		p.setProperty("src", pinfo.getSrcDir());
+		p.setProperty("tests.folder", Constants.TEST);
+		p.setProperty("evosuite.tests", Constants.EVOSUITE_TESTS);
+		p.setProperty("evosuite.compiled.tests", Constants.EVOSUITE_COMPILED_TESTS);
+
+		String classes = this.pinfo.getClassesString();
+
+		if (classes != null) {
+			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+			p.setProperty("classes", classes);
+		}
+
+		int maxTestsPerMethod = this.pinfo.getMaxTestsPerMethod();
+
+		if (maxTestsPerMethod > 0) {
+			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+			p.setProperty("maxTests", String.valueOf(maxTestsPerMethod));
+		}
+
+		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		p.setProperty("criteria", this.pinfo.getCriteria().toString());
+
+		/* ANT LOG CONSOLE */
+		DefaultLogger consoleLogger = new DefaultLogger();
+		consoleLogger.setErrorPrintStream(System.err);
+		consoleLogger.setOutputPrintStream(System.out);
+		consoleLogger.setMessageOutputLevel(Project.MSG_INFO);
+		p.addBuildListener(consoleLogger);
+
+		/* Writes build events to a PrintStream. Currently, it only writes which targets are being executed, and any messages that get logged. */
+		DefaultLogger consoleLogger2 = new DefaultLogger();
+		File f = new File(Constants.TEMP + Constants.FILE_SEPARATOR + "log.txt");
+		System.out.println("\n You can find ant build logs in: " + "< " + f.getAbsolutePath() + " >\n");
+		
+		try {
+			f.createNewFile();
+			FileOutputStream myFile;
+			PrintStream myStream;
+			myFile = new FileOutputStream(Constants.TEMP + Constants.FILE_SEPARATOR + "log.txt");
+			myStream = new PrintStream(myFile);
+			consoleLogger2.setErrorPrintStream(myStream);
+			consoleLogger2.setOutputPrintStream(myStream);
+			consoleLogger2.setMessageOutputLevel(Project.MSG_INFO);
+			p.addBuildListener(consoleLogger2);
+		} catch (IOException ex) {
+			Logger.getLogger(Saferefactor.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		/* Initialise ANT project.*/
+		p.init();
+		ProjectHelper helper = ProjectHelper.getProjectHelper();
+		p.addReference("ant.projectHelper", helper);
+		
+		/* Parses the ANT project file, configuring the project as it goes.*/
+		helper.parse(p, file);
+		Report report = new Report();
+		if(generateTestsWith.equals("evosuite")){
+			p.executeTarget("clean_evosuite_tests");
+			p.executeTarget("run_tests_evosuite");
+			report = report(printReport);
+		}else if (generateTestsWith.equals("randoop")){
+			/* Execute default target of the project. */
+			p.executeTarget(p.getDefaultTarget());
+			report = report(printReport);
+			p.executeTarget("coverage");
+		}
+		
+		return report.isSameBehavior();		
+	}
+
+	private Report report(boolean printReport) {
+		/*REPORT */
+		Report report = comparator.generateReport();
+
+		/*print report*/
+		System.out.println(" Print Report :");
+		if (printReport) {
+			System.out.println(report);
+		}
+
+		if (!report.isSameBehavior()) {
+			System.out.println("\n\nreport changes: " + report.getChanges());
+		}
+		return report;
+	}
+	
 	public boolean isRefactoring(String timeout, boolean printReport) {
 
 		FileUtil.createFolders();
@@ -132,18 +238,7 @@ public class Saferefactor {
 		/* Execute default target of the project. */
 		p.executeTarget(p.getDefaultTarget());
 
-		/*REPORT */
-		Report report = comparator.generateReport();
-
-		/*print report*/
-		System.out.println(" Print Report :");
-		if (printReport) {
-			System.out.println(report);
-		}
-
-		if (!report.isSameBehavior()) {
-			System.out.println("\n\nreport changes: " + report.getChanges());
-		}
+		Report report = report(printReport);
 		
 		
 		p.executeTarget("coverage");

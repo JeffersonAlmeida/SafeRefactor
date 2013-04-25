@@ -1,0 +1,338 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+<head>
+<title>
+org.bank.account.Account
+</title>
+<link href="files/prettify.css" type="text/css" rel="stylesheet" />
+<link href="files/style.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="files/prettify.js"></script>
+<script type="text/javascript" src="files/jquery.js"></script>
+<script type="text/javascript" src="files/foldButton.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('H2#tests').foldButton();
+    $('H2#source').foldButton();
+    $('H2#parameters').foldButton();
+  });</script>
+<link href="files/foldButton.css" rel="stylesheet" type="text/css">
+</head>
+<body onload="prettyPrint()">
+<div id="wrapper">
+<img src="files/evosuite.png" height="40"/>
+<br><br><h2 class=title>Summary</h2>
+<ul><li>Target class: org.bank.account.Account: 100.00%</ul><ul>
+<li>50 fitness evaluations, 2 generations, 5603 statements, 280 tests.
+<li>Time: 0:00:03(Search: 0:00:02, minimization: 0:00:01)
+<li>Coverage: 6/6 branches, 14/14 methods, 17/17 total goals
+<li>Mutation score: 83%
+</ul>
+<div id="page"><div id="page-bgtop"><div id="page-bgbtm"><div id="content"><div id="post"><h2 class=title id=tests>Test suite</h2>
+<div class=tests>
+<h3>Test case 1</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>account0.setAg((-1));
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=-1, cc=-1, balance=0.0]&quot;, account0.toString());
+</pre>
+<h3>Test case 2</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>Client client0 = new Client(&quot;4qr&lt;kgLS4 =6R#E&quot;, &quot;4qr&lt;kgLS4 =6R#E&quot;, account0);
+<span class="nocode"><a name="3">  3: </a></span>Account account1 = new Account((-1), (-1), client0, (double) (-1));
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(&quot;Conta [ag=-1, cc=-1, balance=-1.0]&quot;, account1.toString());
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(&quot;Client [name=4qr&lt;kgLS4 =6R#E, conta=Conta [ag=-1, cc=-1, balance=0.0]]&quot;, client0.toString());
+</pre>
+<h3>Test case 3</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>Double double0 = Double.valueOf(1.0);
+<span class="nocode"><a name="3">  3: </a></span>boolean boolean0 = account0.transferir(double0, account0);
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(&quot;Conta [ag=-1, cc=-1, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="6">  6: </a></span>assertEquals(false, boolean0);
+</pre>
+<h3>Test case 4</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>String string0 = account0.toString();
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=-1, cc=-1, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="4">  4: </a></span>assertNotNull(string0);
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(&quot;Conta [ag=-1, cc=-1, balance=0.0]&quot;, string0);
+</pre>
+<h3>Test case 5</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>assertEquals(-1, account0.getCc());
+<span class="nocode"><a name="3">  3: </a></span>
+<span class="nocode"><a name="4">  4: </a></span>account0.setCc(0);
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(&quot;Conta [ag=-1, cc=0, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="6">  6: </a></span>assertEquals(0, account0.getCc());
+</pre>
+<h3>Test case 6</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>int int0 = account0.getAg();
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(-1, account0.getAg());
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(&quot;Conta [ag=-1, cc=-1, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="5">  5: </a></span>assertEquals((-1), int0);
+</pre>
+<h3>Test case 7</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
+<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.deposito((-1388.7850077284756));
+<span class="nocode"><a name="3">  3: </a></span>assertEquals((-1388.7850077284756), account0.getBalance(), 0.01D);
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(true, boolean0);
+</pre>
+<h3>Test case 8</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>int int0 = account0.getCc();
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(-1, account0.getCc());
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(&quot;Conta [ag=-1, cc=-1, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="5">  5: </a></span>assertEquals((-1), int0);
+</pre>
+<h3>Test case 9</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-1), (-1));
+<span class="nocode"><a name="2">  2: </a></span>account0.sacar((-863.7454728316975));
+<span class="nocode"><a name="3">  3: </a></span>Double double0 = Double.valueOf(1.0);
+<span class="nocode"><a name="4">  4: </a></span>boolean boolean0 = account0.transferir(double0, account0);
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(863.7454728316975, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="6">  6: </a></span>assertEquals(true, boolean0);
+</pre>
+<h3>Test case 10</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
+<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.debito(392.3298370084708);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(false, boolean0);
+</pre>
+<h3>Test case 11</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
+<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.sacar(1482.7591375786253);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(false, boolean0);
+</pre>
+</div></div><div id="post"></div><div id="post"><h2 class=title id=source>Source Code</h2>
+<div class=source><p><pre class="prettyprint" style="border: 1px solid #888;padding: 2px"><span class="nocode"><a name="1">  1: </a></span>No source found for org.bank.account.Account
+</pre>
+</p></div>
+</div><div id="post"><h2 id=parameters>EvoSuite Parameters</h2>
+<div class=statistics><ul>
+<li>inheritance_file: 
+<li>client_on_thread: false
+<li>alternative_fitness_range: 100.0
+<li>starve_by_fitness: true
+<li>dynamic_pool_size: 50
+<li>old_statistics: false
+<li>test_includes: test.includes
+<li>TT_stack: 10
+<li>dynamic_pool: 0.3333333333333333
+<li>minimization_timeout: 600
+<li>kincompensation: 1.0
+<li>local_search_rate: -1
+<li>target_method: 
+<li>selection_function: RANK
+<li>assertion_strategy: MUTATION
+<li>tt_scope: ALL
+<li>process_communication_port: 10956
+<li>TT: false
+<li>chromosome_length: 40
+<li>adaptive_local_search_dse: false
+<li>UI_BACKGROUND_COVERAGE_DELAY: -1
+<li>random_perturbation: 0.2
+<li>test_factory: RANDOM
+<li>enable_alternative_fitness_calculation: false
+<li>debug: false
+<li>plot: false
+<li>log_goals: false
+<li>alternative_fitness_calculation_mode: SUM
+<li>inline: true
+<li>crossover_function: SINGLEPOINTRELATIVE
+<li>local_search_budget: 100
+<li>static_hack: false
+<li>OUTPUT_DIR: evosuite-files
+<li>dse_keep_all_tests: false
+<li>junit_extend: 
+<li>junit_prefix: 
+<li>hierarchy_data: hierarchy.xml
+<li>num_tests: 2
+<li>max_size: 100
+<li>statistics_backend: CSV
+<li>max_length: 0
+<li>mutation_generations: 10
+<li>rank_bias: 1.7
+<li>mock_strategies: 
+<li>primitive_reuse_probability: 0.5
+<li>num_random_tests: 20
+<li>filter_assertions: true
+<li>global_timeout: 600
+<li>log.level: warn
+<li>new_statistics: false
+<li>assertions: true
+<li>object_pool: 0.0
+<li>timeline_interval: 60000
+<li>concolic_timeout: 15000
+<li>crossover_rate: 0.75
+<li>recycle_chromosomes: false
+<li>assertion_timeout: 600
+<li>serialize_result: false
+<li>calculate_cluster: false
+<li>string_length: 20
+<li>testability_transformation: false
+<li>filter_sandbox_tests: false
+<li>connection_data: connection.xml
+<li>dse_budget: 1
+<li>show_progress: true
+<li>p_test_delete: 0.3333333333333333
+<li>local_search_references: true
+<li>dse_rate: -1
+<li>primitive_pool: 0.5
+<li>object_reuse_probability: 0.9
+<li>shuffle_goals: true
+<li>use_deprecated: false
+<li>max_coverage_depth: -1
+<li>penalize_overwriting_definitions_flat: false
+<li>max_attempts: 1000
+<li>print_current_goals: false
+<li>PROJECT_PREFIX: org
+<li>TARGET_CLASS: org.bank.account.Account
+<li>p_test_insertion: 0.1
+<li>make_accessible: true
+<li>population: 50
+<li>check_best_length: true
+<li>PROJECT_DIR: null
+<li>skip_covered: true
+<li>check_contracts: false
+<li>write_cfg: false
+<li>minimize: true
+<li>seed_clone: 0.2
+<li>mutation_timeouts: 3
+<li>instrument_parent: false
+<li>junit_tests: true
+<li>coverage: true
+<li>sandbox: true
+<li>break_on_exception: true
+<li>randomize_difficulty: true
+<li>html: true
+<li>CP: /home/jefferson/Desktop/workspace/Bank1.0/bin
+<li>search_budget: 1000000
+<li>max_replace_mutants: 100
+<li>check_contracts_end: false
+<li>log.target: null
+<li>array_limit: 1000000
+<li>minimize_values: false
+<li>secondary_objectives: totallength
+<li>log_timeout: false
+<li>p_test_change: 0.3333333333333333
+<li>restricted_read: false
+<li>null_probability: 0.1
+<li>configuration_id: null
+<li>save_all_data: true
+<li>branch_eval: false
+<li>remote_testing: false
+<li>dse_adaptive_rate: 2.0
+<li>local_search_budget_type: STATEMENTS
+<li>branch_statement: false
+<li>check_parents_length: false
+<li>dse_constraint_solver_timeout_millis: 0
+<li>elite: 1
+<li>local_search_probes: 10
+<li>enable_asserts_for_sut: true
+<li>output_granularity: MERGED
+<li>criterion: BRANCH
+<li>restrict_pool: false
+<li>shutdown_timeout: 1000
+<li>output_variables: null
+<li>structured_tests: false
+<li>random_tests: 0
+<li>initially_enforced_randomness: 0.4
+<li>port: 1044
+<li>reuse_budget: true
+<li>dse_constraint_length: 100000
+<li>test_dir: evosuite-tests
+<li>replace_calls: false
+<li>max_initial_tests: 10
+<li>TARGET_CLASS_PREFIX: 
+<li>dse_adaptive_probability: 0.0
+<li>algorithm: STEADYSTATEGA
+<li>report_dir: evosuite-report
+<li>local_search_arrays: true
+<li>dse_constant_probability: 0.5
+<li>max_int: 2048
+<li>error_branches: false
+<li>stopping_condition: MAXSTATEMENTS
+<li>local_search_primitives: true
+<li>minimize_old: false
+<li>max_mutants_per_method: 700
+<li>adaptive_local_search: OFF
+<li>replacement_function: DEFAULT
+<li>test_comments: true
+<li>number_of_mutations: 1
+<li>defuse_debug_mode: false
+<li>shutdown_hook: true
+<li>bloat_factor: 2
+<li>test_format: JUNIT4
+<li>dse_variable_resets: 2
+<li>penalize_overwriting_definitions_linearly: false
+<li>max_stalled_threads: 10
+<li>insertion_score_object: 1
+<li>instrumentation_skip_debug: false
+<li>sandbox_mode: RECOMMENDED
+<li>call_probability: 0.0
+<li>check_max_length: true
+<li>max_recursion: 10
+<li>usage_rate: 0.5
+<li>max_mutants: 100
+<li>p_statement_insertion: 0.5
+<li>usage_models: 
+<li>test_carving: false
+<li>evosuite_use_uispec: false
+<li>instrument_context: false
+<li>classpath: 
+<li>max_array: 10
+<li>dse_negate_all_conditions: false
+<li>seed_mutations: 2
+<li>tournament_size: 10
+<li>dse_budget_type: INDIVIDUALS
+<li>dse_rank_branch_conditions: false
+<li>concolic_mutation: 0.0
+<li>stop_zero: true
+<li>parent_check: true
+<li>insertion_score_parameter: 1
+<li>stubs: false
+<li>min_initial_tests: 1
+<li>max_delta: 20
+<li>cpu_timeout: false
+<li>dynamic_limit: false
+<li>min_free_mem: 50000000
+<li>test_excludes: test.excludes
+<li>write_pool: false
+<li>epsilon: 0.001
+<li>enable_asserts_for_evosuite: false
+<li>analysis_criteria: 
+<li>junit_strict: false
+<li>print_to_system: false
+<li>virtual_fs: false
+<li>sandbox_folder: evosuite-sandbox
+<li>strategy: EVOSUITE
+<li>enable_alternative_suite_fitness: false
+<li>max_mutants_per_test: 100
+<li>stopping_port: -1
+<li>mocks: false
+<li>insertion_score_uut: 1
+<li>sourcepath: 
+<li>print_covered_goals: false
+<li>extra_timeout: 120
+<li>string_replacement: true
+<li>cluster_recursion: 10
+<li>population_limit: INDIVIDUALS
+<li>p_test_insert: 0.3333333333333333
+<li>constraint_solution_attempts: 3
+<li>timeout: 5000
+</ul></div>
+</div><p><br><a href="../report-generation.html">Back to Overview</a></p>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 Resultados/
 ant/
-bin/
+bin/build.xml
 emma/
 lib/
 META-INF/
