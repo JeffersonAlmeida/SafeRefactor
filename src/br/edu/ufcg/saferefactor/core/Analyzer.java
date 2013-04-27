@@ -52,7 +52,6 @@ public class Analyzer {
 
 	private void listNonDeterministicMethods() {
 		this.nonDeterministicMethods = new ArrayList<String>();
-
 		this.nonDeterministicMethods.add("NounTerm");
 		this.nonDeterministicMethods.add("VerbTerm");
 	}

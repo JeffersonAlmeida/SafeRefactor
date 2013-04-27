@@ -23,9 +23,12 @@ public class TestFacade {
   @Test
   public void test0()  throws Throwable  {
       Facade facade0 = new Facade();
-      Account account0 = new Account();
-      Double double0 = Double.valueOf(1184);
-      boolean boolean0 = facade0.withdraw(account0, double0);
-      assertEquals(false, boolean0);
+      Account account0 = new Account(1, 0);
+      // Undeclared exception!
+      try {
+        facade0.withdraw(account0, (Double) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
   }
 }

@@ -17,7 +17,7 @@ public class SafeRefactorTest {
 		Criteria criteria = Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT;
 		ProjectInfo info = new ProjectInfo(source,target,"bin", "src", "lib", classes, maxTests, criteria );
 		Saferefactor sr = new Saferefactor(info);
-		sr.isRefactoring("60", true, "evosuite");
+		sr.isRefactoring("60", true, "randoop");
 		//assertEquals(false, sr.isRefactoring("30", true));
 	}
 	

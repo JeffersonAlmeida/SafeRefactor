@@ -22,20 +22,23 @@ org.bank.facade.Facade
 <img src="files/evosuite.png" height="40"/>
 <br><br><h2 class=title>Summary</h2>
 <ul><li>Target class: org.bank.facade.Facade: 100.00%</ul><ul>
-<li>50 fitness evaluations, 2 generations, 3807 statements, 283 tests.
-<li>Time: 0:00:04(Search: 0:00:04, minimization: 0:00:00)
+<li>50 fitness evaluations, 2 generations, 3623 statements, 278 tests.
+<li>Time: 0:00:03(Search: 0:00:03, minimization: 0:00:00)
 <li>Coverage: 0/0 branches, 2/2 methods, 2/2 total goals
-<li>Mutation score: 50%
+<li>Mutation score: 0%
 </ul>
 <div id="page"><div id="page-bgtop"><div id="page-bgbtm"><div id="content"><div id="post"><h2 class=title id=tests>Test suite</h2>
 <div class=tests>
 <h3>Test case 1</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
 <span class="nocode"><a name="1">  1: </a></span>Facade facade0 = new Facade();
-<span class="nocode"><a name="2">  2: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="3">  3: </a></span>Double double0 = Double.valueOf(1184);
-<span class="nocode"><a name="4">  4: </a></span>boolean boolean0 = facade0.withdraw(account0, double0);
-<span class="nocode"><a name="5">  5: </a></span>assertEquals(false, boolean0);
+<span class="nocode"><a name="2">  2: </a></span>Account account0 = new Account(1, 0);
+<span class="nocode"><a name="3">  3: </a></span>// Undeclared exception!
+<span class="nocode"><a name="4">  4: </a></span>try {
+<span class="nocode"><a name="5">  5: </a></span>  facade0.withdraw(account0, (Double) null);
+<span class="nocode"><a name="6">  6: </a></span>  fail(&quot;Expecting exception: NullPointerException&quot;);
+<span class="nocode"><a name="7">  7: </a></span>} catch(NullPointerException e) {
+<span class="nocode"><a name="8">  8: </a></span>}
 </pre>
 </div></div><div id="post"></div><div id="post"><h2 class=title id=source>Source Code</h2>
 <div class=source><p><pre class="prettyprint" style="border: 1px solid #888;padding: 2px"><span class="nocode"><a name="1">  1: </a></span>No source found for org.bank.facade.Facade
@@ -59,7 +62,7 @@ org.bank.facade.Facade
 <li>selection_function: RANK
 <li>assertion_strategy: MUTATION
 <li>tt_scope: ALL
-<li>process_communication_port: 7418
+<li>process_communication_port: 15514
 <li>TT: false
 <li>chromosome_length: 40
 <li>adaptive_local_search_dse: false
@@ -139,7 +142,7 @@ org.bank.facade.Facade
 <li>break_on_exception: true
 <li>randomize_difficulty: true
 <li>html: true
-<li>CP: /home/jefferson/workspace/ferramentaLPSSM/Products/Product0/source/bin
+<li>CP: /home/jefferson/Desktop/workspace/Bank2.0//bin
 <li>search_budget: 1000000
 <li>max_replace_mutants: 100
 <li>check_contracts_end: false
