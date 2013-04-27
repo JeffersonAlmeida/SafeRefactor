@@ -42,11 +42,9 @@ public class Analyzer {
 
 	private List<String> nonDeterministicMethods;
 
-	public Analyzer(ProjectInfo pinfo) {
+	public Analyzer() {
 		this.commonConstructors = new ArrayList<SConstructor>();
 		this.commonMethods = new ArrayList<SMethod>();
-		this.pinfo = pinfo;
-
 		this.listNonDeterministicMethods();
 	}
 

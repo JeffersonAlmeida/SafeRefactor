@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import org.apache.tools.ant.DefaultLogger;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
+import org.sr.ic.ImpactedClasses;
+import org.sr.input.FilePropertiesObject;
 
 import randoop.main.Main;
 import br.edu.ufcg.saferefactor.core.util.Constants;
@@ -19,40 +21,19 @@ import br.edu.ufcg.saferefactor.core.util.FileUtil;
 
 public class Saferefactor {
 
-	protected ProjectInfo pinfo;
 	protected Analyzer analyzer;
-
 	private ResultComparator comparator;
-
-	private long start;
+	private ImpactedClasses ic;
+	private  FilePropertiesObject input;
 	
-	public Saferefactor(ProjectInfo info){
-		start = System.currentTimeMillis();
-		this.pinfo = info;
-		analyzer = new Analyzer(pinfo);
+	public Saferefactor(ImpactedClasses ic, FilePropertiesObject input){
+		this.ic = ic;
+		this.input = input;
 		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
 	}
-
+	
 	public Saferefactor(String source, String target, String bin, String src, String lib) {
-		start = System.currentTimeMillis();
-		pinfo = new ProjectInfo(source, target, bin, src, lib);
-		analyzer = new Analyzer(pinfo);
-		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
-	}
-
-//		public Saferefactor(String source, String target, String bin, String src, String lib, String classes) {
-//			start = System.currentTimeMillis();
-//			pinfo = new ProjectInfo(source, target, bin, src, lib, classes, 0);
-//			analyzer = new Analyzer(pinfo);
-//	
-//			this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
-//		}
-
-	public Saferefactor(String source, String target, String bin, String src, String lib, String classes, int maxTests, Criteria criteria) {
-		start = System.currentTimeMillis();
-		pinfo = new ProjectInfo(source, target, bin, src, lib, classes, maxTests, criteria);
-		analyzer = new Analyzer(pinfo);
-
+		analyzer = new Analyzer();
 		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
 	}
 
