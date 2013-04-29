@@ -15,7 +15,7 @@
 	</path>
 
 	<path id="cp">
-		<fileset dir="/home/jefferson/workspace/saferefactoraj/lib/" includes="**/*.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
 	</path>
 
 	<path id="classpath_source">
@@ -175,14 +175,12 @@
     <target name="randoop">
 		<echo>* Generate Tests With Randoop Tool</echo>
 		<echo>* https://code.google.com/p/randoop/</echo>
-		<java classpath="/home/jefferson/workspace/saferefactoraj/lib/" classname="randoop.main.Main" fork="true" dir="/home/jefferson/workspace/saferefactoraj/lib/">
-             <arg value="gentests"/>
-             <arg value="--testclass=java.util.TreeSet"/>
-             <arg value="--timelimit=60"/>
+		<java classpath="${project.dir}/lib/" classname="randoop.main.Main" fork="true" dir="${project.dir}/lib/">
+             <arg value="help"/>
 			<classpath>
 				<pathelement location="saferefactor.jar" />
 				<pathelement path="${java.class.path}" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/bin" />
+				<pathelement path="${project.dir}/bin" />
 				<pathelement path="${source}/${bin}" />
 			</classpath>
 			<classpath refid="classpath_source" />
