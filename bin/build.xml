@@ -24,19 +24,13 @@
 	</path>
 
 	<target name="init">
-		<mkdir dir="${tests.folder}/source" />
-		<mkdir dir="${tests.folder}/source2" />
-		<mkdir dir="${tests.folder}/source3" />
+		<mkdir dir="" />
 	</target>
 
-	<target name="clean" depends="init">
+	<target name="clean">
 		<delete includeemptydirs="false">
-			<fileset dir="${tests.folder}/" includes="**/*" />
-			<fileset dir="${tests.folder}/bin" includes="**/*" />
-			<fileset dir="${tests.folder}/source" includes="**/*" />
-			<fileset dir="${tests.folder}/target" includes="**/*" />
-			<fileset dir="${tests.folder}/source2" includes="**/*" />
-			<fileset dir="${tests.folder}/source3" includes="**/*" />
+			<fileset dir="${source}/bin" includes="**/*" />
+			<fileset dir="${target}/bin" includes="**/*" />
 		</delete>
 	</target>
 
@@ -171,7 +165,7 @@
 	</target>
 
 
-    <target name="randoop">
+    <target name="randoop" depends="compile_source_and_target">
 		<echo>* Generate Tests With Randoop Tool</echo>
 		<echo>* https://code.google.com/p/randoop/</echo>
 		<java classpath="${project.dir}/lib/" classname="randoop.main.Main" fork="true" dir="${project.dir}/lib/">
@@ -211,6 +205,7 @@
 			<classpath refid="classpath_source" />
 		</javac>
 	</target>
+
 
 	<target name="compile_source_and_target" depends="clean">
 	<echo>* Compile Source Product</echo>

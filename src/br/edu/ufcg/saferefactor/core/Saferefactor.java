@@ -91,13 +91,21 @@ public class Saferefactor {
 		}else if (generateTestsWith.equals("randoop")){
 			
 			File methodList = this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
+			p.setProperty("randoop.test.dir",  this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop"+ System.getProperty("file.separator")+ "tests");
+			p.setProperty("randoop.test.bin",  this.input.getSourceLineDirectory() + "bin" + System.getProperty("file.separator") + "randoop"+ System.getProperty("file.separator")+ "tests");
 			p.setProperty("method.list.file", methodList.getAbsolutePath());
 			p.setProperty("time.limit", this.input.getTimeOut()+"");
 			p.setProperty("log.file.name", "ant-build-log.log");
 			p.setProperty("output.dir", this.input.getSourceLineDirectory() + "src");
 			p.setProperty("input.limit", this.input.getInputLimit()+"");
 			p.setProperty("junit.package", "randoop.tests");
-			p.executeTarget("randoop");
+			File xmlOutputFile = new File( this.input.getSourceLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput");
+			xmlOutputFile.mkdir();
+			p.setProperty("junit.output", xmlOutputFile.getAbsolutePath() );
+			p.executeTarget("run");
+			
+			
+			//p.executeTarget("compile");
 			
 			/*p.executeTarget(p.getDefaultTarget());
 			report = report(printReport);
