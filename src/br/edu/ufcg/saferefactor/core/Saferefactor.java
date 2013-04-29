@@ -8,14 +8,12 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.apache.tools.ant.DefaultLogger;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
 import org.sr.ic.ImpactedClasses;
 import org.sr.input.FilePropertiesObject;
 import org.sr.input.FilePropertiesReader;
-
 import randoop.main.Main;
 import br.edu.ufcg.saferefactor.core.util.Constants;
 import br.edu.ufcg.saferefactor.core.util.FileUtil;
@@ -47,18 +45,13 @@ public class Saferefactor {
 	}
 	
 	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) {
-		
-		FileUtil.createFolders();
+		FileUtil.createTestsFolder(input);
 		
 		/*Finds a resource with a given name.*/
 		URL file = this.getClass().getResource("/build.xml");
-
-		System.out.println("\n\nANT BUILD DIRECTORY: " + file.getPath());
 		
-		/* Central representation of an Ant project. */
-		Project p = new Project();
+		Project p = new Project(); /* Central representation of an Ant project. */
 
-		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
 		String classPath = this.input.getSourceLineDirectory()+ "bin";
 		p.setProperty("classpath",classPath);
 		p.setProperty("source",this.input.getSourceLineDirectory());
@@ -70,29 +63,59 @@ public class Saferefactor {
 		p.setProperty("tests.folder", Constants.TEST);
 		p.setProperty("evosuite.tests", Constants.EVOSUITE_TESTS);
 		p.setProperty("evosuite.compiled.tests", Constants.EVOSUITE_COMPILED_TESTS);
-
-		int maxTestsPerMethod = this.input.getInputLimit();
-
-		if (maxTestsPerMethod > 0) {
-			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
-			p.setProperty("maxTests", String.valueOf(maxTestsPerMethod));
-		}
-
-		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
+		p.setProperty("maxTests", String.valueOf( this.input.getInputLimit()));
 		p.setProperty("criteria", this.input.getWhichMethods().toString());
+		/*p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);*/
 
-		/* ANT LOG CONSOLE */
+		setAntLogConsole(p);
+		setBuildLogConsole(p);
+		
+		p.init(); /* Initialise ANT project.*/
+		ProjectHelper helper = ProjectHelper.getProjectHelper();
+		p.addReference("ant.projectHelper", helper);
+		helper.parse(p, file); /* Parses the ANT project file, configuring the project as it goes.*/
+		
+		
+		Report report = new Report();
+		
+		if(generateTestsWith.equals("evosuite")){
+			p.executeTarget("clean_evosuite_tests");
+			Iterator<String> i = this.ic.getModifiedClasses().iterator();
+			while(i.hasNext()){
+				String clazz = i.next();
+				System.out.println("Run evosuite for clazz: " + clazz);
+				p.setProperty("clazz", clazz);
+				p.executeTarget("generate_with_evosuite");
+			}
+			p.executeTarget("run_tests_evosuite");
+			report = report(printReport);
+		}else if (generateTestsWith.equals("randoop")){
+			p.executeTarget("randoop");
+			
+			/*p.executeTarget(p.getDefaultTarget());
+			report = report(printReport);
+			p.executeTarget("coverage");*/
+		}
+		
+		return report.isSameBehavior();		
+	}
+
+	/**
+	 *  ANT LOG CONSOLE */
+	private void setAntLogConsole(Project p) {
 		DefaultLogger consoleLogger = new DefaultLogger();
 		consoleLogger.setErrorPrintStream(System.err);
 		consoleLogger.setOutputPrintStream(System.out);
 		consoleLogger.setMessageOutputLevel(Project.MSG_INFO);
 		p.addBuildListener(consoleLogger);
+	}
 
-		/* Writes build events to a PrintStream. Currently, it only writes which targets are being executed, and any messages that get logged. */
+	/**
+	 *  ANT BUILD LOG CONSOLE */
+	private void setBuildLogConsole(Project p) {
 		DefaultLogger consoleLogger2 = new DefaultLogger();
 		File f = new File(Constants.TEMP + Constants.FILE_SEPARATOR + "log.txt");
 		System.out.println("\n You can find ant build logs in: " + "< " + f.getAbsolutePath() + " >\n");
-		
 		try {
 			f.createNewFile();
 			FileOutputStream myFile;
@@ -106,34 +129,6 @@ public class Saferefactor {
 		} catch (IOException ex) {
 			Logger.getLogger(Saferefactor.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
-		/* Initialise ANT project.*/
-		p.init();
-		ProjectHelper helper = ProjectHelper.getProjectHelper();
-		p.addReference("ant.projectHelper", helper);
-		
-		/* Parses the ANT project file, configuring the project as it goes.*/
-		helper.parse(p, file);
-		Report report = new Report();
-		if(generateTestsWith.equals("evosuite")){
-			p.executeTarget("clean_evosuite_tests");
-			Iterator<String> i = this.ic.getModifiedClasses().iterator();
-			while(i.hasNext()){
-				String clazz = i.next();
-				System.out.println("Run evosuite for clazz: " + clazz);
-				p.setProperty("clazz", clazz);
-				p.executeTarget("generate_with_evosuite");
-			}
-			p.executeTarget("run_tests_evosuite");
-			report = report(printReport);
-		}else if (generateTestsWith.equals("randoop")){
-			/* Execute default target of the project. */
-			p.executeTarget(p.getDefaultTarget());
-			report = report(printReport);
-			p.executeTarget("coverage");
-		}
-		
-		return report.isSameBehavior();		
 	}
 
 	private Report report(boolean printReport) {
@@ -174,8 +169,7 @@ public class Saferefactor {
 					"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 					"--junit-output-dir=" + Constants.TEST,
 					"--output-nonexec=true",
-					"--inputlimit="
-							+ (in.getInputLimit() * 2),
+					"--inputlimit=" + (in.getInputLimit() * 2),
 					"--remove-subsequences=false" }; 
 			randoopMain.nonStaticMain(argsRandoop);
 		}

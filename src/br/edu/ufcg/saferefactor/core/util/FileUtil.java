@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.sr.input.FilePropertiesObject;
+
 public class FileUtil {
 
 	/**
@@ -128,11 +130,39 @@ public class FileUtil {
 		build.mkdirs();	
 		testsSource.mkdirs();
 		testsTarget.mkdirs();
-		
-
 	}
+	
+	/**
+	 * Create RANDOOP tests directory in the product's folder */
+	public static void createRandoopFolders(FilePropertiesObject input) {
+		String randoop_tests_sourceProduct = input.getSourceLineDirectory() + "randoop-tests";
+		String randoop_tests_targetProduct = input.getTargetLineDirectory() + "randoop-tests";
+		File randoop_tests_sourceProductFile = new File(randoop_tests_sourceProduct);
+		File randoop_tests_targetProductFile = new File(randoop_tests_targetProduct);
+		randoop_tests_sourceProductFile.mkdirs();
+		randoop_tests_targetProductFile.mkdirs();
+		
+	}
+	
+	/**
+	 * Create EVOSUITE tests directory in the product's folder */
+	public static void createEvosuiteFolders(FilePropertiesObject input) {
+		String evosuite_tests_sourceProduct = input.getSourceLineDirectory() + "evosuite-tests";
+		String evosuite_tests_targetProduct = input.getTargetLineDirectory() + "evosuite-tests";
+		File evosuite_tests_sourceProductFile = new File(evosuite_tests_sourceProduct);
+		File evosuite_tests_targetProductFile = new File(evosuite_tests_targetProduct);
+		evosuite_tests_sourceProductFile.mkdirs();
+		evosuite_tests_targetProductFile.mkdirs();
+	}
+		
 	public static String getTempPath() {
 		return System.getProperty("java.io.tmpdir");
+	}
+
+	public static void createTestsFolder(FilePropertiesObject input) {
+		if(input.getGenerateTestsWith().equals("randoop"))
+			FileUtil.createRandoopFolders(input);
+		FileUtil.createEvosuiteFolders(input);
 	}
 
 

@@ -1,12 +1,18 @@
 package br.edu.ufcg.saferefactor.core;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
@@ -26,6 +32,8 @@ import java.util.regex.Pattern;
 
 import org.sr.ic.ImpactedClasses;
 import org.sr.input.FilePropertiesObject;
+
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 
 import br.edu.ufcg.saferefactor.classloader.FileClassLoader;
 import br.edu.ufcg.saferefactor.core.ast.SClass;
@@ -734,5 +742,4 @@ public class Analyzer {
 	public void setQuantityOfMethodsToTest(int quantityOfMethodsToTest) {
 		this.quantityOfMethodsToTest = quantityOfMethodsToTest;
 	}
-	
 }

@@ -17,6 +17,7 @@ public class Constants {
 	public static final String TESTTGT = TEMP + "/tests/target";
 	public static final String EVOSUITE_TESTS = "/home/jefferson/workspace/saferefactoraj/evosuite-tests";
 	public static final String EVOSUITE_COMPILED_TESTS = "/home/jefferson/workspace/saferefactoraj/evosuite-compiled-tests";
+	public static final String PROJECT_DIRECTORY = "/home/jefferson/workspace/saferefactoraj";
 	
 }
  
