@@ -56,7 +56,6 @@ getActivesequencesThatYield: entering method, clazz=class java.lang.String
 getActivesequencesThatYield: returning 2 sequences.
 Statements : 
 java.lang.Object.<init>()
-org.bank.facade.TestFacade.<init>()
 org.bank.account.Account.<init>()
 org.bank.account.Account.<init>(int,int,org.bank.client.Client,double)
 org.bank.account.Account.<init>(int,int)
@@ -64,7 +63,19 @@ org.bank.facade.Facade.<init>()
 org.bank.gui.GUI.<init>()
 org.bank.client.Client.<init>(java.lang.String,java.lang.String,org.bank.account.Account)
 org.bank.client.Client.<init>(java.lang.String,org.bank.account.Account)
+org.bank.account.Account.toString()
+org.bank.account.Account.transferir(java.lang.Double,org.bank.account.Account)
+org.bank.account.Account.getBalance()
+org.bank.account.Account.debito(double)
+org.bank.account.Account.setBalance(double)
+org.bank.account.Account.deposito(double)
+org.bank.account.Account.sacar(double)
+org.bank.account.Account.getAg()
+org.bank.account.Account.setAg(int)
+org.bank.account.Account.getCc()
+org.bank.account.Account.setCc(int)
 org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double)
+org.bank.client.Client.setAccount(org.bank.account.Account)
 Initial sequences (seeds):
 var0 =  prim : byte:-1 : 
 
@@ -144,29 +155,43 @@ var0 =  prim : java.lang.String:"hi!" :
 
 -------------------------------------------
 randoop.util.Randomness: total calls to random: 1
-Selected statement: java.lang.Object.<init>()
-Successfully created new unique sequence:var0 =  cons : java.lang.Object.<init>() : 
+Selected statement: org.bank.account.Account.setBalance(double)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: found no sequences matching class class org.bank.account.Account
+getActivesequencesThatYield: returning 0 sequences.
+components: 0
+forbid-null option is true. Failed to create new sequence.
+Failed to find inputs for statement.
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 2
+Selected statement: org.bank.account.Account.setAg(int)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: found no sequences matching class class org.bank.account.Account
+getActivesequencesThatYield: returning 0 sequences.
+components: 0
+forbid-null option is true. Failed to create new sequence.
+Failed to find inputs for statement.
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 3
+Selected statement: org.bank.facade.Facade.<init>()
+Successfully created new unique sequence:var0 =  cons : org.bank.facade.Facade.<init>() : 
 
 Checking contract class randoop.EqualsHashcode on 0, 0
 Contract returned true.
 Checking contract class randoop.EqualsSymmetric on 0, 0
 Contract returned true.
 Making index 0 active.
-Adding sequence to active sequences of type class java.lang.Object
+Adding sequence to active sequences of type class org.bank.facade.Facade
 Sequence after execution: 
-java.lang.Object var0 = new java.lang.Object();
-// <NormalExecution object=object-of-type-java.lang.Object>;
+org.bank.facade.Facade var0 = new org.bank.facade.Facade();
+// <NormalExecution object=object-of-type-org.bank.facade.Facade>;
 
 allSequences.size()=1
 -------------------------------------------
-randoop.util.Randomness: total calls to random: 2
-Selected statement: org.bank.client.Client.<init>(java.lang.String,org.bank.account.Account)
-Will query component set for objects of typeclass java.lang.String
-getActivesequencesThatYield: entering method, clazz=class java.lang.String
-getActivesequencesThatYield: returning 2 sequences.
-components: 2
-randoop.util.Randomness: total calls to random: 3
 randoop.util.Randomness: total calls to random: 4
+Selected statement: org.bank.account.Account.toString()
 Will query component set for objects of typeclass org.bank.account.Account
 getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
 getActivesequencesThatYield: found no sequences matching class class org.bank.account.Account
@@ -176,112 +201,36 @@ forbid-null option is true. Failed to create new sequence.
 Failed to find inputs for statement.
 -------------------------------------------
 randoop.util.Randomness: total calls to random: 5
-Selected statement: org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double)
-Will query component set for objects of typeclass org.bank.facade.Facade
-getActivesequencesThatYield: entering method, clazz=class org.bank.facade.Facade
-getActivesequencesThatYield: found no sequences matching class class org.bank.facade.Facade
+Selected statement: org.bank.account.Account.setAg(int)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: found no sequences matching class class org.bank.account.Account
 getActivesequencesThatYield: returning 0 sequences.
 components: 0
 forbid-null option is true. Failed to create new sequence.
 Failed to find inputs for statement.
 -------------------------------------------
 randoop.util.Randomness: total calls to random: 6
-Selected statement: org.bank.account.Account.<init>(int,int,org.bank.client.Client,double)
-Will query component set for objects of typeint
-getActivesequencesThatYield: entering method, clazz=int
-getActivesequencesThatYield: returning 5 sequences.
-components: 5
+Selected statement: org.bank.account.Account.sacar(double)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: found no sequences matching class class org.bank.account.Account
+getActivesequencesThatYield: returning 0 sequences.
+components: 0
+forbid-null option is true. Failed to create new sequence.
+Failed to find inputs for statement.
+-------------------------------------------
 randoop.util.Randomness: total calls to random: 7
+Selected statement: org.bank.account.Account.setBalance(double)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: found no sequences matching class class org.bank.account.Account
+getActivesequencesThatYield: returning 0 sequences.
+components: 0
+forbid-null option is true. Failed to create new sequence.
+Failed to find inputs for statement.
+-------------------------------------------
 randoop.util.Randomness: total calls to random: 8
-Will query component set for objects of typeint
-getActivesequencesThatYield: entering method, clazz=int
-getActivesequencesThatYield: returning 5 sequences.
-components: 5
-randoop.util.Randomness: total calls to random: 9
-randoop.util.Randomness: total calls to random: 10
-Will query component set for objects of typeclass org.bank.client.Client
-getActivesequencesThatYield: entering method, clazz=class org.bank.client.Client
-getActivesequencesThatYield: found no sequences matching class class org.bank.client.Client
-getActivesequencesThatYield: returning 0 sequences.
-components: 0
-forbid-null option is true. Failed to create new sequence.
-Failed to find inputs for statement.
--------------------------------------------
-randoop.util.Randomness: total calls to random: 11
-Selected statement: org.bank.gui.GUI.<init>()
-Successfully created new unique sequence:var0 =  cons : org.bank.gui.GUI.<init>() : 
-
-Checking contract class randoop.EqualsHashcode on 0, 0
-Contract returned true.
-Checking contract class randoop.EqualsSymmetric on 0, 0
-Contract returned true.
-Making index 0 active.
-Adding sequence to active sequences of type class org.bank.gui.GUI
-Sequence after execution: 
-org.bank.gui.GUI var0 = new org.bank.gui.GUI();
-// <NormalExecution object=object-of-type-org.bank.gui.GUI>;
-
-allSequences.size()=2
--------------------------------------------
-randoop.util.Randomness: total calls to random: 12
-Selected statement: org.bank.account.Account.<init>(int,int,org.bank.client.Client,double)
-Will query component set for objects of typeint
-getActivesequencesThatYield: entering method, clazz=int
-getActivesequencesThatYield: returning 5 sequences.
-components: 5
-randoop.util.Randomness: total calls to random: 13
-randoop.util.Randomness: total calls to random: 14
-Will query component set for objects of typeint
-getActivesequencesThatYield: entering method, clazz=int
-getActivesequencesThatYield: returning 5 sequences.
-components: 5
-randoop.util.Randomness: total calls to random: 15
-randoop.util.Randomness: total calls to random: 16
-Will query component set for objects of typeclass org.bank.client.Client
-getActivesequencesThatYield: entering method, clazz=class org.bank.client.Client
-getActivesequencesThatYield: found no sequences matching class class org.bank.client.Client
-getActivesequencesThatYield: returning 0 sequences.
-components: 0
-forbid-null option is true. Failed to create new sequence.
-Failed to find inputs for statement.
--------------------------------------------
-randoop.util.Randomness: total calls to random: 17
-Selected statement: org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double)
-Will query component set for objects of typeclass org.bank.facade.Facade
-getActivesequencesThatYield: entering method, clazz=class org.bank.facade.Facade
-getActivesequencesThatYield: found no sequences matching class class org.bank.facade.Facade
-getActivesequencesThatYield: returning 0 sequences.
-components: 0
-forbid-null option is true. Failed to create new sequence.
-Failed to find inputs for statement.
--------------------------------------------
-randoop.util.Randomness: total calls to random: 18
-Selected statement: org.bank.facade.TestFacade.<init>()
-Successfully created new unique sequence:var0 =  cons : org.bank.facade.TestFacade.<init>() : 
-
-Checking contract class randoop.EqualsHashcode on 0, 0
-Contract returned true.
-Checking contract class randoop.EqualsSymmetric on 0, 0
-Contract returned true.
-Making index 0 active.
-Adding sequence to active sequences of type class org.bank.facade.TestFacade
-Sequence after execution: 
-org.bank.facade.TestFacade var0 = new org.bank.facade.TestFacade();
-// <NormalExecution object=object-of-type-org.bank.facade.TestFacade>;
-
-allSequences.size()=3
--------------------------------------------
-randoop.util.Randomness: total calls to random: 19
-Selected statement: org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double)
-Will query component set for objects of typeclass org.bank.facade.Facade
-getActivesequencesThatYield: entering method, clazz=class org.bank.facade.Facade
-getActivesequencesThatYield: found no sequences matching class class org.bank.facade.Facade
-getActivesequencesThatYield: returning 0 sequences.
-components: 0
-forbid-null option is true. Failed to create new sequence.
-Failed to find inputs for statement.
--------------------------------------------
-randoop.util.Randomness: total calls to random: 20
 Selected statement: org.bank.account.Account.<init>()
 Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
 
@@ -295,4 +244,560 @@ Sequence after execution:
 org.bank.account.Account var0 = new org.bank.account.Account();
 // <NormalExecution object=object-of-type-org.bank.account.Account>;
 
+allSequences.size()=2
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 9
+Selected statement: org.bank.account.Account.toString()
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 1 sequences.
+components: 1
+randoop.util.Randomness: total calls to random: 10
+randoop.util.Randomness: total calls to random: 11
+Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
+var1 =  method : org.bank.account.Account.toString() : var0 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Making index 0 active.
+Making index 1 inactive (value is a primitive)
+Adding sequence to active sequences of type class java.lang.String
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.account.Account var0 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var1 = var0.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var1]  : true
+
+allSequences.size()=3
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 12
+Selected statement: org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double)
+Will query component set for objects of typeclass org.bank.facade.Facade
+getActivesequencesThatYield: entering method, clazz=class org.bank.facade.Facade
+getActivesequencesThatYield: returning 1 sequences.
+components: 1
+randoop.util.Randomness: total calls to random: 13
+randoop.util.Randomness: total calls to random: 14
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 2 sequences.
+components: 2
+randoop.util.Randomness: total calls to random: 15
+randoop.util.Randomness: total calls to random: 16
+Will query component set for objects of typeclass java.lang.Double
+getActivesequencesThatYield: entering method, clazz=class java.lang.Double
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 17
+randoop.util.Randomness: total calls to random: 18
+Successfully created new unique sequence:var0 =  cons : org.bank.facade.Facade.<init>() : 
+var1 =  cons : org.bank.account.Account.<init>() : 
+var2 =  method : org.bank.account.Account.toString() : var1 
+var3 =  prim : double:100.0 : 
+var4 =  method : org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double) : var0 var1 var3 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 1, 1
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 1, 1
+Contract returned true.
+Making index 0 active.
+Making index 1 active.
+Making index 2 inactive (value is a primitive)
+Making index 3 inactive (value is a primitive)
+Making index 4 inactive (value is a primitive)
+Adding sequence to active sequences of type class org.bank.facade.Facade
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.facade.Facade var0 = new org.bank.facade.Facade();
+// <NormalExecution object=object-of-type-org.bank.facade.Facade>;
+org.bank.account.Account var1 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var2 = var1.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Double var3 = new java.lang.Double(100.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+boolean var4 = var0.withdraw(var1, (java.lang.Double)100.0d);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var2]  : true
+<randoop.PrimValue, value=true [var4]  : true
+
 allSequences.size()=4
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 19
+Selected statement: org.bank.client.Client.setAccount(org.bank.account.Account)
+Will query component set for objects of typeclass org.bank.client.Client
+getActivesequencesThatYield: entering method, clazz=class org.bank.client.Client
+getActivesequencesThatYield: found no sequences matching class class org.bank.client.Client
+getActivesequencesThatYield: returning 0 sequences.
+components: 0
+forbid-null option is true. Failed to create new sequence.
+Failed to find inputs for statement.
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 20
+Selected statement: org.bank.client.Client.setAccount(org.bank.account.Account)
+Will query component set for objects of typeclass org.bank.client.Client
+getActivesequencesThatYield: entering method, clazz=class org.bank.client.Client
+getActivesequencesThatYield: found no sequences matching class class org.bank.client.Client
+getActivesequencesThatYield: returning 0 sequences.
+components: 0
+forbid-null option is true. Failed to create new sequence.
+Failed to find inputs for statement.
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 21
+Selected statement: java.lang.Object.<init>()
+Successfully created new unique sequence:var0 =  cons : java.lang.Object.<init>() : 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Making index 0 active.
+Adding sequence to active sequences of type class java.lang.Object
+Sequence after execution: 
+java.lang.Object var0 = new java.lang.Object();
+// <NormalExecution object=object-of-type-java.lang.Object>;
+
+allSequences.size()=5
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 22
+Selected statement: org.bank.account.Account.<init>(int,int,org.bank.client.Client,double)
+Will query component set for objects of typeint
+getActivesequencesThatYield: entering method, clazz=int
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 23
+randoop.util.Randomness: total calls to random: 24
+Will query component set for objects of typeint
+getActivesequencesThatYield: entering method, clazz=int
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 25
+randoop.util.Randomness: total calls to random: 26
+Will query component set for objects of typeclass org.bank.client.Client
+getActivesequencesThatYield: entering method, clazz=class org.bank.client.Client
+getActivesequencesThatYield: found no sequences matching class class org.bank.client.Client
+getActivesequencesThatYield: returning 0 sequences.
+components: 0
+forbid-null option is true. Failed to create new sequence.
+Failed to find inputs for statement.
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 27
+Selected statement: org.bank.account.Account.setCc(int)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 3 sequences.
+components: 3
+randoop.util.Randomness: total calls to random: 28
+randoop.util.Randomness: total calls to random: 29
+Will query component set for objects of typeint
+getActivesequencesThatYield: entering method, clazz=int
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 30
+randoop.util.Randomness: total calls to random: 31
+Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
+var1 =  method : org.bank.account.Account.toString() : var0 
+var2 =  prim : int:10 : 
+var3 =  method : org.bank.account.Account.setCc(int) : var0 var2 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Making index 0 active.
+Making index 1 inactive (value is a primitive)
+Making index 2 inactive (value is a primitive)
+Making index 3 inactive (value is null)
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.account.Account var0 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var1 = var0.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Integer var2 = new java.lang.Integer(10);
+// <NormalExecution object=object-of-type-java.lang.Integer>;
+var0.setCc(10);
+// <NormalExecution object=null>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var1]  : true
+
+allSequences.size()=6
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 32
+Selected statement: org.bank.account.Account.sacar(double)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 4 sequences.
+components: 4
+randoop.util.Randomness: total calls to random: 33
+randoop.util.Randomness: total calls to random: 34
+Will query component set for objects of typedouble
+getActivesequencesThatYield: entering method, clazz=double
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 35
+randoop.util.Randomness: total calls to random: 36
+Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
+var1 =  prim : double:1.0 : 
+var2 =  method : org.bank.account.Account.sacar(double) : var0 var1 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Making index 0 active.
+Making index 1 inactive (value is a primitive)
+Making index 2 inactive (value is a primitive)
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.account.Account var0 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.Double var1 = new java.lang.Double(1.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+boolean var2 = var0.sacar(1.0d);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+<randoop.PrimValue, value=true [var2]  : true
+
+allSequences.size()=7
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 37
+Selected statement: org.bank.account.Account.setCc(int)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 38
+randoop.util.Randomness: total calls to random: 39
+Will query component set for objects of typeint
+getActivesequencesThatYield: entering method, clazz=int
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 40
+randoop.util.Randomness: total calls to random: 41
+Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
+var1 =  method : org.bank.account.Account.toString() : var0 
+var2 =  prim : int:10 : 
+var3 =  method : org.bank.account.Account.setCc(int) : var0 var2 
+var4 =  prim : int:-1 : 
+var5 =  method : org.bank.account.Account.setCc(int) : var0 var4 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Making index 0 active.
+Making index 1 inactive (value is a primitive)
+Making index 2 inactive (value is a primitive)
+Making index 3 inactive (value is null)
+Making index 4 inactive (value is a primitive)
+Making index 5 inactive (value is null)
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.account.Account var0 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var1 = var0.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Integer var2 = new java.lang.Integer(10);
+// <NormalExecution object=object-of-type-java.lang.Integer>;
+var0.setCc(10);
+// <NormalExecution object=null>;
+java.lang.Integer var4 = new java.lang.Integer((-1));
+// <NormalExecution object=object-of-type-java.lang.Integer>;
+var0.setCc((-1));
+// <NormalExecution object=null>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var1]  : true
+
+allSequences.size()=8
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 42
+Selected statement: org.bank.account.Account.getBalance()
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 6 sequences.
+components: 6
+randoop.util.Randomness: total calls to random: 43
+randoop.util.Randomness: total calls to random: 44
+Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
+var1 =  method : org.bank.account.Account.toString() : var0 
+var2 =  prim : int:10 : 
+var3 =  method : org.bank.account.Account.setCc(int) : var0 var2 
+var4 =  prim : int:-1 : 
+var5 =  method : org.bank.account.Account.setCc(int) : var0 var4 
+var6 =  method : org.bank.account.Account.getBalance() : var0 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Making index 0 active.
+Making index 1 inactive (value is a primitive)
+Making index 2 inactive (value is a primitive)
+Making index 3 inactive (value is null)
+Making index 4 inactive (value is a primitive)
+Making index 5 inactive (value is null)
+Making index 6 inactive (value is a primitive)
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.account.Account var0 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var1 = var0.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Integer var2 = new java.lang.Integer(10);
+// <NormalExecution object=object-of-type-java.lang.Integer>;
+var0.setCc(10);
+// <NormalExecution object=null>;
+java.lang.Integer var4 = new java.lang.Integer((-1));
+// <NormalExecution object=object-of-type-java.lang.Integer>;
+var0.setCc((-1));
+// <NormalExecution object=null>;
+double var6 = var0.getBalance();
+// <NormalExecution object=object-of-type-java.lang.Double>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var1]  : true
+<randoop.PrimValue, value=0.0 [var6]  : true
+
+allSequences.size()=9
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 45
+Selected statement: org.bank.account.Account.deposito(double)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 7 sequences.
+components: 7
+randoop.util.Randomness: total calls to random: 46
+randoop.util.Randomness: total calls to random: 47
+Will query component set for objects of typedouble
+getActivesequencesThatYield: entering method, clazz=double
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 48
+randoop.util.Randomness: total calls to random: 49
+Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
+var1 =  method : org.bank.account.Account.toString() : var0 
+var2 =  prim : double:0.0 : 
+var3 =  method : org.bank.account.Account.deposito(double) : var0 var2 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Making index 0 active.
+Making index 1 inactive (value is a primitive)
+Making index 2 inactive (value is a primitive)
+Making index 3 inactive (value is a primitive)
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.account.Account var0 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var1 = var0.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Double var2 = new java.lang.Double(0.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+boolean var3 = var0.deposito(0.0d);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var1]  : true
+<randoop.PrimValue, value=true [var3]  : true
+
+allSequences.size()=10
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 50
+Selected statement: org.bank.account.Account.transferir(java.lang.Double,org.bank.account.Account)
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 8 sequences.
+components: 8
+randoop.util.Randomness: total calls to random: 51
+randoop.util.Randomness: total calls to random: 52
+Will query component set for objects of typeclass java.lang.Double
+getActivesequencesThatYield: entering method, clazz=class java.lang.Double
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 53
+randoop.util.Randomness: total calls to random: 54
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 8 sequences.
+components: 8
+randoop.util.Randomness: total calls to random: 55
+randoop.util.Randomness: total calls to random: 56
+Successfully created new unique sequence:var0 =  cons : org.bank.account.Account.<init>() : 
+var1 =  method : org.bank.account.Account.toString() : var0 
+var2 =  prim : int:10 : 
+var3 =  method : org.bank.account.Account.setCc(int) : var0 var2 
+var4 =  prim : int:-1 : 
+var5 =  method : org.bank.account.Account.setCc(int) : var0 var4 
+var6 =  method : org.bank.account.Account.getBalance() : var0 
+var7 =  prim : double:0.0 : 
+var8 =  cons : org.bank.account.Account.<init>() : 
+var9 =  method : org.bank.account.Account.toString() : var8 
+var10 =  prim : double:0.0 : 
+var11 =  method : org.bank.account.Account.deposito(double) : var8 var10 
+var12 =  method : org.bank.account.Account.transferir(java.lang.Double,org.bank.account.Account) : var0 var7 var8 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 0, 8
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 8, 0
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 8, 8
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 8
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 8, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 8, 8
+Contract returned true.
+Making index 0 active.
+Making index 1 inactive (value is a primitive)
+Making index 2 inactive (value is a primitive)
+Making index 3 inactive (value is null)
+Making index 4 inactive (value is a primitive)
+Making index 5 inactive (value is null)
+Making index 6 inactive (value is a primitive)
+Making index 7 inactive (value is a primitive)
+Making index 8 active.
+Making index 9 inactive (value is a primitive)
+Making index 10 inactive (value is a primitive)
+Making index 11 inactive (value is a primitive)
+Making index 12 inactive (value is a primitive)
+Adding sequence to active sequences of type class org.bank.account.Account
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.account.Account var0 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var1 = var0.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Integer var2 = new java.lang.Integer(10);
+// <NormalExecution object=object-of-type-java.lang.Integer>;
+var0.setCc(10);
+// <NormalExecution object=null>;
+java.lang.Integer var4 = new java.lang.Integer((-1));
+// <NormalExecution object=object-of-type-java.lang.Integer>;
+var0.setCc((-1));
+// <NormalExecution object=null>;
+double var6 = var0.getBalance();
+// <NormalExecution object=object-of-type-java.lang.Double>;
+java.lang.Double var7 = new java.lang.Double(0.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+org.bank.account.Account var8 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var9 = var8.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Double var10 = new java.lang.Double(0.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+boolean var11 = var8.deposito(0.0d);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+boolean var12 = var0.transferir((java.lang.Double)0.0d, var8);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var1]  : true
+<randoop.PrimValue, value=0.0 [var6]  : true
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var9]  : true
+<randoop.PrimValue, value=true [var11]  : true
+<randoop.PrimValue, value=true [var12]  : true
+
+allSequences.size()=11
+-------------------------------------------
+randoop.util.Randomness: total calls to random: 57
+Selected statement: org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double)
+Will query component set for objects of typeclass org.bank.facade.Facade
+getActivesequencesThatYield: entering method, clazz=class org.bank.facade.Facade
+getActivesequencesThatYield: returning 2 sequences.
+components: 2
+randoop.util.Randomness: total calls to random: 58
+randoop.util.Randomness: total calls to random: 59
+Will query component set for objects of typeclass org.bank.account.Account
+getActivesequencesThatYield: entering method, clazz=class org.bank.account.Account
+getActivesequencesThatYield: returning 10 sequences.
+components: 10
+randoop.util.Randomness: total calls to random: 60
+randoop.util.Randomness: total calls to random: 61
+Will query component set for objects of typeclass java.lang.Double
+getActivesequencesThatYield: entering method, clazz=class java.lang.Double
+getActivesequencesThatYield: returning 5 sequences.
+components: 5
+randoop.util.Randomness: total calls to random: 62
+randoop.util.Randomness: total calls to random: 63
+Successfully created new unique sequence:var0 =  cons : org.bank.facade.Facade.<init>() : 
+var1 =  cons : org.bank.account.Account.<init>() : 
+var2 =  method : org.bank.account.Account.toString() : var1 
+var3 =  prim : double:100.0 : 
+var4 =  method : org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double) : var0 var1 var3 
+var5 =  cons : org.bank.account.Account.<init>() : 
+var6 =  method : org.bank.account.Account.toString() : var5 
+var7 =  prim : double:0.0 : 
+var8 =  method : org.bank.account.Account.deposito(double) : var5 var7 
+var9 =  prim : double:10.0 : 
+var10 =  method : org.bank.facade.Facade.withdraw(org.bank.account.Account,java.lang.Double) : var0 var5 var9 
+
+Checking contract class randoop.EqualsHashcode on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 0, 0
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 1, 1
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 1, 5
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 5, 1
+Contract returned true.
+Checking contract class randoop.EqualsHashcode on 5, 5
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 1, 1
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 1, 5
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 5, 1
+Contract returned true.
+Checking contract class randoop.EqualsSymmetric on 5, 5
+Contract returned true.
+Making index 0 active.
+Making index 1 active.
+Making index 2 inactive (value is a primitive)
+Making index 3 inactive (value is a primitive)
+Making index 4 inactive (value is a primitive)
+Making index 5 active.
+Making index 6 inactive (value is a primitive)
+Making index 7 inactive (value is a primitive)
+Making index 8 inactive (value is a primitive)
+Making index 9 inactive (value is a primitive)
+Making index 10 inactive (value is a primitive)
+Adding sequence to active sequences of type class org.bank.facade.Facade
+Adding sequence to active sequences of type class org.bank.account.Account
+Sequence after execution: 
+org.bank.facade.Facade var0 = new org.bank.facade.Facade();
+// <NormalExecution object=object-of-type-org.bank.facade.Facade>;
+org.bank.account.Account var1 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var2 = var1.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Double var3 = new java.lang.Double(100.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+boolean var4 = var0.withdraw(var1, (java.lang.Double)100.0d);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+org.bank.account.Account var5 = new org.bank.account.Account();
+// <NormalExecution object=object-of-type-org.bank.account.Account>;
+java.lang.String var6 = var5.toString();
+// <NormalExecution object=object-of-type-java.lang.String>;
+java.lang.Double var7 = new java.lang.Double(0.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+boolean var8 = var5.deposito(0.0d);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+java.lang.Double var9 = new java.lang.Double(10.0d);
+// <NormalExecution object=object-of-type-java.lang.Double>;
+boolean var10 = var0.withdraw(var5, (java.lang.Double)10.0d);
+// <NormalExecution object=object-of-type-java.lang.Boolean>;
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var2]  : true
+<randoop.PrimValue, value=true [var4]  : true
+<randoop.PrimValue, value=Conta [ag=0, cc=0, balance=0.0] [var6]  : true
+<randoop.PrimValue, value=true [var8]  : true
+<randoop.PrimValue, value=true [var10]  : true
+
+allSequences.size()=12

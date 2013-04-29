@@ -8,7 +8,6 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.Map;
-
 import br.edu.ufcg.saferefactor.core.ast.SClass;
 import br.edu.ufcg.saferefactor.core.util.Constants;
 

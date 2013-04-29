@@ -14,6 +14,7 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
 import org.sr.ic.ImpactedClasses;
 import org.sr.input.FilePropertiesObject;
+import org.sr.input.FilePropertiesReader;
 
 import randoop.main.Main;
 import br.edu.ufcg.saferefactor.core.util.Constants;
@@ -58,26 +59,19 @@ public class Saferefactor {
 		Project p = new Project();
 
 		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
-		String classPath = pinfo.getSource()+System.getProperty("file.separator")+pinfo.getBinDir();
+		String classPath = this.input.getSourceLineDirectory()+ "bin";
 		p.setProperty("classpath",classPath);
-		p.setProperty("source", pinfo.getSource());
-		p.setProperty("target", pinfo.getTarget());
-		p.setProperty("timeout", timeout);
-		p.setProperty("bin", pinfo.getBinDir());
-		p.setProperty("lib", pinfo.getLib());
-		p.setProperty("src", pinfo.getSrcDir());
+		p.setProperty("source",this.input.getSourceLineDirectory());
+		p.setProperty("target",this.input.getTargetLineDirectory());
+		p.setProperty("timeout", this.input.getTimeOut()+"");
+		p.setProperty("bin", "bin");
+		p.setProperty("lib", "lib");
+		p.setProperty("src", "src");
 		p.setProperty("tests.folder", Constants.TEST);
 		p.setProperty("evosuite.tests", Constants.EVOSUITE_TESTS);
 		p.setProperty("evosuite.compiled.tests", Constants.EVOSUITE_COMPILED_TESTS);
 
-		String classes = this.pinfo.getClassesString();
-
-		if (classes != null) {
-			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
-			p.setProperty("classes", classes);
-		}
-
-		int maxTestsPerMethod = this.pinfo.getMaxTestsPerMethod();
+		int maxTestsPerMethod = this.input.getInputLimit();
 
 		if (maxTestsPerMethod > 0) {
 			/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
@@ -85,7 +79,7 @@ public class Saferefactor {
 		}
 
 		/* Set a property. Any existing property of the same name is overwritten, unless it is a user property. */
-		p.setProperty("criteria", this.pinfo.getCriteria().toString());
+		p.setProperty("criteria", this.input.getWhichMethods().toString());
 
 		/* ANT LOG CONSOLE */
 		DefaultLogger consoleLogger = new DefaultLogger();
@@ -123,7 +117,7 @@ public class Saferefactor {
 		Report report = new Report();
 		if(generateTestsWith.equals("evosuite")){
 			p.executeTarget("clean_evosuite_tests");
-			Iterator<String> i = this.pinfo.getClassesList().iterator();
+			Iterator<String> i = this.ic.getModifiedClasses().iterator();
 			while(i.hasNext()){
 				String clazz = i.next();
 				System.out.println("Run evosuite for clazz: " + clazz);
@@ -159,71 +153,35 @@ public class Saferefactor {
 	}
 	
 	public static void main(String[] args) {
-		String source = args[0];
-		String target = args[1];
-		String bin = args[2];
-		String src = args[3];
-		String lib = args[4];
-		String timeout = args[5];
-		String classes = null;
-
-		Criteria criteria = null;
-
-		if (args.length > 6) {
-			classes = args[6];
-		}
-
-		int maxTestsPerMethods = 0;
-
-		if (args.length > 7) {
-			maxTestsPerMethods = Integer.valueOf(args[7]);
-		}
-
-		if (args.length > 8) {
-			criteria = Criteria.valueOf(args[8]);
-		}
-
-		Saferefactor safeRefactor = new Saferefactor(source, target, bin, src, lib, classes, maxTestsPerMethods, criteria);
-		File methodList = safeRefactor.getAnalyzer().generateMethodListFile(criteria);
-
+			
+		ImpactedClasses impactedClasses = new ImpactedClasses("org.bank.account.Account");
+		FilePropertiesReader reader = new FilePropertiesReader("/home/jefferson/workspace/ferramentaLPSSM/inputFiles/bank1.0.properties");
+		FilePropertiesObject in = reader.getPropertiesObject();
+		Analyzer analyzer = new Analyzer();
+		analyzer.setInput(in);
+		analyzer.setImpactedClasses(impactedClasses);
+		Saferefactor sr = new Saferefactor(impactedClasses, in);
+		sr.setAnalyzer(analyzer);
+		
+		File methodList = sr.getAnalyzer().generateMethodListFile(Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT);
+		
 		if (methodList != null) {
-			Main main2 = new Main();
-
+			Main randoopMain = new Main();
 			String[] argsRandoop = {
 					"gentests",
 					"--methodlist=" + methodList,
-					"--timelimit=" + timeout,
+					"--timelimit=" + in.getTimeOut(),
 					"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
 					"--junit-output-dir=" + Constants.TEST,
 					"--output-nonexec=true",
 					"--inputlimit="
-							+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
-					"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
-
-			if (maxTestsPerMethods > 0) {
-				String[] newArgsRandoop = {
-						"gentests",
-						"--methodlist=" + methodList,
-						"--timelimit=" + timeout,
-						"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
-						"--junit-output-dir=" + Constants.TEST,
-						"--output-nonexec=true",
-						"--inputlimit="
-								+ (safeRefactor.getPinfo().getQuantityOfMethodsToTest() * safeRefactor.getPinfo().getMaxTestsPerMethod()),
-						"--remove-subsequences=false" }; // ->  /home/felype/workspaceMestrado/saferefactoraj/filewriter.log
-
-				argsRandoop = newArgsRandoop;
-			}
-
-			main2.nonStaticMain(argsRandoop);
+							+ (in.getInputLimit() * 2),
+					"--remove-subsequences=false" }; 
+			randoopMain.nonStaticMain(argsRandoop);
 		}
 		else {
-			System.out.println("H� m�todos diferentes entre as vers�es source e target.");
+			System.out.println("Existe metodos diferentes entre as versoes source e target.");
 		}
 
-	}
-
-	public ProjectInfo getPinfo() {
-		return pinfo;
 	}
 }

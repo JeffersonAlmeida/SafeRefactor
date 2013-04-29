@@ -24,6 +24,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import org.sr.ic.ImpactedClasses;
+import org.sr.input.FilePropertiesObject;
+
 import br.edu.ufcg.saferefactor.classloader.FileClassLoader;
 import br.edu.ufcg.saferefactor.core.ast.SClass;
 import br.edu.ufcg.saferefactor.core.ast.SConstructor;
@@ -37,10 +40,10 @@ public class Analyzer {
 	private Map<String, SClass> sourceClasses;
 	private List<SConstructor> commonConstructors;
 	private List<SMethod> commonMethods;
-
-	private ProjectInfo pinfo;
-
+	private FilePropertiesObject input;
+	private ImpactedClasses impactedClasses;
 	private List<String> nonDeterministicMethods;
+	private int quantityOfMethodsToTest;
 
 	public Analyzer() {
 		this.commonConstructors = new ArrayList<SConstructor>();
@@ -83,9 +86,9 @@ public class Analyzer {
 
 		int quantityOfMethodsToTest = 0;
 
-		if (!this.pinfo.getClasses().isEmpty()) {
+		if (!this.impactedClasses.getModifiedClasses().isEmpty()) {
 			List<String> classesParaTestar = new ArrayList<String>();
-			classesParaTestar.addAll(this.pinfo.getClasses());
+			classesParaTestar.addAll(this.impactedClasses.getModifiedClasses()); 
 
 			// Adicione apenas construtores de classes modificadas. Devido a
 			// limita��es do Randoop, adicione tamb�m classes utilizadas
@@ -120,7 +123,7 @@ public class Analyzer {
 			// Test only methods of modified classes.
 			for (SMethod method : commonMethods) {
 				String methodString = method.toString();
-				if (this.listContainsString(this.pinfo.getClasses(),methodString)) {
+				if (this.listContainsString(this.impactedClasses.getModifiedClasses(),methodString)) {
 					if (!this.listContainsString(this.nonDeterministicMethods, methodString)) {
 						lines.append(method + "\n");
 						listOfMethods.add(method.toString());
@@ -150,7 +153,7 @@ public class Analyzer {
 
 		System.out.println(lines.toString());
 
-		this.pinfo.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
+		this.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
 
 		return FileUtil.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString() );
 		
@@ -172,7 +175,7 @@ public class Analyzer {
 	public Map<String, SClass> mapSourceClasses() {
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		try {
-			result = mapClasses(this.pinfo.getSource());
+			result = mapClasses(this.input.getSourceLineDirectory());
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -212,19 +215,12 @@ public class Analyzer {
 		return result;
 	}
 
-	private Map<String, SClass> mapClasses(String filesDir)
-			throws MalformedURLException {
+	private Map<String, SClass> mapClasses(String filesDir) throws MalformedURLException {
 		Map<String, SClass> result = new HashMap<String, SClass>();
-
 		File root = new File(filesDir);
-		File bin = new File(root, this.pinfo.getBinDir());
-
-		String binFiles = filesDir + Constants.FILE_SEPARATOR
-				+ this.pinfo.getSrcDir();
-
-		String libFiles = filesDir + Constants.FILE_SEPARATOR
-				+ this.pinfo.getLib();
-
+		File bin = new File(root, "bin");
+		String binFiles = filesDir + Constants.FILE_SEPARATOR+ "src";
+		String libFiles = filesDir + Constants.FILE_SEPARATOR + "lib";
 		URL urls[] = {};
 		FileClassLoader cl = new FileClassLoader(urls);
 		cl.addJarFiles(libFiles);
@@ -349,9 +345,7 @@ public class Analyzer {
 
 	public Map<String, SClass> mapClasses2(String filesDir) {
 		Map<String, SClass> result = new HashMap<String, SClass>();
-
-		String binFiles = filesDir + Constants.FILE_SEPARATOR
-				+ this.pinfo.getSrcDir();
+		String binFiles = filesDir + Constants.FILE_SEPARATOR + "src";
 
 		List<String> listClassNames = FileUtil.listClassNames(binFiles, "");
 
@@ -393,31 +387,23 @@ public class Analyzer {
 				sc.setParent(c.getSuperclass().getName());
 
 				Constructor<?>[] constructors = c.getConstructors();
-				List<SConstructor> sconsList = new ArrayList<SConstructor>(
-						constructors.length);
+				List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
 
 				if (!Modifier.isAbstract(modifiers))
 					for (Constructor<?> constructor : constructors) {
 						SConstructor scons = new SConstructor();
-						scons.setDeclaringClass(constructor.getDeclaringClass()
-								.getName());
+						scons.setDeclaringClass(constructor.getDeclaringClass().getName());
 						scons.setName(constructor.getName());
-
-						Class<?>[] parameterTypes = constructor
-								.getParameterTypes();
-						List<String> parameters = new ArrayList<String>(
-								parameterTypes.length);
+						Class<?>[] parameterTypes = constructor.getParameterTypes();
+						List<String> parameters = new ArrayList<String>(parameterTypes.length);
 						boolean addMethod = true;
 						for (Class<?> param : parameterTypes) {
 
-							if (param.getName().equals(
-									"com.memorybudget.MemoryBudget"))
+							if (param.getName().equals("com.memorybudget.MemoryBudget"))
 								addMethod = false;
-							if (param.getName().equals(
-									"com.sleepycat.je.log.LogManager"))
+							if (param.getName().equals("com.sleepycat.je.log.LogManager"))
 								addMethod = false;
-							if (param.getName().equals(
-									"com.sleepycat.je.log.SyncedLogManager"))
+							if (param.getName().equals("com.sleepycat.je.log.SyncedLogManager"))
 								addMethod = false;
 							parameters.add(param.getName());
 						}
@@ -704,8 +690,7 @@ public class Analyzer {
 							commonMethods.get(indexOf).getAllowedClasses().add(
 									sourceClass.getFullName());
 						} else {
-							method.getAllowedClasses().add(
-									sourceClass.getFullName());
+							method.getAllowedClasses().add(sourceClass.getFullName());
 							commonMethods.add(method);
 						}
 					}
@@ -731,4 +716,23 @@ public class Analyzer {
 		}
 	}
 
+	public FilePropertiesObject getInput() {
+		return input;
+	}
+	public void setInput(FilePropertiesObject input) {
+		this.input = input;
+	}
+	public ImpactedClasses getImpactedClasses() {
+		return impactedClasses;
+	}
+	public void setImpactedClasses(ImpactedClasses impactedClasses) {
+		this.impactedClasses = impactedClasses;
+	}
+	public int getQuantityOfMethodsToTest() {
+		return quantityOfMethodsToTest;
+	}
+	public void setQuantityOfMethodsToTest(int quantityOfMethodsToTest) {
+		this.quantityOfMethodsToTest = quantityOfMethodsToTest;
+	}
+	
 }
