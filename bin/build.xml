@@ -212,9 +212,9 @@
 		</javac>
 	</target>
 
-	<target name="compile_source">
+	<target name="compile_source_and_target" depends="clean">
 	<echo>* Compile Source Product</echo>
-   <javac fork="yes" includes="**/*.java" debug="on" srcdir="${source}/src" destdir="${source}/bin">
+    <javac fork="yes" includes="**/*.java" debug="on" srcdir="${source}/src" destdir="${source}/bin">
 			<classpath>
 				<fileset dir="${source}/src">
 					<include name="**/*.java" />
@@ -224,6 +224,20 @@
 				<pathelement path="${project.dir}/lib/junit-4.5.jar" />
 				<pathelement location="${source}/${bin}" />
 				<pathelement location="${source}/src" />
+			</classpath>
+			<classpath refid="classpath_source" />
+		</javac>
+    <echo>* Compile Target Product</echo>
+    <javac fork="yes" includes="**/*.java" debug="on" srcdir="${target}/src" destdir="${target}/bin">
+			<classpath>
+				<fileset dir="${target}/src">
+					<include name="**/*.java" />
+				</fileset>
+				<pathelement location="saferefactor.jar" />
+				<pathelement path="${java.class.path}" />
+				<pathelement path="${project.dir}/lib/junit-4.5.jar" />
+				<pathelement location="${target}/${bin}" />
+				<pathelement location="${target}/src" />
 			</classpath>
 			<classpath refid="classpath_source" />
 		</javac>
