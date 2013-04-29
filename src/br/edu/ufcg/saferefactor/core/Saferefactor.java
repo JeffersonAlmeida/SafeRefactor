@@ -45,7 +45,6 @@ public class Saferefactor {
 	}
 	
 	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) {
-		FileUtil.createTestsFolder(input);
 		
 		/*Finds a resource with a given name.*/
 		URL file = this.getClass().getResource("/build.xml");
@@ -65,7 +64,7 @@ public class Saferefactor {
 		p.setProperty("evosuite.compiled.tests", Constants.EVOSUITE_COMPILED_TESTS);
 		p.setProperty("maxTests", String.valueOf( this.input.getInputLimit()));
 		p.setProperty("criteria", this.input.getWhichMethods().toString());
-		/*p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);*/
+		p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);
 
 		setAntLogConsole(p);
 		setBuildLogConsole(p);
@@ -90,6 +89,14 @@ public class Saferefactor {
 			p.executeTarget("run_tests_evosuite");
 			report = report(printReport);
 		}else if (generateTestsWith.equals("randoop")){
+			
+			File methodList = this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
+			p.setProperty("method.list.file", methodList.getAbsolutePath());
+			p.setProperty("time.limit", this.input.getTimeOut()+"");
+			p.setProperty("log.file.name", "ant-build-log.log");
+			p.setProperty("output.dir", this.input.getSourceLineDirectory() + "src");
+			p.setProperty("input.limit", this.input.getInputLimit()+"");
+			p.setProperty("junit.package", "randoop.tests");
 			p.executeTarget("randoop");
 			
 			/*p.executeTarget(p.getDefaultTarget());
@@ -145,37 +152,5 @@ public class Saferefactor {
 			System.out.println("\n\nreport changes: " + report.getChanges());
 		}
 		return report;
-	}
-	
-	public static void main(String[] args) {
-			
-		ImpactedClasses impactedClasses = new ImpactedClasses("org.bank.account.Account");
-		FilePropertiesReader reader = new FilePropertiesReader("/home/jefferson/workspace/ferramentaLPSSM/inputFiles/bank1.0.properties");
-		FilePropertiesObject in = reader.getPropertiesObject();
-		Analyzer analyzer = new Analyzer();
-		analyzer.setInput(in);
-		analyzer.setImpactedClasses(impactedClasses);
-		Saferefactor sr = new Saferefactor(impactedClasses, in);
-		sr.setAnalyzer(analyzer);
-		
-		File methodList = sr.getAnalyzer().generateMethodListFile(Criteria.ONLY_COMMON_METHODS_SUBSET_DEFAULT);
-		
-		if (methodList != null) {
-			Main randoopMain = new Main();
-			String[] argsRandoop = {
-					"gentests",
-					"--methodlist=" + methodList,
-					"--timelimit=" + in.getTimeOut(),
-					"--log=/home/jefferson/workspace/saferefactoraj/filewriter.log",
-					"--junit-output-dir=" + Constants.TEST,
-					"--output-nonexec=true",
-					"--inputlimit=" + (in.getInputLimit() * 2),
-					"--remove-subsequences=false" }; 
-			randoopMain.nonStaticMain(argsRandoop);
-		}
-		else {
-			System.out.println("Existe metodos diferentes entre as versoes source e target.");
-		}
-
 	}
 }

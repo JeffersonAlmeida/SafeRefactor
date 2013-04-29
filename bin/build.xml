@@ -171,12 +171,19 @@
 	</target>
 
 
-
     <target name="randoop">
 		<echo>* Generate Tests With Randoop Tool</echo>
 		<echo>* https://code.google.com/p/randoop/</echo>
 		<java classpath="${project.dir}/lib/" classname="randoop.main.Main" fork="true" dir="${project.dir}/lib/">
-             <arg value="help"/>
+             <arg value="gentests"/>
+             <arg value="--methodlist=${method.list.file}"/>
+             <arg value="--timelimit=${time.limit}"/>
+             <arg value="--log=${source}/${log.file.name}"/>
+             <arg value="--junit-output-dir=${output.dir}"/>
+             <arg value="--junit-package-name=${junit.package}"/>
+             <arg value="--output-nonexec=true"/>
+             <arg value="--inputlimit=${input.limit}"/>
+             <arg value="--remove-subsequences=false"/>
 			<classpath>
 				<pathelement location="saferefactor.jar" />
 				<pathelement path="${java.class.path}" />

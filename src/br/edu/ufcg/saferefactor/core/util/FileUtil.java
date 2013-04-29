@@ -135,8 +135,8 @@ public class FileUtil {
 	/**
 	 * Create RANDOOP tests directory in the product's folder */
 	public static void createRandoopFolders(FilePropertiesObject input) {
-		String randoop_tests_sourceProduct = input.getSourceLineDirectory() + "randoop-tests";
-		String randoop_tests_targetProduct = input.getTargetLineDirectory() + "randoop-tests";
+		String randoop_tests_sourceProduct = input.getSourceLineDirectory() + "src";
+		String randoop_tests_targetProduct = input.getTargetLineDirectory() + "src";
 		File randoop_tests_sourceProductFile = new File(randoop_tests_sourceProduct);
 		File randoop_tests_targetProductFile = new File(randoop_tests_targetProduct);
 		randoop_tests_sourceProductFile.mkdirs();
@@ -147,8 +147,8 @@ public class FileUtil {
 	/**
 	 * Create EVOSUITE tests directory in the product's folder */
 	public static void createEvosuiteFolders(FilePropertiesObject input) {
-		String evosuite_tests_sourceProduct = input.getSourceLineDirectory() + "evosuite-tests";
-		String evosuite_tests_targetProduct = input.getTargetLineDirectory() + "evosuite-tests";
+		String evosuite_tests_sourceProduct = input.getSourceLineDirectory() + "src/evosuite/tests";
+		String evosuite_tests_targetProduct = input.getTargetLineDirectory() + "src/evosuite/tests";
 		File evosuite_tests_sourceProductFile = new File(evosuite_tests_sourceProduct);
 		File evosuite_tests_targetProductFile = new File(evosuite_tests_targetProduct);
 		evosuite_tests_sourceProductFile.mkdirs();
@@ -160,10 +160,15 @@ public class FileUtil {
 	}
 
 	public static void createTestsFolder(FilePropertiesObject input) {
-		if(input.getGenerateTestsWith().equals("randoop"))
+		if(input.getGenerateTestsWith().equals("randoop")){
 			FileUtil.createRandoopFolders(input);
-		FileUtil.createEvosuiteFolders(input);
+		}else{
+			FileUtil.createEvosuiteFolders(input);	
+		}
 	}
 
-
+	public static void createFile(String dir) {
+		File log = new File(dir);
+		log.mkdir();
+	}
 }
