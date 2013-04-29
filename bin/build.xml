@@ -196,45 +196,7 @@
 	</target>
 
 
-	<target name="generate_tests" depends="analyze_target">
-		<echo>
-	            Generating tests
-	        </echo>
-		<java classname="br.edu.ufcg.saferefactor.core.Saferefactor" fork="true" maxmemory="1024m">
-			<jvmarg value="-Xmx1024m" />
-			<arg value="${source}" />
-			<arg value="${target}" />
-			<arg value="${bin}" />
-			<arg value="${src}" />
-			<arg value="${lib}" />
-			<arg value="${timeout}" />
-			<arg value="${classes}" />
-			<arg value="${maxTests}" />
-			<arg value="${criteria}" />
-			<classpath>
-				<pathelement location="saferefactor.jar" />
-				<pathelement path="${java.class.path}" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/randoop.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-junit.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-launcher.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/asm-3.0.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/asm-tree-3.0.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/aspectjrt.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/cobertura.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/jakarta-oro-2.0.8.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/junit-4.5.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/log4j-1.2.9.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/plume.jar" />
-
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/bin" />
-				<pathelement path="${source}/${bin}" />
-			</classpath>
-			<classpath refid="classpath_source" />
-		</java>
-	</target>
-
-	<target name="compile_tests" depends="generate_tests">
+	<target name="compile_tests">
 		<echo>Compiling the tests</echo>
 		<javac fork="yes" memorymaximumsize="512m" includes="*.java" debug="on" srcdir="${tests.folder}" destdir="${tests.folder}/bin">
 			<classpath>
@@ -249,6 +211,68 @@
 			<classpath refid="classpath_source" />
 		</javac>
 	</target>
+
+	<target name="compile_source">
+	<echo>* Compile Source Product</echo>
+   <javac fork="yes" includes="**/*.java" debug="on" srcdir="${source}/src" destdir="${source}/bin">
+			<classpath>
+				<fileset dir="${source}/src">
+					<include name="**/*.java" />
+				</fileset>
+				<pathelement location="saferefactor.jar" />
+				<pathelement path="${java.class.path}" />
+				<pathelement path="${project.dir}/lib/junit-4.5.jar" />
+				<pathelement location="${source}/${bin}" />
+				<pathelement location="${source}/src" />
+			</classpath>
+			<classpath refid="classpath_source" />
+		</javac>
+	</target>
+
+
+
+    	<target name="compile" depends="randoop">
+		<echo>Compiling the tests</echo>
+		<javac fork="yes" memorymaximumsize="512m" includes="*.java" debug="on" srcdir="${randoop.test.dir}" destdir="${randoop.test.bin}">
+			<classpath>
+				<fileset dir="${source}/${lib}">
+					<include name="**/*.jar" />
+				</fileset>
+				<pathelement location="saferefactor.jar" />
+				<pathelement path="${java.class.path}" />
+				<pathelement path="${project.dir}/lib/junit-4.5.jar" />
+				<pathelement location="${source}/${bin}" />
+			</classpath>
+			<classpath refid="classpath_source" />
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<echo>* Run Junit</echo>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="/home/jefferson/workspace/saferefactoraj">
+			<classpath>
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/junit-4.5.jar" />
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant.jar" />
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-junit.jar" />
+				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-launcher.jar" />
+				<fileset dir="${source}/${lib}">
+					<include name="**/*.jar" />
+				</fileset>
+				<pathelement location="saferefactor.jar" />
+				<pathelement path="${java.class.path}" />
+				<pathelement location="${source}/${bin}" />
+				<pathelement location="${source}/bin" />
+			</classpath>
+			<classpath refid="classpath_source" />
+			<formatter type="xml" />
+			<batchtest todir="${junit.output}" haltonfailure="no">
+				<fileset dir="${randoop.test.bin}">
+					<include name="**/*.class" />
+					<exclude name="**/RandoopTest.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+    </target>
 
 	<target name="run_tests" depends="compile_tests">
 		<echo>Running JUnit to test the "source"</echo>
