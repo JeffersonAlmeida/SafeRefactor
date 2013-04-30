@@ -111,7 +111,7 @@ public class Saferefactor {
 			p.setProperty("junit.output", xmlOutputFile.getAbsolutePath() );
 			p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
 			
-			p.executeTarget("analyze_target");
+			p.executeTarget("analyse_target");
 			
 			this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
 		

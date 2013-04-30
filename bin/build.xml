@@ -7,6 +7,15 @@
 
 	<path id="classpath">
 		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${source}/" includes="${lib}/*.jar" />
+		<fileset dir="${target}/" includes="${lib}/*.jar" />
+		<pathelement location="${source}/bin" />
+		<pathelement location="${source}/src" />
+		<pathelement location="${target}/bin" />
+        <pathelement location="${target}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
 	</path>
 
 	<path id="cp">
@@ -14,7 +23,7 @@
 	</path>
 
 	<path id="classpath_source">
-		<fileset dir="${source}/" includes="${lib}/*.jar" />
+        <fileset dir="${source}/" includes="${lib}/*.jar" />
 		<fileset dir="${target}/" includes="${lib}/*.jar" />
 	</path>
 
@@ -39,13 +48,8 @@
                             <include name="**/*.java" />
                             <exclude name="**/Randoop*.java" />
                         </fileset>
-                        <pathelement location="saferefactor.jar" />
-                        <pathelement path="${java.class.path}" />
-                        <pathelement path="${project.dir}/lib/junit-4.5.jar" />
-                        <pathelement location="${source}/bin" />
-                        <pathelement location="${source}/src" />
                     </classpath>
-                    <classpath refid="classpath_source" />
+                    <classpath refid="classpath"/>
             </javac>
             <echo>* Compile Target Product</echo>
             <javac fork="yes" includes="**/*.java" debug="on" srcdir="${target}/src" destdir="${target}/bin">
@@ -53,25 +57,16 @@
                         <fileset dir="${target}/src">
                             <include name="**/*.java" />
                         </fileset>
-                        <pathelement location="saferefactor.jar" />
-                        <pathelement path="${java.class.path}" />
-                        <pathelement path="${project.dir}/lib/junit-4.5.jar" />
-                        <pathelement location="${target}/${bin}" />
-                        <pathelement location="${target}/src" />
                     </classpath>
-                    <classpath refid="classpath_source" />
+                   <classpath refid="classpath"/>
             </javac>
 	</target>
 
-	<target name="analyze_target" depends="compile_source_and_target">
-		<echo>Analyzing target methods</echo>
+	<target name="analyse_target" depends="compile_source_and_target">
+		<echo>* Analyse target methods</echo>
 		<java classname="br.edu.ufcg.saferefactor.core.TargetAnalyzer" fork="true" maxmemory="256m">
 			<arg value="${target}" />
-			<classpath>
-				<pathelement path="${java.class.path}" />
-				<pathelement path="${target}/${bin}" />
-			</classpath>
-			<classpath refid="classpath_source" />
+			<classpath refid="classpath"/>
 		</java>
 	</target>
 
@@ -88,60 +83,33 @@
              <arg value="--output-nonexec=true"/>
              <arg value="--inputlimit=${input.limit}"/>
              <arg value="--remove-subsequences=false"/>
-			<classpath>
-				<pathelement location="saferefactor.jar" />
-				<pathelement path="${java.class.path}" />
-				<pathelement path="${project.dir}/bin" />
-				<pathelement path="${source}/${bin}" />
-			</classpath>
-			<classpath refid="classpath_source" />
-			<classpath refid="cp" />
+			<classpath refid="classpath"/>
 		</java>
 	</target>
 
     <target name="compile" depends="randoop">
 		<echo>* Compiling the tests</echo>
 		<javac fork="yes" memorymaximumsize="512m" includes="**/*.java" debug="on" srcdir="${randoop.test.dir}" destdir="${randoop.test.bin}">
+			 <classpath refid="classpath" />
 			 <classpath>
-				<fileset dir="${source}/${lib}">
-					<include name="**/*.jar" />
-				</fileset>
 				<fileset dir="${randoop.test.dir}/randoop/tests">
 					<include name="*.java" />
 				</fileset>
-				<pathelement location="saferefactor.jar" />
-				<pathelement path="${java.class.path}" />
-				<pathelement path="${project.dir}/lib/junit-4.5.jar" />
-				<pathelement location="${source}/${bin}" />
 			</classpath>
-			<classpath refid="classpath_source" />
 		</javac>
 	</target>
 
 	<target name="run" depends="compile">
 		<echo>* Run Junit</echo>
 		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
-			<classpath>
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/junit-4.5.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-junit.jar" />
-				<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/ant-launcher.jar" />
-				<fileset dir="${source}/${lib}">
-					<include name="**/*.jar" />
-				</fileset>
-				<pathelement location="saferefactor.jar" />
-				<pathelement path="${java.class.path}" />
-				<pathelement location="${source}/${bin}" />
-				<pathelement location="${source}/bin" />
-			</classpath>
-			<classpath refid="classpath_source" />
+			<classpath refid="classpath" />
 			<formatter type="xml" />
-			<batchtest todir="${junit.output}" haltonfailure="no">
-				<fileset dir="${randoop.test.bin}">
-					<include name="**/*.class" />
-					<exclude name="**/RandoopTest.class" />
-				</fileset>
-			</batchtest>
+                <batchtest todir="${junit.output}" haltonfailure="no">
+                    <fileset dir="${randoop.test.bin}">
+                        <include name="**/*.class" />
+                        <exclude name="**/RandoopTest.class" />
+                    </fileset>
+                </batchtest>
 		</junit>
     </target>
 
