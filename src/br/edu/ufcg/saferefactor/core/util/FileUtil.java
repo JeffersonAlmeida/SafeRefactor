@@ -120,16 +120,21 @@ public class FileUtil {
 		return result;
 	}
 	
-	public static void createFolders() {
+	public static void createFolders(FilePropertiesObject input) {
 		String tempDir = System.getProperty("java.io.tmpdir") + Constants.FILE_SEPARATOR + "safeRefactorAJ";
 		
 		File build = new File(tempDir + Constants.FILE_SEPARATOR + "tests" +  Constants.FILE_SEPARATOR + "bin");
 		File testsSource = new File(tempDir + Constants.FILE_SEPARATOR + "tests" + Constants.FILE_SEPARATOR + "source");
 		File testsTarget = new File(tempDir + Constants.FILE_SEPARATOR +  "tests" + Constants.FILE_SEPARATOR + "target");
 		
+		String i = input.getSourceLineDirectory() + "methods-to-test-list";
+		File intersection = new File(i);
+		
+		intersection.mkdir();
 		build.mkdirs();	
 		testsSource.mkdirs();
 		testsTarget.mkdirs();
+		
 	}
 	
 	/**

@@ -28,7 +28,6 @@
 			<fileset dir="${target}/bin" includes="**/*" />
 			<fileset dir="${junit.output}" includes="**/*" />
 			<fileset dir="${randoop.source}" includes="**/*" />
-			<fileset file="${method.list.file}"/>
 		</delete>
 	</target>
 

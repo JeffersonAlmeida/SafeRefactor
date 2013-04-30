@@ -46,6 +46,8 @@ public class Saferefactor {
 	
 	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) {
 		
+		FileUtil.createFolders(this.input);
+		
 		/*Finds a resource with a given name.*/
 		URL file = this.getClass().getResource("/build.xml");
 		
@@ -89,19 +91,30 @@ public class Saferefactor {
 			p.executeTarget("run_tests_evosuite");
 			report = report(printReport);
 		}else if (generateTestsWith.equals("randoop")){
+			String methodList = input.getSourceLineDirectory() + "methods-to-test-list" + "/methods-list.txt";
+			File file1 = new File(methodList);
+			if(file1.delete()){
+    			System.out.println(file1.getName() + " is deleted!");
+    		}else{
+    			System.out.println("Delete operation is failed.");
+    		}
+			this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
 			
-			File methodList = this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
-			p.setProperty("randoop.test.dir",  this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop"+ System.getProperty("file.separator")+ "tests");
-			p.setProperty("randoop.test.bin",  this.input.getSourceLineDirectory() + "bin" + System.getProperty("file.separator") + "randoop"+ System.getProperty("file.separator")+ "tests");
-			p.setProperty("method.list.file", methodList.getAbsolutePath());
+			p.setProperty("randoop.test.dir",  this.input.getSourceLineDirectory() + "src");
+			p.setProperty("randoop.test.bin",  this.input.getSourceLineDirectory() + "bin");
+			p.setProperty("method.list.file", methodList);
 			p.setProperty("time.limit", this.input.getTimeOut()+"");
 			p.setProperty("log.file.name", "ant-build-log.log");
+			p.setProperty("temp.dir", Constants.TEMP);
 			p.setProperty("output.dir", this.input.getSourceLineDirectory() + "src");
 			p.setProperty("input.limit", this.input.getInputLimit()+"");
 			p.setProperty("junit.package", "randoop.tests");
 			File xmlOutputFile = new File( this.input.getSourceLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput");
 			xmlOutputFile.mkdir();
 			p.setProperty("junit.output", xmlOutputFile.getAbsolutePath() );
+			p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
+			
+			
 			p.executeTarget("run");
 			
 			

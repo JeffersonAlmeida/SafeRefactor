@@ -162,8 +162,9 @@ public class Analyzer {
 		System.out.println(lines.toString());
 
 		this.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
-
-		return FileUtil.makeFile(Constants.ARQUIVO_INTERSECAO, lines.toString() );
+		
+		String intersection = input.getSourceLineDirectory() + "methods-to-test-list" + "/methods-list.txt";
+		return FileUtil.makeFile(intersection, lines.toString() );
 		
 	}
 
