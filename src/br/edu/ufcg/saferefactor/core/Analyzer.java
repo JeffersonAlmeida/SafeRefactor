@@ -194,17 +194,9 @@ public class Analyzer {
 
 	public Map<String, SClass> mapTargetClasses() {
 		Map<String, SClass> result = new HashMap<String, SClass>();
-		// try {
-		// result = mapClasses(this.pinfo.getTarget());
-		// } catch (MalformedURLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
 		try {
 			// use buffering
-			InputStream file = new FileInputStream(Constants.TEST
-					+ Constants.FILE_SEPARATOR + "mapClasses2.ser");
+			InputStream file = new FileInputStream(Constants.TEST + Constants.FILE_SEPARATOR + "mapClasses2.ser");
 			InputStream buffer = new BufferedInputStream(file);
 			ObjectInput input = new ObjectInputStream(buffer);
 			try {
@@ -270,21 +262,16 @@ public class Analyzer {
 				sc.setParent(c.getSuperclass().getName());
 
 				Constructor<?>[] constructors = c.getConstructors();
-				List<SConstructor> sconsList = new ArrayList<SConstructor>(
-						constructors.length);
+				List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
 
 				// do not consider constructors of abstract classes
 				if (!Modifier.isAbstract(modifiers))
 					for (Constructor<?> constructor : constructors) {
 						SConstructor scons = new SConstructor();
-						scons.setDeclaringClass(constructor.getDeclaringClass()
-								.getName());
+						scons.setDeclaringClass(constructor.getDeclaringClass().getName());
 						scons.setName(constructor.getName());
-
-						Class<?>[] parameterTypes = constructor
-								.getParameterTypes();
-						List<String> parameters = new ArrayList<String>(
-								parameterTypes.length);
+						Class<?>[] parameterTypes = constructor.getParameterTypes();
+						List<String> parameters = new ArrayList<String>(parameterTypes.length);
 						for (Class<?> param : parameterTypes) {
 							parameters.add(param.getName());
 						}
@@ -297,19 +284,16 @@ public class Analyzer {
 				List<SMethod> smList = new ArrayList<SMethod>(methods.length);
 				for (Method method : methods) {
 
-					if (method.getDeclaringClass().getName().equals(
-							"java.lang.Object"))
+					if (method.getDeclaringClass().getName().equals("java.lang.Object"))
 						continue;
 
 					// HACK: do not consider ArrayList methods due to randoop
 					// problems with generics
-					if (method.getDeclaringClass().getName().equals(
-							"java.util.ArrayList"))
+					if (method.getDeclaringClass().getName().equals("java.util.ArrayList"))
 						continue;
 
 					boolean hasGenericParam = false;
-					Type[] genericParameterTypes = method
-							.getGenericParameterTypes();
+					Type[] genericParameterTypes = method.getGenericParameterTypes();
 
 					for (Type type : genericParameterTypes) {
 
@@ -326,8 +310,7 @@ public class Analyzer {
 					sm.setDeclaringClass(method.getDeclaringClass().getName());
 					sm.setSimpleName(method.getName());
 					Class<?>[] parameterTypes = method.getParameterTypes();
-					List<String> parameters = new ArrayList<String>(
-							parameterTypes.length);
+					List<String> parameters = new ArrayList<String>(parameterTypes.length);
 					for (Class<?> param : parameterTypes) {
 						parameters.add(param.getName());
 					}
@@ -495,8 +478,7 @@ public class Analyzer {
 			}
 		}
 
-		System.out
-				.println("Classes that throw exception and will be not included in the tests: ");
+		System.out.println("Classes that throw exception and will be not included in the tests: ");
 		for (String classe : uncheckedClasses) {
 			System.out.println(classe);
 		}

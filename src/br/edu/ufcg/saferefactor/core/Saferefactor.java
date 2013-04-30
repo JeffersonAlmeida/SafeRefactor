@@ -13,8 +13,6 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
 import org.sr.ic.ImpactedClasses;
 import org.sr.input.FilePropertiesObject;
-import org.sr.input.FilePropertiesReader;
-import randoop.main.Main;
 import br.edu.ufcg.saferefactor.core.util.Constants;
 import br.edu.ufcg.saferefactor.core.util.FileUtil;
 
@@ -98,7 +96,6 @@ public class Saferefactor {
     		}else{
     			System.out.println("Delete operation is failed.");
     		}
-			this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
 			
 			p.setProperty("randoop.test.dir",  this.input.getSourceLineDirectory() + "src");
 			p.setProperty("randoop.test.bin",  this.input.getSourceLineDirectory() + "bin");
@@ -114,6 +111,10 @@ public class Saferefactor {
 			p.setProperty("junit.output", xmlOutputFile.getAbsolutePath() );
 			p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
 			
+			p.executeTarget("analyze_target");
+			
+			this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
+		
 			
 			p.executeTarget("run");
 			

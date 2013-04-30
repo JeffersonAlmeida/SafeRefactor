@@ -31,23 +31,11 @@
 		</delete>
 	</target>
 
-	<target name="analyze_target" depends="clean">
-		<echo>Analyzing target methods</echo>
-		<java classname="br.edu.ufcg.saferefactor.core.TargetAnalyzer" fork="true" maxmemory="256m">
-			<arg value="${target}" />
-			<classpath>
-				<pathelement path="${java.class.path}" />
-				<pathelement path="${target}/${bin}" />
-			</classpath>
-			<classpath refid="classpath_source" />
-		</java>
-	</target>
-
-	<target name="compile_source_and_target" depends="analyze_target">
+	<target name="compile_source_and_target" depends="clean">
             <echo>* Compile Source Product</echo>
             <javac fork="yes" includes="**/*.java" debug="on" srcdir="${source}/src" destdir="${source}/bin">
                     <classpath>
-                        <fileset dir="/home/jefferson/Desktop/workspace/Bank1.0/src">
+                        <fileset dir="${source}/src">
                             <include name="**/*.java" />
                             <exclude name="**/Randoop*.java" />
                         </fileset>
@@ -75,7 +63,19 @@
             </javac>
 	</target>
 
-	 <target name="randoop"  depends="compile_source_and_target">
+	<target name="analyze_target" depends="compile_source_and_target">
+		<echo>Analyzing target methods</echo>
+		<java classname="br.edu.ufcg.saferefactor.core.TargetAnalyzer" fork="true" maxmemory="256m">
+			<arg value="${target}" />
+			<classpath>
+				<pathelement path="${java.class.path}" />
+				<pathelement path="${target}/${bin}" />
+			</classpath>
+			<classpath refid="classpath_source" />
+		</java>
+	</target>
+
+	 <target name="randoop">
 		<echo>* Generate Tests With Randoop Tool</echo>
 		<echo>* https://code.google.com/p/randoop/</echo>
 		<java classpath="${project.dir}/lib/" classname="randoop.main.Main" fork="true" dir="${project.dir}/lib/">
