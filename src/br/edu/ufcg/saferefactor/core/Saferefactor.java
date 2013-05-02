@@ -47,7 +47,7 @@ public class Saferefactor {
 		FileUtil.createFolders(this.input);
 		
 		/*Finds a resource with a given name.*/
-		URL file = this.getClass().getResource("/randoopBuild.xml");
+		URL file = this.getClass().getResource("/evosuite.xml");
 		
 		Project p = new Project(); /* Central representation of an Ant project. */
 
@@ -60,12 +60,15 @@ public class Saferefactor {
 		p.setProperty("lib", "lib");
 		p.setProperty("src", "src");
 		p.setProperty("tests.folder", Constants.TEST);
-		p.setProperty("evosuite.tests", Constants.EVOSUITE_TESTS);
+		p.setProperty("evosuite.tests", this.input.getSourceLineDirectory() + "src");
 		p.setProperty("evosuite.compiled.tests", Constants.EVOSUITE_COMPILED_TESTS);
 		p.setProperty("maxTests", String.valueOf( this.input.getInputLimit()));
 		p.setProperty("criteria", this.input.getWhichMethods().toString());
 		p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);
-
+		p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
+		File xmlOutputFile = new File( this.input.getSourceLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput");
+		xmlOutputFile.mkdir();
+		p.setProperty("junit.output", xmlOutputFile.getAbsolutePath() );
 		setAntLogConsole(p);
 		setBuildLogConsole(p);
 		
@@ -78,7 +81,7 @@ public class Saferefactor {
 		Report report = new Report();
 		
 		if(generateTestsWith.equals("evosuite")){
-			p.executeTarget("clean_evosuite_tests");
+			p.executeTarget("compile_source_and_target");
 			Iterator<String> i = this.ic.getModifiedClasses().iterator();
 			while(i.hasNext()){
 				String clazz = i.next();
@@ -89,6 +92,7 @@ public class Saferefactor {
 			p.executeTarget("run_tests_evosuite");
 			report = report(printReport);
 		}else if (generateTestsWith.equals("randoop")){
+			
 			String methodList = input.getSourceLineDirectory() + "methods-to-test-list" + "/methods-list.txt";
 			File file1 = new File(methodList);
 			if(file1.delete()){
@@ -106,10 +110,7 @@ public class Saferefactor {
 			p.setProperty("output.dir", this.input.getSourceLineDirectory() + "src");
 			p.setProperty("input.limit", this.input.getInputLimit()+"");
 			p.setProperty("junit.package", "randoop.tests");
-			File xmlOutputFile = new File( this.input.getSourceLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput");
-			xmlOutputFile.mkdir();
-			p.setProperty("junit.output", xmlOutputFile.getAbsolutePath() );
-			p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
+			
 			
 			p.executeTarget("analyse_target");
 			

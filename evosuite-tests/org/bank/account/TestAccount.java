@@ -23,9 +23,9 @@ public class TestAccount {
   @Test
   public void test0()  throws Throwable  {
       Account account0 = new Account();
-      account0.setAg((-193));
-      assertEquals("Conta [ag=-193, cc=0, balance=0.0]", account0.toString());
-      assertEquals(-193, account0.getAg());
+      account0.setAg(450);
+      assertEquals("Conta [ag=450, cc=0, balance=0.0]", account0.toString());
+      assertEquals(450, account0.getAg());
   }
 
   //Test case number: 1
@@ -35,43 +35,37 @@ public class TestAccount {
    */
   @Test
   public void test1()  throws Throwable  {
-      Account account0 = new Account();
-      Client client0 = new Client("", account0);
-      Account account1 = new Account(0, 1855, client0, 618.0471094734193);
-      assertEquals("Conta [ag=0, cc=1855, balance=618.0471094734193]", account1.toString());
+      Client client0 = new Client("", (Account) null);
+      Account account0 = new Account((-149), 448, client0, 209.484049298007);
+      assertEquals("Conta [ag=-149, cc=448, balance=209.484049298007]", account0.toString());
   }
 
   //Test case number: 2
   /*
-   * 5 covered goals:
+   * 1 covered goal:
    * 1 org.bank.account.Account.getBalance()D: root-Branch
-   * 2 org.bank.account.Account.setBalance(D)V: root-Branch
-   * 3 org.bank.account.Account.<init>(II)V: root-Branch
-   * 4 org.bank.account.Account.transferir(Ljava/lang/Double;Lorg/bank/account/Account;)Z: I7 Branch 1 IFLT L30 - false
-   * 5 org.bank.account.Account.debito(D)Z: I6 Branch 2 IFLT L43 - false
    */
   @Test
   public void test2()  throws Throwable  {
-      Account account0 = new Account((-619), (-1370));
-      Double double0 = Double.valueOf(0.0);
-      boolean boolean0 = account0.transferir(double0, account0);
+      Account account0 = new Account();
+      double double0 = account0.getBalance();
       assertEquals(0.0, account0.getBalance(), 0.01D);
-      assertEquals(true, boolean0);
-      assertEquals("Conta [ag=-619, cc=-1370, balance=0.0]", account0.toString());
+      assertEquals(0.0, double0, 0.01D);
   }
 
   //Test case number: 3
   /*
-   * 1 covered goal:
+   * 2 covered goals:
    * 1 org.bank.account.Account.toString()Ljava/lang/String;: root-Branch
+   * 2 org.bank.account.Account.<init>(II)V: root-Branch
    */
   @Test
   public void test3()  throws Throwable  {
-      Account account0 = new Account((-619), (-1370));
+      Account account0 = new Account(0, 0);
       String string0 = account0.toString();
+      assertEquals("Conta [ag=0, cc=0, balance=0.0]", account0.toString());
       assertNotNull(string0);
-      assertEquals("Conta [ag=-619, cc=-1370, balance=0.0]", account0.toString());
-      assertEquals("Conta [ag=-619, cc=-1370, balance=0.0]", string0);
+      assertEquals("Conta [ag=0, cc=0, balance=0.0]", string0);
   }
 
   //Test case number: 4
@@ -82,9 +76,9 @@ public class TestAccount {
   @Test
   public void test4()  throws Throwable  {
       Account account0 = new Account();
-      account0.setCc(469);
-      assertEquals(469, account0.getCc());
-      assertEquals("Conta [ag=0, cc=469, balance=0.0]", account0.toString());
+      account0.setCc(450);
+      assertEquals(450, account0.getCc());
+      assertEquals("Conta [ag=0, cc=450, balance=0.0]", account0.toString());
   }
 
   //Test case number: 5
@@ -116,65 +110,94 @@ public class TestAccount {
   //Test case number: 7
   /*
    * 1 covered goal:
-   * 1 org.bank.account.Account.deposito(D)Z: root-Branch
+   * 1 org.bank.account.Account.setBalance(D)V: root-Branch
    */
   @Test
   public void test7()  throws Throwable  {
       Account account0 = new Account();
-      boolean boolean0 = account0.deposito((-1));
-      assertEquals("Conta [ag=0, cc=0, balance=-1.0]", account0.toString());
-      assertEquals(true, boolean0);
+      account0.setBalance(1.0);
+      assertEquals("Conta [ag=0, cc=0, balance=1.0]", account0.toString());
+      assertEquals(1.0, account0.getBalance(), 0.01D);
   }
 
   //Test case number: 8
   /*
    * 1 covered goal:
-   * 1 org.bank.account.Account.transferir(Ljava/lang/Double;Lorg/bank/account/Account;)Z: I7 Branch 1 IFLT L30 - true
+   * 1 org.bank.account.Account.deposito(D)Z: root-Branch
    */
   @Test
   public void test8()  throws Throwable  {
       Account account0 = new Account();
-      boolean boolean0 = account0.transferir(1.7976931348623157E308, account0);
-      assertEquals(false, boolean0);
-      assertEquals(0.0, account0.getBalance(), 0.01D);
+      boolean boolean0 = account0.deposito(0);
+      assertEquals("Conta [ag=0, cc=0, balance=0.0]", account0.toString());
+      assertEquals(true, boolean0);
   }
 
   //Test case number: 9
   /*
    * 1 covered goal:
-   * 1 org.bank.account.Account.debito(D)Z: I6 Branch 2 IFLT L43 - true
+   * 1 org.bank.account.Account.transferir(Ljava/lang/Double;Lorg/bank/account/Account;)Z: I7 Branch 1 IFLT L30 - true
    */
   @Test
   public void test9()  throws Throwable  {
       Account account0 = new Account();
-      boolean boolean0 = account0.debito(1);
+      Double double0 = Double.valueOf(1676.4909077457896);
+      boolean boolean0 = account0.transferir(double0, account0);
       assertEquals(0.0, account0.getBalance(), 0.01D);
       assertEquals(false, boolean0);
   }
 
   //Test case number: 10
   /*
-   * 1 covered goal:
-   * 1 org.bank.account.Account.sacar(D)Z: I5 Branch 3 IFGT L51 - true
+   * 2 covered goals:
+   * 1 org.bank.account.Account.transferir(Ljava/lang/Double;Lorg/bank/account/Account;)Z: I7 Branch 1 IFLT L30 - false
+   * 2 org.bank.account.Account.debito(D)Z: I6 Branch 2 IFLT L43 - false
    */
   @Test
   public void test10()  throws Throwable  {
-      Account account0 = new Account(1683, 1683);
-      boolean boolean0 = account0.sacar(1110.3840639673274);
-      assertEquals("Conta [ag=1683, cc=1683, balance=0.0]", account0.toString());
-      assertEquals(false, boolean0);
+      Account account0 = new Account();
+      Double double0 = Double.valueOf(0.0);
+      boolean boolean0 = account0.transferir(double0, account0);
+      assertEquals(0.0, account0.getBalance(), 0.01D);
+      assertEquals(true, boolean0);
   }
 
   //Test case number: 11
   /*
    * 1 covered goal:
-   * 1 org.bank.account.Account.sacar(D)Z: I5 Branch 3 IFGT L51 - false
+   * 1 org.bank.account.Account.debito(D)Z: I6 Branch 2 IFLT L43 - true
    */
   @Test
   public void test11()  throws Throwable  {
       Account account0 = new Account();
-      boolean boolean0 = account0.sacar((-1895.3817602359418));
-      assertEquals("Conta [ag=0, cc=0, balance=1895.3817602359418]", account0.toString());
+      boolean boolean0 = account0.debito(1000.0);
+      assertEquals(0.0, account0.getBalance(), 0.01D);
+      assertEquals(false, boolean0);
+  }
+
+  //Test case number: 12
+  /*
+   * 1 covered goal:
+   * 1 org.bank.account.Account.sacar(D)Z: I5 Branch 3 IFGT L51 - true
+   */
+  @Test
+  public void test12()  throws Throwable  {
+      Account account0 = new Account(0, 0);
+      boolean boolean0 = account0.sacar(1865.82638476451);
+      assertEquals("Conta [ag=0, cc=0, balance=0.0]", account0.toString());
+      assertEquals(false, boolean0);
+  }
+
+  //Test case number: 13
+  /*
+   * 1 covered goal:
+   * 1 org.bank.account.Account.sacar(D)Z: I5 Branch 3 IFGT L51 - false
+   */
+  @Test
+  public void test13()  throws Throwable  {
+      Account account0 = new Account();
+      boolean boolean0 = account0.sacar((-1));
+      assertEquals(1.0, account0.getBalance(), 0.01D);
       assertEquals(true, boolean0);
   }
 }

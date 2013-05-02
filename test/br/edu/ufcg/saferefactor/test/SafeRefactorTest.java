@@ -22,7 +22,7 @@ public class SafeRefactorTest {
 		Saferefactor sr = new Saferefactor(impactedClasses, in);
 		sr.setAnalyzer(analyzer);
 		
-		sr.isRefactoring("60", true, "randoop");
+		sr.isRefactoring("60", true, "evosuite");
 		//assertEquals(false, sr.isRefactoring("30", true, "randoop"));
 	}
 }

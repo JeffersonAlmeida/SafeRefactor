@@ -22,50 +22,47 @@ org.bank.account.Account
 <img src="files/evosuite.png" height="40"/>
 <br><br><h2 class=title>Summary</h2>
 <ul><li>Target class: org.bank.account.Account: 100.00%</ul><ul>
-<li>50 fitness evaluations, 2 generations, 4907 statements, 245 tests.
-<li>Time: 0:00:02(Search: 0:00:02, minimization: 0:00:00)
+<li>50 fitness evaluations, 2 generations, 6145 statements, 308 tests.
+<li>Time: 0:00:03(Search: 0:00:02, minimization: 0:00:01)
 <li>Coverage: 6/6 branches, 14/14 methods, 17/17 total goals
-<li>Mutation score: 70%
+<li>Mutation score: 62%
 </ul>
 <div id="page"><div id="page-bgtop"><div id="page-bgbtm"><div id="content"><div id="post"><h2 class=title id=tests>Test suite</h2>
 <div class=tests>
 <h3>Test case 1</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
 <span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="2">  2: </a></span>account0.setAg((-193));
-<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=-193, cc=0, balance=0.0]&quot;, account0.toString());
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(-193, account0.getAg());
+<span class="nocode"><a name="2">  2: </a></span>account0.setAg(450);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=450, cc=0, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(450, account0.getAg());
 </pre>
 <h3>Test case 2</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
-<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="2">  2: </a></span>Client client0 = new Client(&quot;&quot;, account0);
-<span class="nocode"><a name="3">  3: </a></span>Account account1 = new Account(0, 1855, client0, 618.0471094734193);
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(&quot;Conta [ag=0, cc=1855, balance=618.0471094734193]&quot;, account1.toString());
+<span class="nocode"><a name="1">  1: </a></span>Client client0 = new Client(&quot;&quot;, (Account) null);
+<span class="nocode"><a name="2">  2: </a></span>Account account0 = new Account((-149), 448, client0, 209.484049298007);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=-149, cc=448, balance=209.484049298007]&quot;, account0.toString());
 </pre>
 <h3>Test case 3</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
-<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-619), (-1370));
-<span class="nocode"><a name="2">  2: </a></span>Double double0 = Double.valueOf(0.0);
-<span class="nocode"><a name="3">  3: </a></span>boolean boolean0 = account0.transferir(double0, account0);
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
-<span class="nocode"><a name="5">  5: </a></span>assertEquals(true, boolean0);
-<span class="nocode"><a name="6">  6: </a></span>assertEquals(&quot;Conta [ag=-619, cc=-1370, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
+<span class="nocode"><a name="2">  2: </a></span>double double0 = account0.getBalance();
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(0.0, double0, 0.01D);
 </pre>
 <h3>Test case 4</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
-<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account((-619), (-1370));
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account(0, 0);
 <span class="nocode"><a name="2">  2: </a></span>String string0 = account0.toString();
-<span class="nocode"><a name="3">  3: </a></span>assertNotNull(string0);
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(&quot;Conta [ag=-619, cc=-1370, balance=0.0]&quot;, account0.toString());
-<span class="nocode"><a name="5">  5: </a></span>assertEquals(&quot;Conta [ag=-619, cc=-1370, balance=0.0]&quot;, string0);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=0, cc=0, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="4">  4: </a></span>assertNotNull(string0);
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(&quot;Conta [ag=0, cc=0, balance=0.0]&quot;, string0);
 </pre>
 <h3>Test case 5</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
 <span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="2">  2: </a></span>account0.setCc(469);
-<span class="nocode"><a name="3">  3: </a></span>assertEquals(469, account0.getCc());
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(&quot;Conta [ag=0, cc=469, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="2">  2: </a></span>account0.setCc(450);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(450, account0.getCc());
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(&quot;Conta [ag=0, cc=450, balance=0.0]&quot;, account0.toString());
 </pre>
 <h3>Test case 6</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
@@ -84,36 +81,52 @@ org.bank.account.Account
 <h3>Test case 8</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
 <span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.deposito((-1));
-<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=0, cc=0, balance=-1.0]&quot;, account0.toString());
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(true, boolean0);
+<span class="nocode"><a name="2">  2: </a></span>account0.setBalance(1.0);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=0, cc=0, balance=1.0]&quot;, account0.toString());
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(1.0, account0.getBalance(), 0.01D);
 </pre>
 <h3>Test case 9</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
 <span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.transferir(1.7976931348623157E308, account0);
-<span class="nocode"><a name="3">  3: </a></span>assertEquals(false, boolean0);
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.deposito(0);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=0, cc=0, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(true, boolean0);
 </pre>
 <h3>Test case 10</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
 <span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.debito(1);
-<span class="nocode"><a name="3">  3: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(false, boolean0);
+<span class="nocode"><a name="2">  2: </a></span>Double double0 = Double.valueOf(1676.4909077457896);
+<span class="nocode"><a name="3">  3: </a></span>boolean boolean0 = account0.transferir(double0, account0);
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(false, boolean0);
 </pre>
 <h3>Test case 11</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
-<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account(1683, 1683);
-<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.sacar(1110.3840639673274);
-<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=1683, cc=1683, balance=0.0]&quot;, account0.toString());
-<span class="nocode"><a name="4">  4: </a></span>assertEquals(false, boolean0);
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
+<span class="nocode"><a name="2">  2: </a></span>Double double0 = Double.valueOf(0.0);
+<span class="nocode"><a name="3">  3: </a></span>boolean boolean0 = account0.transferir(double0, account0);
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="5">  5: </a></span>assertEquals(true, boolean0);
 </pre>
 <h3>Test case 12</h3>
 <pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
 <span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
-<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.sacar((-1895.3817602359418));
-<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=0, cc=0, balance=1895.3817602359418]&quot;, account0.toString());
+<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.debito(1000.0);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(0.0, account0.getBalance(), 0.01D);
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(false, boolean0);
+</pre>
+<h3>Test case 13</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account(0, 0);
+<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.sacar(1865.82638476451);
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(&quot;Conta [ag=0, cc=0, balance=0.0]&quot;, account0.toString());
+<span class="nocode"><a name="4">  4: </a></span>assertEquals(false, boolean0);
+</pre>
+<h3>Test case 14</h3>
+<pre class="prettyprint" style="border: 1px solid #888;padding: 2px">
+<span class="nocode"><a name="1">  1: </a></span>Account account0 = new Account();
+<span class="nocode"><a name="2">  2: </a></span>boolean boolean0 = account0.sacar((-1));
+<span class="nocode"><a name="3">  3: </a></span>assertEquals(1.0, account0.getBalance(), 0.01D);
 <span class="nocode"><a name="4">  4: </a></span>assertEquals(true, boolean0);
 </pre>
 </div></div><div id="post"></div><div id="post"><h2 class=title id=source>Source Code</h2>
@@ -138,7 +151,7 @@ org.bank.account.Account
 <li>selection_function: RANK
 <li>assertion_strategy: MUTATION
 <li>tt_scope: ALL
-<li>process_communication_port: 18043
+<li>process_communication_port: 18155
 <li>TT: false
 <li>chromosome_length: 40
 <li>adaptive_local_search_dse: false
