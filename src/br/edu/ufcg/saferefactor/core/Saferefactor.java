@@ -47,7 +47,7 @@ public class Saferefactor {
 		FileUtil.createFolders(this.input);
 		
 		/*Finds a resource with a given name.*/
-		URL file = this.getClass().getResource("/build.xml");
+		URL file = this.getClass().getResource("/randoopBuild.xml");
 		
 		Project p = new Project(); /* Central representation of an Ant project. */
 

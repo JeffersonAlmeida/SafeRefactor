@@ -1,0 +1,99 @@
+<project name="SafeRefactor" default="run" basedir=".">
+
+	<path id="classpath">
+		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${source}/" includes="${lib}/*.jar" />
+		<fileset dir="${target}/" includes="${lib}/*.jar" />
+		<pathelement location="${source}/bin" />
+		<pathelement location="${source}/src" />
+		<pathelement location="${target}/bin" />
+        <pathelement location="${target}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
+	</path>
+
+
+	<target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${source}/bin" includes="**/*" />
+			<fileset dir="${target}/bin" includes="**/*" />
+			<fileset dir="${junit.output}" includes="**/*" />
+			<fileset dir="${randoop.source}" includes="**/*" />
+		</delete>
+	</target>
+
+	<target name="compile_source_and_target" depends="clean">
+            <echo>* Compile Source Product</echo>
+            <javac fork="yes" includes="**/*.java" debug="on" srcdir="${source}/src" destdir="${source}/bin">
+                    <classpath>
+                        <fileset dir="${source}/src">
+                            <include name="**/*.java" />
+                            <exclude name="**/Randoop*.java" />
+                        </fileset>
+                    </classpath>
+                    <classpath refid="classpath"/>
+            </javac>
+            <echo>* Compile Target Product</echo>
+            <javac fork="yes" includes="**/*.java" debug="on" srcdir="${target}/src" destdir="${target}/bin">
+                    <classpath>
+                        <fileset dir="${target}/src">
+                            <include name="**/*.java" />
+                        </fileset>
+                    </classpath>
+                   <classpath refid="classpath"/>
+            </javac>
+	</target>
+
+	<target name="analyse_target" depends="compile_source_and_target">
+		<echo>* Analyse target methods</echo>
+		<java classname="br.edu.ufcg.saferefactor.core.TargetAnalyzer" fork="true" maxmemory="256m">
+			<arg value="${target}" />
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+	 <target name="randoop">
+		<echo>* Generate Tests With Randoop Tool</echo>
+		<echo>* https://code.google.com/p/randoop/</echo>
+		<java classpath="${project.dir}/lib/" classname="randoop.main.Main" fork="true" dir="${project.dir}/lib/">
+             <arg value="gentests"/>
+             <arg value="--methodlist=${method.list.file}"/>
+             <arg value="--timelimit=${time.limit}"/>
+             <arg value="--log=${source}/${log.file.name}"/>
+             <arg value="--junit-output-dir=${output.dir}"/>
+             <arg value="--junit-package-name=${junit.package}"/>
+             <arg value="--output-nonexec=true"/>
+             <arg value="--inputlimit=${input.limit}"/>
+             <arg value="--remove-subsequences=false"/>
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+    <target name="compile" depends="randoop">
+		<echo>* Compiling the tests</echo>
+		<javac fork="yes" memorymaximumsize="512m" includes="**/*.java" debug="on" srcdir="${randoop.test.dir}" destdir="${randoop.test.bin}">
+			 <classpath refid="classpath" />
+			 <classpath>
+				<fileset dir="${randoop.test.dir}/randoop/tests">
+					<include name="*.java" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<echo>* Run Junit</echo>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath refid="classpath" />
+			<formatter type="xml" />
+                <batchtest todir="${junit.output}" haltonfailure="no">
+                    <fileset dir="${randoop.test.bin}">
+                        <include name="**/*.class" />
+                        <exclude name="**/RandoopTest.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+    </target>
+
+</project>
