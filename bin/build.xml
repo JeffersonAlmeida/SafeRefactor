@@ -1,9 +1,4 @@
-<project name="RefactoringProject" default="run" basedir=".">
-	<path id="cobertura.classpath">
-		<fileset dir=".">
-			<include name="saferefactor.jar" />
-		</fileset>
-	</path>
+<project name="SafeRefactor" default="run" basedir=".">
 
 	<path id="classpath">
 		<fileset dir="." includes="saferefactor.jar" />
@@ -18,18 +13,6 @@
 		<pathelement path="${project.dir}/bin" />
 	</path>
 
-	<path id="cp">
-		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
-	</path>
-
-	<path id="classpath_source">
-        <fileset dir="${source}/" includes="${lib}/*.jar" />
-		<fileset dir="${target}/" includes="${lib}/*.jar" />
-	</path>
-
-	<target name="init">
-		<mkdir dir="" />
-	</target>
 
 	<target name="clean">
 		<delete includeemptydirs="true">
