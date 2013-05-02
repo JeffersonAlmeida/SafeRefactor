@@ -11,6 +11,7 @@
         <pathelement location="${target}/src" />
 		<pathelement path="${java.class.path}" />
 		<pathelement path="${project.dir}/bin" />
+		<pathelement path="${source}/evosuite-bin" />
 	</path>
 
     <target name="init">
@@ -21,20 +22,14 @@
 		<delete includeemptydirs="true">
 			<fileset dir="${source}/bin" includes="**/*" />
 			<fileset dir="${target}/bin" includes="**/*" />
-			<fileset dir="${junit.output}" includes="**/*" />
+			<fileset dir="${junit.output.source}" includes="**/*" />
+			<fileset dir="${junit.output.target}" includes="**/*" />
 			<fileset dir="${randoop.source}" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-tests" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-report" includes="**/*" />
 		</delete>
 	</target>
 
-
-    <target name="clean_evosuite_tests" depends="clean">
-      <echo>Cleaning evosuite tests</echo>
-		<delete includeemptydirs="false">
-			<fileset dir="/home/jefferson/workspace/saferefactoraj/evosuite-report" includes="**/*" />
-			<fileset dir="/home/jefferson/workspace/saferefactoraj/evosuite-tests" includes="**/*" />
-			<fileset dir="/home/jefferson/workspace/saferefactoraj/evosuite-compiled-tests" includes="**/*" />
-		</delete>
-	</target>
 
 	<target name="compile_source_and_target" depends="clean">
             <echo>* Compile Source Product</echo>
@@ -78,6 +73,37 @@
 			<classpath refid="classpath" />
 		</javac>
 	</target>
+
+	<target name="run" depends="compile_tests_evosuite">
+		<echo>* Run Junit to Source Product</echo>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath>
+			<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" />
+			<pathelement location="${source}/bin" />
+			</classpath>
+			<classpath refid="classpath" />
+			<formatter type="xml" />
+                <batchtest todir="${junit.output.source}" haltonfailure="no">
+                    <fileset dir="${source}/evosuite-bin">
+                        <include name="**/*.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+		<echo>* Run Junit to Target Product</echo>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath>
+			<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" />
+			<pathelement location="${target}/bin" />
+			</classpath>
+			<classpath refid="classpath" />
+			<formatter type="xml" />
+                <batchtest todir="${junit.output.target}" haltonfailure="no">
+                    <fileset dir="${source}/evosuite-bin">
+                        <include name="**/*.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+    </target>
 
 	 <target name="run_tests_evosuite" depends="compile_tests_evosuite">
 		<echo>Running JUNIT to the EVOSUITE generated files - SOURCE</echo>

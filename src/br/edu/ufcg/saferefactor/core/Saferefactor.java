@@ -26,12 +26,14 @@ public class Saferefactor {
 	public Saferefactor(ImpactedClasses ic, FilePropertiesObject input){
 		this.ic = ic;
 		this.input = input;
-		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
+		this.comparator = new ResultComparator();
+		/*this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);*/
 	}
 	
 	public Saferefactor(String source, String target, String bin, String src, String lib) {
 		analyzer = new Analyzer();
-		this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);
+		/*this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);*/
+		this.comparator = new ResultComparator();
 	}
 
 	public Analyzer getAnalyzer() {
@@ -66,9 +68,30 @@ public class Saferefactor {
 		p.setProperty("criteria", this.input.getWhichMethods().toString());
 		p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);
 		p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
-		File xmlOutputFile = new File( this.input.getSourceLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput");
-		xmlOutputFile.mkdir();
-		p.setProperty("junit.output", xmlOutputFile.getAbsolutePath() );
+		p.setProperty("randoop.test.dir",  this.input.getSourceLineDirectory() + "src");
+		p.setProperty("randoop.test.bin",  this.input.getSourceLineDirectory() + "bin");
+		String methodList = input.getSourceLineDirectory() + "methods-to-test-list" + "/methods-list.txt";
+		File file1 = new File(methodList);
+		p.setProperty("method.list.file", methodList);
+		p.setProperty("time.limit", this.input.getTimeOut()+"");
+		p.setProperty("log.file.name", "ant-build-log.log");
+		p.setProperty("temp.dir", Constants.TEMP);
+		p.setProperty("output.dir", this.input.getSourceLineDirectory() + "src");
+		p.setProperty("input.limit", this.input.getInputLimit()+"");
+		p.setProperty("junit.package", "randoop.tests");
+		String junitOutputSource = this.input.getSourceLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput";
+		File xmlOutputFileSource = new File(junitOutputSource);
+		xmlOutputFileSource.mkdir();
+		String junitOutputTarget = this.input.getTargetLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput";
+		File xmlOutputFileTarget = new File(junitOutputTarget);
+		
+		xmlOutputFileTarget.mkdir();
+		p.setProperty("junit.output.source", xmlOutputFileSource.getAbsolutePath() );
+		p.setProperty("junit.output.target", xmlOutputFileTarget.getAbsolutePath() );
+		
+		this.getComparator().setTestsrc(junitOutputSource);
+		this.getComparator().setTesttgt(junitOutputTarget);
+		
 		setAntLogConsole(p);
 		setBuildLogConsole(p);
 		
@@ -89,28 +112,15 @@ public class Saferefactor {
 				p.setProperty("clazz", clazz);
 				p.executeTarget("generate_with_evosuite");
 			}
-			p.executeTarget("run_tests_evosuite");
+			p.executeTarget("run");
 			report = report(printReport);
 		}else if (generateTestsWith.equals("randoop")){
 			
-			String methodList = input.getSourceLineDirectory() + "methods-to-test-list" + "/methods-list.txt";
-			File file1 = new File(methodList);
 			if(file1.delete()){
     			System.out.println(file1.getName() + " is deleted!");
     		}else{
     			System.out.println("Delete operation is failed.");
     		}
-			
-			p.setProperty("randoop.test.dir",  this.input.getSourceLineDirectory() + "src");
-			p.setProperty("randoop.test.bin",  this.input.getSourceLineDirectory() + "bin");
-			p.setProperty("method.list.file", methodList);
-			p.setProperty("time.limit", this.input.getTimeOut()+"");
-			p.setProperty("log.file.name", "ant-build-log.log");
-			p.setProperty("temp.dir", Constants.TEMP);
-			p.setProperty("output.dir", this.input.getSourceLineDirectory() + "src");
-			p.setProperty("input.limit", this.input.getInputLimit()+"");
-			p.setProperty("junit.package", "randoop.tests");
-			
 			
 			p.executeTarget("analyse_target");
 			
@@ -119,12 +129,9 @@ public class Saferefactor {
 			
 			p.executeTarget("run");
 			
-			
-			//p.executeTarget("compile");
-			
-			/*p.executeTarget(p.getDefaultTarget());
 			report = report(printReport);
-			p.executeTarget("coverage");*/
+			
+			//p.executeTarget("coverage");
 		}
 		
 		return report.isSameBehavior();		
@@ -176,4 +183,12 @@ public class Saferefactor {
 		}
 		return report;
 	}
+
+	public ResultComparator getComparator() {
+		return comparator;
+	}
+	public void setComparator(ResultComparator comparator) {
+		this.comparator = comparator;
+	}
+	
 }

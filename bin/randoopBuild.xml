@@ -18,7 +18,7 @@
 		<delete includeemptydirs="true">
 			<fileset dir="${source}/bin" includes="**/*" />
 			<fileset dir="${target}/bin" includes="**/*" />
-			<fileset dir="${junit.output}" includes="**/*" />
+			<fileset dir="${junit.output.source}" includes="**/*" />
 			<fileset dir="${randoop.source}" includes="**/*" />
 		</delete>
 	</target>
@@ -87,7 +87,7 @@
 		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
 			<classpath refid="classpath" />
 			<formatter type="xml" />
-                <batchtest todir="${junit.output}" haltonfailure="no">
+                <batchtest todir="${junit.output.source}" haltonfailure="no">
                     <fileset dir="${randoop.test.bin}">
                         <include name="**/*.class" />
                         <exclude name="**/RandoopTest.class" />

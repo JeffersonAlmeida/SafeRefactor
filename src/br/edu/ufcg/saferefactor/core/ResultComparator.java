@@ -44,6 +44,10 @@ public class ResultComparator {
 		this.testsrc3 = testsrc3;
 	}
 
+	public ResultComparator() {
+		super();
+	}
+
 	public Report generateReport() {
 		Report result = new Report();
 		boolean sameBehavior = false;
@@ -246,5 +250,22 @@ public class ResultComparator {
 	private static enum TestCaseState {
 		SUCCESS, FAILURE, ERROR
 	}
+
+	public String getTestsrc() {
+		return testsrc;
+	}
+
+	public void setTestsrc(String testsrc) {
+		this.testsrc = testsrc;
+	}
+
+	public String getTesttgt() {
+		return testtgt;
+	}
+
+	public void setTesttgt(String testtgt) {
+		this.testtgt = testtgt;
+	}
+	
 
 }
