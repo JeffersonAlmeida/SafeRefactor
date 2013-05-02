@@ -20,6 +20,8 @@
 			<fileset dir="${target}/bin" includes="**/*" />
 			<fileset dir="${junit.output.source}" includes="**/*" />
 			<fileset dir="${randoop.source}" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-tests" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-report" includes="**/*" />
 		</delete>
 	</target>
 
@@ -83,12 +85,29 @@
 	</target>
 
 	<target name="run" depends="compile">
-		<echo>* Run Junit</echo>
+		<echo>* Run Junit Source Product </echo>
 		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath>
+			<pathelement location="${source}/bin" />
+			</classpath>
 			<classpath refid="classpath" />
 			<formatter type="xml" />
                 <batchtest todir="${junit.output.source}" haltonfailure="no">
-                    <fileset dir="${randoop.test.bin}">
+                    <fileset dir="${randoop.test.bin}/randoop/tests">
+                        <include name="**/*.class" />
+                        <exclude name="**/RandoopTest.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+		<echo>* Run Junit Target Product</echo>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath>
+			<pathelement location="${target}/bin" />
+			</classpath>
+			<classpath refid="classpath" />
+			<formatter type="xml" />
+                <batchtest todir="${junit.output.target}" haltonfailure="no">
+                    <fileset dir="${randoop.test.bin}/randoop/tests">
                         <include name="**/*.class" />
                         <exclude name="**/RandoopTest.class" />
                     </fileset>

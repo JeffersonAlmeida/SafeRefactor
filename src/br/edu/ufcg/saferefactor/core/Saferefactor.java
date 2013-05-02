@@ -47,9 +47,13 @@ public class Saferefactor {
 	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) {
 		
 		FileUtil.createFolders(this.input);
+		URL file;
+		if(generateTestsWith.equals("randoop")){
+			file = this.getClass().getResource("/randoopBuild.xml");	
+		}else{
+			file = this.getClass().getResource("/evosuiteBuild.xml");
+		}
 		
-		/*Finds a resource with a given name.*/
-		URL file = this.getClass().getResource("/evosuite.xml");
 		
 		Project p = new Project(); /* Central representation of an Ant project. */
 

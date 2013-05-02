@@ -78,7 +78,7 @@
 		<echo>* Run Junit to Source Product</echo>
 		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
 			<classpath>
-			<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" />
+			<pathelement path="${project.dir}/lib/evosuite.jar" />
 			<pathelement location="${source}/bin" />
 			</classpath>
 			<classpath refid="classpath" />
@@ -92,7 +92,7 @@
 		<echo>* Run Junit to Target Product</echo>
 		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
 			<classpath>
-			<pathelement path="/home/jefferson/workspace/saferefactoraj/lib/evosuite.jar" />
+			<pathelement path="${project.dir}/lib/evosuite.jar" />
 			<pathelement location="${target}/bin" />
 			</classpath>
 			<classpath refid="classpath" />
