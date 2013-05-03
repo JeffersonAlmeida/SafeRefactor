@@ -18,7 +18,8 @@ public class SafeRefactorTest {
 		Saferefactor sr = new Saferefactor(clazz, "/home/jefferson/workspace/ferramentaLPSSM/inputFiles/bank1.0.properties");
 		analyzer.setInput(sr.getInput());
 		sr.setAnalyzer(analyzer);
-		sr.isRefactoring("60", true, "evosuite");
+		sr.getAnalyzer().setImpactedClasses(sr.getIc());
+		sr.isRefactoring("60", true, "randoop");
 		//assertEquals(false, sr.isRefactoring("30", true, "randoop"));
 	}
 }

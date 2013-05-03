@@ -36,15 +36,8 @@ public class Saferefactor {
 		this.ic = ic;
 		this.input = input;
 		this.comparator = new ResultComparator();
-		/*this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);*/
 	}
 	
-	public Saferefactor(String source, String target, String bin, String src, String lib) {
-		analyzer = new Analyzer();
-		/*this.comparator = new ResultComparator(Constants.TESTSRC, Constants.TESTTGT, Constants.TESTSRC2, Constants.TESTSRC3);*/
-		this.comparator = new ResultComparator();
-	}
-
 	public Analyzer getAnalyzer() {
 		return analyzer;
 	}
@@ -56,6 +49,7 @@ public class Saferefactor {
 	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) {
 		
 		FileUtil.createFolders(this.input);
+		
 		URL file;
 		if(generateTestsWith.equals("randoop")){
 			file = this.getClass().getResource("/randoopBuild.xml");	
@@ -65,7 +59,6 @@ public class Saferefactor {
 		
 		
 		Project p = new Project(); /* Central representation of an Ant project. */
-
 		String classPath = this.input.getSourceLineDirectory()+ "bin";
 		p.setProperty("classpath",classPath);
 		p.setProperty("source",this.input.getSourceLineDirectory());
@@ -97,7 +90,6 @@ public class Saferefactor {
 		xmlOutputFileSource.mkdir();
 		String junitOutputTarget = this.input.getTargetLineDirectory()+System.getProperty("file.separator")+ "JunitXmlOutput";
 		File xmlOutputFileTarget = new File(junitOutputTarget);
-		
 		xmlOutputFileTarget.mkdir();
 		p.setProperty("junit.output.source", xmlOutputFileSource.getAbsolutePath() );
 		p.setProperty("junit.output.target", xmlOutputFileTarget.getAbsolutePath() );
@@ -127,7 +119,7 @@ public class Saferefactor {
 			}
 			p.executeTarget("run");
 			report = report(printReport);
-		}else if (generateTestsWith.equals("randoop")){
+		}else{
 			
 			if(file1.delete()){
     			System.out.println(file1.getName() + " is deleted!");
@@ -210,6 +202,14 @@ public class Saferefactor {
 
 	public void setInput(FilePropertiesObject input) {
 		this.input = input;
+	}
+
+	public ImpactedClasses getIc() {
+		return ic;
+	}
+
+	public void setIc(ImpactedClasses ic) {
+		this.ic = ic;
 	}
 	
 	
