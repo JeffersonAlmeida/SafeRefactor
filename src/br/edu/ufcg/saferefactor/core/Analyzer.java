@@ -34,8 +34,8 @@ import br.edu.ufcg.saferefactor.core.util.FileUtil;
 
 public class Analyzer {
 
-	private Map<String, SClass> targetClasses;
-	private Map<String, SClass> sourceClasses;
+	private Map<String, SClass> targetClazzMapping;
+	private Map<String, SClass> sourceClazzMapping;
 	private List<SConstructor> commonConstructors;
 	private List<SMethod> commonMethods;
 	private FilePropertiesObject input;
@@ -493,161 +493,76 @@ public class Analyzer {
 	}
 
 	public boolean analyzeChange(Criteria criteria) throws MalformedURLException {
-		boolean checkingCanProceed = true;
-		this.sourceClasses =  this.mapClasses(this.srcProductClassLoader,this.input.getSourceLineDirectory());
-		this.targetClasses = this.mapClasses(this.targetProductClassLoader, this.input.getTargetLineDirectory());
-			
-		// analisa cada classe do source
-		for (SClass sourceClass : this.sourceClasses.values()) {
-
-			// se no target nao tiver essa classe, pula
-			if (!targetClasses.values().contains(sourceClass)) {
-				if (criteria == Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET) {
-					//Tem lixo vindo entre as classes do source.
-					//Essa classe existe dos dois lados, mas nao eh encontrada pelo Safe.
-					//Analisar bug do Safe.
-					if (!sourceClass.toString().contains("PreferencesDialog")) {
-						checkingCanProceed = false;
-						System.out.println("\nClasse " + sourceClass + " não foi encontrado. Classe" + sourceClass.toString().length());
-						System.out.println("Classe " + sourceClass + " não foi encontrado. Classe");
-						System.out.println("Classe " + sourceClass + " não foi encontrado. Classe");
-						System.out.println("Classe " + sourceClass	+ " não foi encontrado. Classe");
-					}
-				}
-
-				continue;
-			}
-
-			// classe do target
-			SClass targetClass = targetClasses.get(sourceClass.getFullName());
-
-			for (SConstructor constructor : sourceClass.getConstructors()) {
-				if (targetClass.getConstructors().contains(constructor)) {
-					commonConstructors.add(constructor);
-				}
-			}
-
-			if (checkingCanProceed) {
-				if(criteria == Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET){
-					for(SMethod method : targetClass.getMethods()){
-						if(!sourceClass.getMethods().contains(method)){
-							checkingCanProceed = false;
-						}
-					}
-				}
-				
-				
-				for (SMethod method : sourceClass.getMethods()) {
-					
-					// se o source e o target contem o method com a mesma
-					// assinatura, inclui
-					if (!targetClass.getMethods().contains(method)) {
-						// Se a classe transformada não tem mais o método, a
-						// checagem não pode proceder. Mas esse resultado ainda
-						// pode
-						// ser revertido caso encontre o método em alguma classe
-						// na hierarquia abaixo.
-						if (criteria == Criteria.ALL_METHODS_IN_SOURCE_AND_TARGET) {
-							//Essa classe existe dos dois lados, mas nao eh encontrada pelo Safe.
-							//Analisar bug do Safe.
-							if (!sourceClass.toString().contains("PreferencesDialog")) {
-								checkingCanProceed = false;
-
-								System.out.println("\nMetodo " + method
-										+ " não foi encontrado. Método");
-								System.out.println("Metodo " + method
-										+ " não foi encontrado. Método");
-								System.out.println("Metodo " + method
-										+ " não foi encontrado. Método");
-								System.out.println("Metodo " + method
-										+ " não foi encontrado. Método");
-							}
-						}
-
-						// senao, verifica se o method existe na hierarquia
-						for (int j = 0; j < targetClass.getMethods().size(); j++) {
-							SMethod targetMethod = targetClass.getMethods()
-									.get(j);
-
-							// existem um method na classe, porem eles estao
-							// definidos em classes diferentes
-							if (targetMethod.getSimpleName().equals(
-									method.getSimpleName())
-									&& method.getParameterList().equals(
-											targetMethod.getParameterList())) {
-
-								// Se achou metodo na hierarquia, deve ser
-								// possível prosseguir com a checagem.
-								checkingCanProceed = true;
-
-								SClass c1 = sourceClasses.get(method
-										.getDeclaringClass());
-								SClass c2 = sourceClasses.get(targetMethod
-										.getDeclaringClass());
-
-								SClass c3 = targetClasses.get(method
-										.getDeclaringClass());
-								SClass c4 = targetClasses.get(targetMethod
-										.getDeclaringClass());
-
-								// a classe do target �� super da classe do
-								// source
-								// nas duas hierarquias
-								// inclui a class do source no allowedclasses
-								if (isSuperClass(c1, c2, sourceClasses)
-										&& isSuperClass(c3, c4, targetClasses)) {
-									if (commonMethods.contains(method)) {
-										int indexOf = commonMethods
-												.indexOf(method);
-										commonMethods
-												.get(indexOf)
-												.getAllowedClasses()
-												.add(method.getDeclaringClass());
-									} else {
-										method.getAllowedClasses().add(
-												method.getDeclaringClass());
-										commonMethods.add(method);
-									}
-								} // o inverso
-								// inclui a classe do target no allowed classes
-								else if (isSuperClass(c2, c1, sourceClasses)
-										&& isSuperClass(c4, c3, targetClasses)) {
-									method.getAllowedClasses().add(
-											targetMethod.getDeclaringClass());
-
-									if (commonMethods.contains(method)) {
-										int indexOf = commonMethods
-												.indexOf(method);
-										commonMethods
-												.get(indexOf)
-												.getAllowedClasses()
-												.add(
-														targetMethod
-																.getDeclaringClass());
-									} else {
-										method.getAllowedClasses().add(
-												targetMethod
-														.getDeclaringClass());
-										commonMethods.add(method);
-									}
-								}
-							}
-						}
-					} else {
-						if (commonMethods.contains(method)) {
-							int indexOf = commonMethods.indexOf(method);
-							commonMethods.get(indexOf).getAllowedClasses().add(
-									sourceClass.getFullName());
-						} else {
-							method.getAllowedClasses().add(sourceClass.getFullName());
-							commonMethods.add(method);
-						}
-					}
-				}
+		this.sourceClazzMapping =  this.mapClasses(this.srcProductClassLoader,this.input.getSourceLineDirectory());
+		this.targetClazzMapping = this.mapClasses(this.targetProductClassLoader, this.input.getTargetLineDirectory());
+		for (SClass sourceClazz : this.sourceClazzMapping.values()) {
+			if (targetClazzMapping.values().contains(sourceClazz)) {
+				SClass targetClass = targetClazzMapping.get(sourceClazz.getFullName()); // Correspondent Target Class
+				findCommonConstructors(sourceClazz, targetClass);
+				findCommonMethods(sourceClazz, targetClass);
+			}else {
+				System.out.println("\nClazz " + sourceClazz	+ " has been not found in target product\n");
+				return false;
 			}
 		}
+		return true;
+	}
 
-		return checkingCanProceed;
+	private void findCommonMethods(SClass sourceClazz, SClass targetClass) {
+		for(SMethod method : targetClass.getMethods()){
+			if(sourceClazz.getMethods().contains(method)){
+				addCommonMethod(sourceClazz, method);
+			}else{
+				/* Verifica se o method existe na hierarquia */
+				for (int j = 0; j < targetClass.getMethods().size(); j++) {
+					SMethod targetMethod = targetClass.getMethods().get(j);
+					/* existem um method na classe, porem eles estao definidos em classes diferentes */
+					if (targetMethod.getSimpleName().equals(method.getSimpleName())&& method.getParameterList().equals(targetMethod.getParameterList())) {
+						SClass c1 = sourceClazzMapping.get(method.getDeclaringClass());
+						SClass c2 = sourceClazzMapping.get(targetMethod.getDeclaringClass());
+						SClass c3 = targetClazzMapping.get(method.getDeclaringClass());
+						SClass c4 = targetClazzMapping.get(targetMethod.getDeclaringClass());
+						if (isSuperClass(c1, c2, sourceClazzMapping) && isSuperClass(c3, c4, targetClazzMapping)) {
+							if (commonMethods.contains(method)) {
+								int indexOf = commonMethods.indexOf(method);
+								commonMethods.get(indexOf).getAllowedClasses().add(method.getDeclaringClass());
+							} else {
+								method.getAllowedClasses().add(method.getDeclaringClass());
+								commonMethods.add(method);
+							}
+						}else if (isSuperClass(c2, c1, sourceClazzMapping) && isSuperClass(c4, c3, targetClazzMapping)) {
+							method.getAllowedClasses().add(targetMethod.getDeclaringClass());
+							if (commonMethods.contains(method)) {
+								int indexOf = commonMethods.indexOf(method);
+								commonMethods.get(indexOf).getAllowedClasses().add(targetMethod.getDeclaringClass());
+							} else {
+								method.getAllowedClasses().add(targetMethod.getDeclaringClass());
+								commonMethods.add(method);
+							}
+						}
+				    }
+		        }
+            }
+		}
+	}
+			
+			
+	private void addCommonMethod(SClass sourceClazz, SMethod method) {
+		if (commonMethods.contains(method)) {
+			int indexOf = commonMethods.indexOf(method);
+			commonMethods.get(indexOf).getAllowedClasses().add(sourceClazz.getFullName());
+		} else {
+			method.getAllowedClasses().add(sourceClazz.getFullName());
+			commonMethods.add(method);
+		}
+	}
+
+	private void findCommonConstructors(SClass sourceClazz, SClass targetClass) {
+		for (SConstructor constructor : sourceClazz.getConstructors()) {
+			if (targetClass.getConstructors().contains(constructor)) {
+				commonConstructors.add(constructor);
+			}
+		}
 	}
 
 	// TODO checar se uma classe � subclasse da outra.

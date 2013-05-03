@@ -3,10 +3,6 @@ package br.edu.ufcg.saferefactor.test;
 import java.net.MalformedURLException;
 
 import org.junit.Test;
-import org.sr.ic.ImpactedClasses;
-import org.sr.input.FilePropertiesObject;
-import org.sr.input.FilePropertiesReader;
-
 import br.edu.ufcg.saferefactor.core.Analyzer;
 import br.edu.ufcg.saferefactor.core.Saferefactor;
 
