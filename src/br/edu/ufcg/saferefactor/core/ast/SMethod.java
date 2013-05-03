@@ -1,7 +1,6 @@
 package br.edu.ufcg.saferefactor.core.ast;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

@@ -7,7 +7,6 @@ public class SClass implements Serializable {
 
 	private String fullName;
 	private String parent = "";
-
 	private List<SConstructor> constructors;
 	private List<SMethod> methods;
 

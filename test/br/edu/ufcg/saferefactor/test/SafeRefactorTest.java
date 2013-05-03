@@ -1,5 +1,7 @@
 package br.edu.ufcg.saferefactor.test;
 
+import java.net.MalformedURLException;
+
 import org.junit.Test;
 import org.sr.ic.ImpactedClasses;
 import org.sr.input.FilePropertiesObject;
@@ -11,7 +13,7 @@ import br.edu.ufcg.saferefactor.core.Saferefactor;
 public class SafeRefactorTest {
 
 	@Test
-	public void test1() {
+	public void test1() throws MalformedURLException {
 
 		String clazz = "org.bank.account.Account";
 		Analyzer analyzer = new Analyzer();

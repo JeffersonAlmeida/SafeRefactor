@@ -42,11 +42,17 @@ public class Analyzer {
 	private ImpactedClasses impactedClasses;
 	private List<String> nonDeterministicMethods;
 	private int quantityOfMethodsToTest;
+	private FileClassLoader srcProductClassLoader;
+	private FileClassLoader targetProductClassLoader;
 
 	public Analyzer() {
 		this.commonConstructors = new ArrayList<SConstructor>();
 		this.commonMethods = new ArrayList<SMethod>();
 		this.listNonDeterministicMethods();
+		URL urls1[] = {};
+		URL urls2[] = {};
+		this.srcProductClassLoader = new FileClassLoader(urls1);
+		this.targetProductClassLoader = new FileClassLoader(urls2);
 	}
 
 	private void listNonDeterministicMethods() {
@@ -71,7 +77,7 @@ public class Analyzer {
 		this.commonMethods = commonMethods;
 	}
 
-	public File generateMethodListFile(Criteria criteria) {
+	public File generateMethodListFile(Criteria criteria) throws MalformedURLException {
 		boolean checkingCanProceed = analyzeChange(criteria);
 
 		if (!checkingCanProceed) {
@@ -171,17 +177,16 @@ public class Analyzer {
 		return null;
 	}
 
-	public Map<String, SClass> mapSourceClasses() {
+	/*public Map<String, SClass> mapSourceClasses() {
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		try {
 			result = mapClasses(this.input.getSourceLineDirectory());
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
 	}
-
+*/
 	public Map<String, SClass> mapTargetClasses() {
 		Map<String, SClass> result = new HashMap<String, SClass>();
 		try {
@@ -206,111 +211,83 @@ public class Analyzer {
 		return result;
 	}
 
-	private Map<String, SClass> mapClasses(String filesDir) throws MalformedURLException {
-		Map<String, SClass> result = new HashMap<String, SClass>();
-		File root = new File(filesDir);
-		File bin = new File(root, "bin");
-		String binFiles = filesDir + Constants.FILE_SEPARATOR+ "src";
-		String libFiles = filesDir + Constants.FILE_SEPARATOR + "lib";
-		URL urls[] = {};
-		FileClassLoader cl = new FileClassLoader(urls);
-		cl.addJarFiles(libFiles);
-		cl.addClass(bin);
-		List<String> listClassNames = FileUtil.listClassNames(binFiles, "");
-
-		for (String className : listClassNames) {
-
-			// TODO: hack for BerkeleyDB. Make it generic.
-			if (className.equals("com.memorybudget.MemoryBudget"))
+	private List<String> listClasses(FileClassLoader classLoader, String productDirectory)throws MalformedURLException{
+		String srcClassesDirectory = productDirectory + "src";
+		classLoader.addJarFiles(productDirectory + "lib");
+		classLoader.addClass(new File(new File(productDirectory), "bin"));
+		return FileUtil.listClassNames(srcClassesDirectory, "");
+	}
+	
+	private List<SConstructor> getConstructorsList(Class<?> c){
+		Constructor<?>[] constructors = c.getConstructors();
+		List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
+		if (!Modifier.isAbstract(c.getModifiers()))  // do not consider constructors of abstract classes
+			for (Constructor<?> constructor : constructors) {
+				SConstructor scons = new SConstructor();
+				scons.setDeclaringClass(constructor.getDeclaringClass().getName());
+				scons.setName(constructor.getName());
+				Class<?>[] parameterTypes = constructor.getParameterTypes();
+				List<String> parameters = new ArrayList<String>(parameterTypes.length);
+				for (Class<?> param : parameterTypes) {
+					parameters.add(param.getName());
+				}
+				scons.setParameters(parameters);
+				sconsList.add(scons);
+			}
+		return sconsList;
+	}
+	
+	private List<SMethod> getMethodsList(Class<?> javaClazz){
+		Method[] methods = javaClazz.getMethods();
+		List<SMethod> smList = new ArrayList<SMethod>(methods.length);
+		for (Method method : methods) {
+			if (method.getDeclaringClass().getName().equals("java.lang.Object"))
 				continue;
-			if (className.equals("com.sleepycat.je.log.LogManager"))
+			if (method.getDeclaringClass().getName().equals("java.util.ArrayList")) /* do not consider ArrayList methods due to randoop problems with generics */
 				continue;
-			if (className.equals("com.sleepycat.je.log.SyncedLogManager"))
+			boolean hasGenericParam = false;
+			Type[] genericParameterTypes = method.getGenericParameterTypes();
+			for (Type type : genericParameterTypes) {
+				if (type instanceof ParameterizedType) {
+					hasGenericParam = true;
+					break;
+				}
+			}
+			if (hasGenericParam)
 				continue;
-
+			SMethod sm = new SMethod();
+			sm.setDeclaringClass(method.getDeclaringClass().getName());
+			sm.setSimpleName(method.getName());
+			Class<?>[] parameterTypes = method.getParameterTypes();
+			List<String> parameters = new ArrayList<String>(parameterTypes.length);
+			for (Class<?> param : parameterTypes) {
+				parameters.add(param.getName());
+			}
+			sm.setParameterList(parameters);
+			smList.add(sm);
+		}
+		return smList;
+	}
+	
+	private Map<String, SClass> mapClasses(FileClassLoader classLoader, String productDirectory) throws MalformedURLException {
+		Map<String, SClass> srcClazzMapping = new HashMap<String, SClass>();
+		 List<String> classes = listClasses(classLoader,productDirectory);
+		for (String className : classes) {
 			try {
-				String sourceDot = "src.";
-
-				if (className.contains(sourceDot)) {
-					className = className.split(sourceDot)[1];
+				if (className.contains("src.")) {
+					className = className.split("src.")[1];
 				}
-
-				Class<?> c = cl.loadClass(className);
-
-				// nao considera interface
-				if (c.isInterface())
+				Class<?> javaClazz = classLoader.loadClass(className);
+				if (javaClazz.isInterface()) // Do not consider java Interface
 					continue;
-
-				int modifiers = c.getModifiers();
-
-				// nao considera classe nao publica
-				if (!Modifier.isPublic(modifiers))
+				if (!Modifier.isPublic(javaClazz.getModifiers())) // Do not consider non-public-classes 
 					continue;
-
-				SClass sc = new SClass();
-				sc.setFullName(c.getName());
-				sc.setParent(c.getSuperclass().getName());
-
-				Constructor<?>[] constructors = c.getConstructors();
-				List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
-
-				// do not consider constructors of abstract classes
-				if (!Modifier.isAbstract(modifiers))
-					for (Constructor<?> constructor : constructors) {
-						SConstructor scons = new SConstructor();
-						scons.setDeclaringClass(constructor.getDeclaringClass().getName());
-						scons.setName(constructor.getName());
-						Class<?>[] parameterTypes = constructor.getParameterTypes();
-						List<String> parameters = new ArrayList<String>(parameterTypes.length);
-						for (Class<?> param : parameterTypes) {
-							parameters.add(param.getName());
-						}
-						scons.setParameters(parameters);
-						sconsList.add(scons);
-					}
-				sc.setConstructors(sconsList);
-
-				Method[] methods = c.getMethods();
-				List<SMethod> smList = new ArrayList<SMethod>(methods.length);
-				for (Method method : methods) {
-
-					if (method.getDeclaringClass().getName().equals("java.lang.Object"))
-						continue;
-
-					// HACK: do not consider ArrayList methods due to randoop
-					// problems with generics
-					if (method.getDeclaringClass().getName().equals("java.util.ArrayList"))
-						continue;
-
-					boolean hasGenericParam = false;
-					Type[] genericParameterTypes = method.getGenericParameterTypes();
-
-					for (Type type : genericParameterTypes) {
-
-						if (type instanceof ParameterizedType) {
-							System.out.println(type);
-							hasGenericParam = true;
-							break;
-						}
-					}
-					if (hasGenericParam)
-						continue;
-
-					SMethod sm = new SMethod();
-					sm.setDeclaringClass(method.getDeclaringClass().getName());
-					sm.setSimpleName(method.getName());
-					Class<?>[] parameterTypes = method.getParameterTypes();
-					List<String> parameters = new ArrayList<String>(parameterTypes.length);
-					for (Class<?> param : parameterTypes) {
-						parameters.add(param.getName());
-					}
-					sm.setParameterList(parameters);
-					smList.add(sm);
-
-				}
-				sc.setMethods(smList);
-				result.put(sc.getFullName(), sc);
-
+				SClass clazzAbstraction = new SClass(); // It represents a java class - Constructors - Methods - etc .
+				clazzAbstraction.setFullName(javaClazz.getName());
+				clazzAbstraction.setParent(javaClazz.getSuperclass().getName());
+				clazzAbstraction.setConstructors(this.getConstructorsList(javaClazz));
+				clazzAbstraction.setMethods(this.getMethodsList(javaClazz));
+				srcClazzMapping.put(clazzAbstraction.getFullName(), clazzAbstraction);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (ExceptionInInitializerError e) {
@@ -321,8 +298,7 @@ public class Analyzer {
 				e.printStackTrace();
 			}
 		}
-
-		return result;
+		return srcClazzMapping;
 	}
 
 	public Map<String, SClass> mapClasses2(String filesDir) {
@@ -516,12 +492,11 @@ public class Analyzer {
 		return classes;
 	}
 
-	public boolean analyzeChange(Criteria criteria) {
+	public boolean analyzeChange(Criteria criteria) throws MalformedURLException {
 		boolean checkingCanProceed = true;
-
-		this.sourceClasses = mapSourceClasses();
-		this.targetClasses = mapTargetClasses();
-
+		this.sourceClasses =  this.mapClasses(this.srcProductClassLoader,this.input.getSourceLineDirectory());
+		this.targetClasses = this.mapClasses(this.targetProductClassLoader, this.input.getTargetLineDirectory());
+			
 		// analisa cada classe do source
 		for (SClass sourceClass : this.sourceClasses.values()) {
 
@@ -533,15 +508,10 @@ public class Analyzer {
 					//Analisar bug do Safe.
 					if (!sourceClass.toString().contains("PreferencesDialog")) {
 						checkingCanProceed = false;
-
-						System.out.println("\nClasse " + sourceClass
-								+ " não foi encontrado. Classe" + sourceClass.toString().length());
-						System.out.println("Classe " + sourceClass
-								+ " não foi encontrado. Classe");
-						System.out.println("Classe " + sourceClass
-								+ " não foi encontrado. Classe");
-						System.out.println("Classe " + sourceClass
-								+ " não foi encontrado. Classe");
+						System.out.println("\nClasse " + sourceClass + " não foi encontrado. Classe" + sourceClass.toString().length());
+						System.out.println("Classe " + sourceClass + " não foi encontrado. Classe");
+						System.out.println("Classe " + sourceClass + " não foi encontrado. Classe");
+						System.out.println("Classe " + sourceClass	+ " não foi encontrado. Classe");
 					}
 				}
 
@@ -550,8 +520,6 @@ public class Analyzer {
 
 			// classe do target
 			SClass targetClass = targetClasses.get(sourceClass.getFullName());
-			// System.out.println("Target: " + sc);
-			// System.out.println("Source: " + tc);
 
 			for (SConstructor constructor : sourceClass.getConstructors()) {
 				if (targetClass.getConstructors().contains(constructor)) {

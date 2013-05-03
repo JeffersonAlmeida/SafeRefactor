@@ -13,6 +13,16 @@
 		<pathelement path="${project.dir}/bin" />
 	</path>
 
+	<path id="target_classpath">
+		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${target}/" includes="${lib}/*.jar" />
+		<pathelement location="${target}/bin" />
+        <pathelement location="${target}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
+	</path>
+
 
 	<target name="clean">
 		<delete includeemptydirs="true">
@@ -51,7 +61,7 @@
 		<echo>* Analyse target methods</echo>
 		<java classname="br.edu.ufcg.saferefactor.core.TargetAnalyzer" fork="true" maxmemory="256m">
 			<arg value="${target}" />
-			<classpath refid="classpath"/>
+			<classpath refid="target_classpath"/>
 		</java>
 	</target>
 

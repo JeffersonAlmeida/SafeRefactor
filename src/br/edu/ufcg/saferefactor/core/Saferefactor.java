@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -46,7 +47,7 @@ public class Saferefactor {
 		this.analyzer = analyzer;
 	}
 	
-	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) {
+	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) throws MalformedURLException {
 		
 		FileUtil.createFolders(this.input);
 		
@@ -127,7 +128,7 @@ public class Saferefactor {
     			System.out.println("Delete operation is failed.");
     		}
 			
-			p.executeTarget("analyse_target");
+			p.executeTarget("compile_source_and_target");
 			
 			this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
 		
