@@ -13,6 +13,8 @@ import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
 import org.sr.ic.ImpactedClasses;
 import org.sr.input.FilePropertiesObject;
+import org.sr.input.FilePropertiesReader;
+
 import br.edu.ufcg.saferefactor.core.util.Constants;
 import br.edu.ufcg.saferefactor.core.util.FileUtil;
 
@@ -22,6 +24,13 @@ public class Saferefactor {
 	private ResultComparator comparator;
 	private ImpactedClasses ic;
 	private  FilePropertiesObject input;
+	
+	public Saferefactor(String classes, String file) {
+		this.ic = new ImpactedClasses(classes);
+		FilePropertiesReader propertiesReader = new FilePropertiesReader("/home/jefferson/workspace/ferramentaLPSSM/inputFiles/bank1.0.properties");
+		this.input = propertiesReader.getPropertiesObject();
+		this.comparator = new ResultComparator();
+	}
 	
 	public Saferefactor(ImpactedClasses ic, FilePropertiesObject input){
 		this.ic = ic;
@@ -194,5 +203,14 @@ public class Saferefactor {
 	public void setComparator(ResultComparator comparator) {
 		this.comparator = comparator;
 	}
+
+	public FilePropertiesObject getInput() {
+		return input;
+	}
+
+	public void setInput(FilePropertiesObject input) {
+		this.input = input;
+	}
+	
 	
 }

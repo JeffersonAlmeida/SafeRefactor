@@ -115,4 +115,46 @@
 		</junit>
     </target>
 
+    <target name="coverage">
+		<property name="emma.dir" value="${project.dir}/lib" />
+		<path id="emma.lib" >
+			<pathelement location="${emma.dir}/emma.jar" />
+			<pathelement location="${emma.dir}/emma_ant.jar" />
+		</path>
+		<taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+		<property name="emma.enabled" value="true" />
+		<property name="out.instr.dir" value="${source}/outinstr" />
+		<property name="instr.dir" value="${source}/instr" />
+		<mkdir dir="${out.instr.dir}" />
+		<mkdir dir="${instr.dir}" />
+		<emma enabled="${emma.enabled}">
+			<instr instrpath="${source}/bin" destdir="${out.instr.dir}" metadatafile="${instr.dir}/metadata_source.emma" merge="true" />
+		</emma>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${project.dir}">
+			<classpath>
+				<path refid="emma.lib" />
+				<pathelement path="${out.instr.dir}" />
+			</classpath>
+			<classpath refid="classpath" />
+			<jvmarg value="-Demma.coverage.out.file=${instr.dir}/metadata_source.emma" />
+			<jvmarg value="-Demma.coverage.out.merge=true" />
+			<formatter type="xml" />
+			<batchtest todir="${junit.output.source}" haltonfailure="no">
+				<fileset dir="${randoop.test.bin}/randoop/tests">
+					<include name="*Test*.class" />
+					<exclude name="RandoopTest.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+		<emma>
+			<report sourcepath="${source}/src">
+				<fileset dir="${source}/instr">
+					<include name="*source.emma" />
+				</fileset>
+				<xml outfile="${source}/report.xml" depth="method"/>
+				<html outfile="${source}/report.html" depth="method"/>
+			</report>
+		</emma>
+	</target>
+
 </project>

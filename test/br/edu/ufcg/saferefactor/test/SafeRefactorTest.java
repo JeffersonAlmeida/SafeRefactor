@@ -13,15 +13,11 @@ public class SafeRefactorTest {
 	@Test
 	public void test1() {
 
-		ImpactedClasses impactedClasses = new ImpactedClasses("org.bank.account.Account");
-		FilePropertiesReader reader = new FilePropertiesReader("/home/jefferson/workspace/ferramentaLPSSM/inputFiles/bank1.0.properties");
-		FilePropertiesObject in = reader.getPropertiesObject();
+		String clazz = "org.bank.account.Account";
 		Analyzer analyzer = new Analyzer();
-		analyzer.setInput(in);
-		analyzer.setImpactedClasses(impactedClasses);
-		Saferefactor sr = new Saferefactor(impactedClasses, in);
+		Saferefactor sr = new Saferefactor(clazz, "/home/jefferson/workspace/ferramentaLPSSM/inputFiles/bank1.0.properties");
+		analyzer.setInput(sr.getInput());
 		sr.setAnalyzer(analyzer);
-		
 		sr.isRefactoring("60", true, "evosuite");
 		//assertEquals(false, sr.isRefactoring("30", true, "randoop"));
 	}
