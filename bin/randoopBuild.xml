@@ -21,6 +21,18 @@
         <pathelement location="${target}/src" />
 		<pathelement path="${java.class.path}" />
 		<pathelement path="${project.dir}/bin" />
+		<pathelement path="${randoop.test.bin}/randoop/tests" />
+	</path>
+
+	<path id="source_classpath">
+		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${source}/" includes="lib/*.jar" />
+		<pathelement location="${source}/bin" />
+        <pathelement location="${source}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
+		<pathelement path="${randoop.test.bin}/randoop/tests" />
 	</path>
 
 
@@ -29,7 +41,9 @@
 			<fileset dir="${source}/bin" includes="**/*" />
 			<fileset dir="${target}/bin" includes="**/*" />
 			<fileset dir="${junit.output.source}" includes="**/*" />
+			<fileset dir="${junit.output.target}" includes="**/*" />
 			<fileset dir="${randoop.source}" includes="**/*" />
+			<fileset dir="${randoop.target}" includes="**/*" />
 			<fileset dir="${evosuite.tests}/evosuite-tests" includes="**/*" />
 			<fileset dir="${evosuite.tests}/evosuite-report" includes="**/*" />
 		</delete>
@@ -85,7 +99,7 @@
     <target name="compile" depends="randoop">
 		<echo>* Compiling the tests</echo>
 		<javac fork="yes" memorymaximumsize="512m" includes="**/*.java" debug="on" srcdir="${randoop.test.dir}" destdir="${randoop.test.bin}">
-			 <classpath refid="classpath" />
+			 <classpath refid="source_classpath" />
 			 <classpath>
 				<fileset dir="${randoop.test.dir}/randoop/tests">
 					<include name="*.java" />
@@ -94,31 +108,42 @@
 		</javac>
 	</target>
 
-	<target name="run" depends="compile">
+	<target name="copy-tests" depends="compile">
+         <copy todir="${target}/src/randoop/tests">
+            <fileset dir="${output.dir}/randoop/tests"/>
+         </copy>
+         <copy todir="${target}/bin/randoop/tests">
+            <fileset dir="${randoop.test.bin}/randoop/tests"/>
+         </copy>
+    </target>
+
+	<target name="run" depends="copy-tests">
 		<echo>* Run Junit Source Product </echo>
-		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
-			<classpath>
-			<pathelement location="${source}/bin" />
+		<junit printsummary="yes" dir="${source}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+            <classpath>
+                <pathelement path="${project.dir}/lib/" />
+                <pathelement location="${source}/bin" />
+                <pathelement location="${source}/lib" />
 			</classpath>
-			<classpath refid="classpath" />
 			<formatter type="xml" />
                 <batchtest todir="${junit.output.source}" haltonfailure="no">
-                    <fileset dir="${randoop.test.bin}/randoop/tests">
-                        <include name="**/*.class" />
+                    <fileset dir="${source}/bin">
+                        <include name="**/RandoopTest0.class" />
                         <exclude name="**/RandoopTest.class" />
                     </fileset>
                 </batchtest>
 		</junit>
 		<echo>* Run Junit Target Product</echo>
-		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+		<junit printsummary="yes" dir="${target}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
 			<classpath>
-			<pathelement location="${target}/bin" />
+                <pathelement path="${project.dir}/lib/" />
+                <pathelement location="${target}/bin" />
+                <pathelement location="${target}/lib" />
 			</classpath>
-			<classpath refid="classpath" />
 			<formatter type="xml" />
                 <batchtest todir="${junit.output.target}" haltonfailure="no">
-                    <fileset dir="${randoop.test.bin}/randoop/tests">
-                        <include name="**/*.class" />
+                    <fileset dir="${target}/bin">
+                        <include name="**/RandoopTest0.class" />
                         <exclude name="**/RandoopTest.class" />
                     </fileset>
                 </batchtest>

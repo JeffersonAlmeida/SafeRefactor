@@ -17,7 +17,7 @@ public class SafeRefactorTest {
 		analyzer.setInput(sr.getInput());
 		sr.setAnalyzer(analyzer);
 		sr.getAnalyzer().setImpactedClasses(sr.getIc());
-		sr.isRefactoring("60", true, "randoop");
+		sr.isRefactoring("60", true, "evosuite");
 		//assertEquals(false, sr.isRefactoring("30", true, "randoop"));
 	}
 }

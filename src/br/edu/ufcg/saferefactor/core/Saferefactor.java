@@ -56,8 +56,6 @@ public class Saferefactor {
 			file = this.getClass().getResource("/evosuiteBuild.xml");
 		}
 		Project p = new Project(); /* Central representation of an Ant project. */
-		String classPath = this.input.getSourceLineDirectory()+ "bin";
-		p.setProperty("classpath",classPath);
 		p.setProperty("source",this.input.getSourceLineDirectory());
 		p.setProperty("target",this.input.getTargetLineDirectory());
 		p.setProperty("timeout", this.input.getTimeOut()+"");
@@ -65,7 +63,10 @@ public class Saferefactor {
 		p.setProperty("maxTests", String.valueOf( this.input.getInputLimit()));
 		p.setProperty("criteria", this.input.getWhichMethods().toString());
 		p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);
+		String classPath = this.input.getSourceLineDirectory()+ "bin";
+		p.setProperty("classpath",classPath);
 		p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
+		p.setProperty("randoop.target", this.input.getTargetLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
 		p.setProperty("randoop.test.dir",  this.input.getSourceLineDirectory() + "src");
 		p.setProperty("randoop.test.bin",  this.input.getSourceLineDirectory() + "bin");
 		String methodList = input.getSourceLineDirectory() + "methods-to-test-list" + "/methods-list.txt";
