@@ -64,15 +64,12 @@ public class Analyzer {
 	public List<SConstructor> getCommonConstructors() {
 		return commonConstructors;
 	}
-
 	public void setCommonConstructors(List<SConstructor> commonConstructors) {
 		this.commonConstructors = commonConstructors;
 	}
-
 	public List<SMethod> getCommonMethods() {
 		return commonMethods;
 	}
-
 	public void setCommonMethods(List<SMethod> commonMethods) {
 		this.commonMethods = commonMethods;
 	}
@@ -172,45 +169,6 @@ public class Analyzer {
 		return result;
 	}
 
-	public List<Member> listCommonMethods() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*public Map<String, SClass> mapSourceClasses() {
-		Map<String, SClass> result = new HashMap<String, SClass>();
-		try {
-			result = mapClasses(this.input.getSourceLineDirectory());
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-*/
-	public Map<String, SClass> mapTargetClasses() {
-		Map<String, SClass> result = new HashMap<String, SClass>();
-		try {
-			// use buffering
-			InputStream file = new FileInputStream(Constants.TEST + Constants.FILE_SEPARATOR + "mapClasses2.ser");
-			InputStream buffer = new BufferedInputStream(file);
-			ObjectInput input = new ObjectInputStream(buffer);
-			try {
-				// deserialize the List
-				result = (Map<String, SClass>) input.readObject();
-				// display its data
-
-			} finally {
-
-				input.close();
-			}
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-		return result;
-	}
-
 	private List<String> listClasses(FileClassLoader classLoader, String productDirectory)throws MalformedURLException{
 		String srcClassesDirectory = productDirectory + "src";
 		classLoader.addJarFiles(productDirectory + "lib");
@@ -301,197 +259,6 @@ public class Analyzer {
 		return srcClazzMapping;
 	}
 
-	public Map<String, SClass> mapClasses2(String filesDir) {
-		Map<String, SClass> result = new HashMap<String, SClass>();
-		String binFiles = filesDir + Constants.FILE_SEPARATOR + "src";
-
-		List<String> listClassNames = FileUtil.listClassNames(binFiles, "");
-
-		List<String> uncheckedClasses = new ArrayList<String>();
-
-		for (String className : listClassNames) {
-
-			// TODO: hack for BerkeleyDB. Make it generic.
-			if (className.equals("com.memorybudget.MemoryBudget"))
-				continue;
-			if (className.equals("com.sleepycat.je.log.LogManager"))
-				continue;
-			if (className.equals("com.sleepycat.je.log.SyncedLogManager"))
-				continue;
-
-			// System.out.println("Class: " + className);
-			try {
-				String sourceDot = "src.";
-
-				if (className.contains(sourceDot)) {
-					className = className.split(Pattern.quote(sourceDot))[1];
-				}
-
-				Class<?> c = Class.forName(className);
-
-				// nao considera interface
-				if (c.isInterface())
-					continue;
-
-				// nao considera classe abstrata
-				int modifiers = c.getModifiers();
-
-				// nao considera classe nao publica
-				if (!Modifier.isPublic(modifiers))
-					continue;
-
-				SClass sc = new SClass();
-				sc.setFullName(c.getName());
-				sc.setParent(c.getSuperclass().getName());
-
-				Constructor<?>[] constructors = c.getConstructors();
-				List<SConstructor> sconsList = new ArrayList<SConstructor>(constructors.length);
-
-				if (!Modifier.isAbstract(modifiers))
-					for (Constructor<?> constructor : constructors) {
-						SConstructor scons = new SConstructor();
-						scons.setDeclaringClass(constructor.getDeclaringClass().getName());
-						scons.setName(constructor.getName());
-						Class<?>[] parameterTypes = constructor.getParameterTypes();
-						List<String> parameters = new ArrayList<String>(parameterTypes.length);
-						boolean addMethod = true;
-						for (Class<?> param : parameterTypes) {
-
-							if (param.getName().equals("com.memorybudget.MemoryBudget"))
-								addMethod = false;
-							if (param.getName().equals("com.sleepycat.je.log.LogManager"))
-								addMethod = false;
-							if (param.getName().equals("com.sleepycat.je.log.SyncedLogManager"))
-								addMethod = false;
-							parameters.add(param.getName());
-						}
-						scons.setParameters(parameters);
-						if (addMethod)
-							sconsList.add(scons);
-					}
-				sc.setConstructors(sconsList);
-
-				Method[] methods = c.getMethods();
-				List<SMethod> smList = new ArrayList<SMethod>(methods.length);
-				for (Method method : methods) {
-
-					if (method.getDeclaringClass().getName().equals(
-							"java.lang.Object"))
-						continue;
-
-					if (method.getDeclaringClass().getName().equals(
-							"java.util.ArrayList"))
-						continue;
-
-					boolean hasGenericParam = false;
-					Type[] genericParameterTypes = method
-							.getGenericParameterTypes();
-
-					for (Type type : genericParameterTypes) {
-
-						if (type instanceof ParameterizedType) {
-							System.out.println(type);
-							hasGenericParam = true;
-							break;
-						}
-					}
-					if (hasGenericParam)
-						continue;
-
-					SMethod sm = new SMethod();
-					sm.setDeclaringClass(method.getDeclaringClass().getName());
-					sm.setSimpleName(method.getName());
-					Class<?>[] parameterTypes = method.getParameterTypes();
-					List<String> parameters = new ArrayList<String>(
-							parameterTypes.length);
-
-					boolean addMethod = true;
-					for (Class<?> param : parameterTypes) {
-
-						// TODO: hack for BerkeleyDB. Make it generic.
-						if (param.getName().equals(
-								"com.memorybudget.MemoryBudget"))
-							addMethod = false;
-						if (param.getName().equals(
-								"com.sleepycat.je.log.LogManager"))
-							addMethod = false;
-						if (param.getName().equals(
-								"com.sleepycat.je.log.SyncedLogManager"))
-							addMethod = false;
-
-						parameters.add(param.getName());
-					}
-					sm.setParameterList(parameters);
-					if (addMethod)
-						smList.add(sm);
-
-				}
-				sc.setMethods(smList);
-				result.put(sc.getFullName(), sc);
-
-			} catch (ClassNotFoundException e) {
-				uncheckedClasses.add(className);
-				e.printStackTrace();
-			} catch (ExceptionInInitializerError e) {
-				uncheckedClasses.add(className);
-				e.printStackTrace();
-			} catch (NoClassDefFoundError e) {
-				uncheckedClasses.add(className);
-				e.printStackTrace();
-			} catch (VerifyError e) {
-				uncheckedClasses.add(className);
-				e.printStackTrace();
-			}
-		}
-
-		System.out.println("Classes that throw exception and will be not included in the tests: ");
-		for (String classe : uncheckedClasses) {
-			System.out.println(classe);
-		}
-		result = resultFilter(result, uncheckedClasses);
-
-		return result;
-	}
-
-	private Map<String, SClass> resultFilter(Map<String, SClass> classes,
-			List<String> uncheckedClasses) {
-
-		System.out
-				.println("Removing methods containing unsupported classses parameter");
-		for (SClass classe : classes.values()) {
-			List<SConstructor> constructors = classe.getConstructors();
-			for (Iterator<SConstructor> i = constructors.iterator(); i
-					.hasNext();) {
-				SConstructor cons = i.next();
-				List<String> parameters = cons.getParameters();
-				for (String param : parameters) {
-					if (uncheckedClasses.contains(param)) {
-						System.out.println("Removing " + cons);
-						i.remove();
-
-						break;
-					}
-
-				}
-
-			}
-
-			List<SMethod> methods = classe.getMethods();
-			for (Iterator<SMethod> i = methods.iterator(); i.hasNext();) {
-				SMethod method = i.next();
-				List<String> parameters = method.getParameterList();
-				for (String param : parameters) {
-					if (uncheckedClasses.contains(param)) {
-						System.out.println("Removing " + method);
-						i.remove();
-						break;
-					}
-				}
-			}
-		}
-		return classes;
-	}
-
 	public boolean analyzeChange(Criteria criteria) throws MalformedURLException {
 		this.sourceClazzMapping =  this.mapClasses(this.srcProductClassLoader,this.input.getSourceLineDirectory());
 		this.targetClazzMapping = this.mapClasses(this.targetProductClassLoader, this.input.getTargetLineDirectory());
@@ -565,9 +332,10 @@ public class Analyzer {
 		}
 	}
 
-	// TODO checar se uma classe � subclasse da outra.
-	private boolean isSuperClass(SClass c1, SClass c2,
-			Map<String, SClass> classes) {
+	/**
+	 *  checar se uma classe subclasse da outra.
+	 */
+	private boolean isSuperClass(SClass c1, SClass c2, Map<String, SClass> classes) {
 		if (c1 == null || c2 == null)
 			return false;
 		if (c1.getParent().equals("java.lang.Object"))
