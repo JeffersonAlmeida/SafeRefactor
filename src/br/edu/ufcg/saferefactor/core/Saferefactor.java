@@ -26,10 +26,9 @@ public class Saferefactor {
 	private ImpactedClasses ic;
 	private  FilePropertiesObject input;
 	
-	public Saferefactor(String classes, String file) {
+	public Saferefactor(String classes, FilePropertiesObject inputObject) {
 		this.ic = new ImpactedClasses(classes);
-		FilePropertiesReader propertiesReader = new FilePropertiesReader("/home/jefferson/workspace/ferramentaLPSSM/inputFiles/bank1.0.properties");
-		this.input = propertiesReader.getPropertiesObject();
+		this.input = inputObject;
 		this.comparator = new ResultComparator();
 	}
 	
