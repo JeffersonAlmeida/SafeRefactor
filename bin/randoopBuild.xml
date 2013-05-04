@@ -3,8 +3,8 @@
 	<path id="classpath">
 		<fileset dir="." includes="saferefactor.jar" />
 		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
-		<fileset dir="${source}/" includes="${lib}/*.jar" />
-		<fileset dir="${target}/" includes="${lib}/*.jar" />
+		<fileset dir="${source}/" includes="lib/*.jar" />
+		<fileset dir="${target}/" includes="lib/*.jar" />
 		<pathelement location="${source}/bin" />
 		<pathelement location="${source}/src" />
 		<pathelement location="${target}/bin" />
@@ -16,7 +16,7 @@
 	<path id="target_classpath">
 		<fileset dir="." includes="saferefactor.jar" />
 		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
-		<fileset dir="${target}/" includes="${lib}/*.jar" />
+		<fileset dir="${target}/" includes="lib/*.jar" />
 		<pathelement location="${target}/bin" />
         <pathelement location="${target}/src" />
 		<pathelement path="${java.class.path}" />

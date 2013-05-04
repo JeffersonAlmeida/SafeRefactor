@@ -48,29 +48,20 @@ public class Saferefactor {
 	}
 	
 	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) throws MalformedURLException {
-		
 		FileUtil.createFolders(this.input);
-		
 		URL file;
 		if(generateTestsWith.equals("randoop")){
 			file = this.getClass().getResource("/randoopBuild.xml");	
 		}else{
 			file = this.getClass().getResource("/evosuiteBuild.xml");
 		}
-		
-		
 		Project p = new Project(); /* Central representation of an Ant project. */
 		String classPath = this.input.getSourceLineDirectory()+ "bin";
 		p.setProperty("classpath",classPath);
 		p.setProperty("source",this.input.getSourceLineDirectory());
 		p.setProperty("target",this.input.getTargetLineDirectory());
 		p.setProperty("timeout", this.input.getTimeOut()+"");
-		p.setProperty("bin", "bin");
-		p.setProperty("lib", "lib");
-		p.setProperty("src", "src");
-		p.setProperty("tests.folder", Constants.TEST);
 		p.setProperty("evosuite.tests", this.input.getSourceLineDirectory() + "src");
-		p.setProperty("evosuite.compiled.tests", Constants.EVOSUITE_COMPILED_TESTS);
 		p.setProperty("maxTests", String.valueOf( this.input.getInputLimit()));
 		p.setProperty("criteria", this.input.getWhichMethods().toString());
 		p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);
