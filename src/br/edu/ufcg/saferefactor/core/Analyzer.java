@@ -1,14 +1,7 @@
 package br.edu.ufcg.saferefactor.core;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
@@ -18,18 +11,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
+
 import org.sr.ic.ImpactedClasses;
 import org.sr.input.FilePropertiesObject;
+
 import br.edu.ufcg.saferefactor.classloader.FileClassLoader;
 import br.edu.ufcg.saferefactor.core.ast.SClass;
 import br.edu.ufcg.saferefactor.core.ast.SConstructor;
 import br.edu.ufcg.saferefactor.core.ast.SMethod;
-import br.edu.ufcg.saferefactor.core.util.Constants;
 import br.edu.ufcg.saferefactor.core.util.FileUtil;
 
 public class Analyzer {
@@ -44,6 +36,7 @@ public class Analyzer {
 	private int quantityOfMethodsToTest;
 	private FileClassLoader srcProductClassLoader;
 	private FileClassLoader targetProductClassLoader;
+	private StringBuffer textLines;
 
 	public Analyzer() {
 		this.commonConstructors = new ArrayList<SConstructor>();
@@ -53,6 +46,7 @@ public class Analyzer {
 		URL urls2[] = {};
 		this.srcProductClassLoader = new FileClassLoader(urls1);
 		this.targetProductClassLoader = new FileClassLoader(urls2);
+		this.textLines = new StringBuffer();
 	}
 
 	private void listNonDeterministicMethods() {
@@ -75,90 +69,86 @@ public class Analyzer {
 	}
 
 	public File generateMethodListFile(Criteria criteria) throws MalformedURLException {
-		boolean checkingCanProceed = analyzeChange(criteria);
-
-		if (!checkingCanProceed) {
-			return null;
-		}
-
-		StringBuffer lines = new StringBuffer();
-		Set<String> listOfConstructors = new HashSet<String>();
-		Set<String> listOfMethods = new HashSet<String>();
-
-		int quantityOfMethodsToTest = 0;
-
-		if (!this.impactedClasses.getModifiedClasses().isEmpty()) {
-			List<String> classesParaTestar = new ArrayList<String>();
-			classesParaTestar.addAll(this.impactedClasses.getModifiedClasses()); 
-
-			// Adicione apenas construtores de classes modificadas. Devido a
-			// limita��es do Randoop, adicione tamb�m classes utilizadas
-			// nos par�metros dos construtores dessas classes.
-			for (int i = 0; i < classesParaTestar.size(); i++) {
-				String classeParaTestar = classesParaTestar.get(i);
-				System.out.println("Classe para ser testada: " + classeParaTestar);
-				for (SConstructor constructor : this.commonConstructors) {
-					String constructorString = constructor.toString();
-
-					if (constructorString.contains(classeParaTestar) && !this.listContainsString( this.nonDeterministicMethods, constructorString)) {
-						lines.append(constructor + "\n");
-						listOfConstructors.add(constructor.toString());
-
-						List<String> classParameters = constructor
-								.getParameters();
-
-						for (String classParameter : classParameters) {
-							if (!classesParaTestar.contains(classParameter)) {
-								classesParaTestar.add(classParameter);
-							}
-						}
-
-						quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
-					}
-
-					lines.append(constructorString + "\n");
-					listOfConstructors.add(constructorString);
-				}
-			}
-
-			// Test only methods of modified classes.
-			for (SMethod method : commonMethods) {
-				String methodString = method.toString();
-				if (this.listContainsString(this.impactedClasses.getModifiedClasses(),methodString)) {
-					if (!this.listContainsString(this.nonDeterministicMethods, methodString)) {
-						lines.append(method + "\n");
-						listOfMethods.add(method.toString());
-						quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
-					}
-				}
-			}
-		} else {
-			// Se a lista estiver vazia, teste todos os m�todos e construtores.
-			for (SConstructor constructor : commonConstructors) {
-				if (!this.listContainsString(this.nonDeterministicMethods,
-						constructor.toString())) {
-					lines.append(constructor + "\n");
-					listOfConstructors.add(constructor.toString());
-					quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
-				}
-			}
-
-			for (SMethod method : commonMethods) {
-				if (!this.listContainsString(this.nonDeterministicMethods, method.toString())) {
-					lines.append(method + "\n");
-					listOfMethods.add(method.toString());
-					quantityOfMethodsToTest = quantityOfMethodsToTest + 1;
-				}
-			}
-		}
-
-		System.out.println(lines.toString());
-
-		this.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
-		
 		String intersection = input.getSourceLineDirectory() + "methods-to-test-list" + "/methods-list.txt";
-		return FileUtil.makeFile(intersection, lines.toString() );
-		
+		if(analyzeChange()){
+			int quantityOfMethodsToTest = 0;
+			if (!this.impactedClasses.getModifiedClasses().isEmpty()) {
+				quantityOfMethodsToTest += addConstructors();
+				quantityOfMethodsToTest += addMethods();
+			} else { 
+				quantityOfMethodsToTest += addAllConstructors(); //  In case impacted classes is empty -> test all methods and constructors.
+				quantityOfMethodsToTest += addAllMethods();
+			}
+			System.out.println(textLines.toString());
+			this.setQuantityOfMethodsToTest(quantityOfMethodsToTest);
+			return FileUtil.makeFile(intersection, textLines.toString() );	
+		}
+		System.out.println("\nSome classes might be deleted in the target product\n");
+		return FileUtil.makeFile(intersection, "Some classes might be deleted in the target product");		
+	}
+
+	private int addAllMethods() {
+		int quantityOfMethodsToTest = 0;
+		Set<String> methodsList = new HashSet<String>();
+		for (SMethod method : commonMethods) {
+				textLines.append(method + "\n");
+				methodsList.add(method.toString());
+				quantityOfMethodsToTest++;
+		}
+		return quantityOfMethodsToTest;
+	}
+
+	private int addAllConstructors() {
+		int quantityOfMethodsToTest = 0;
+		Set<String> constructorsList = new HashSet<String>();
+		for (SConstructor constructor : commonConstructors) {
+				textLines.append(constructor + "\n");
+				constructorsList.add(constructor.toString());
+				quantityOfMethodsToTest++;
+		}
+		return quantityOfMethodsToTest;
+	}
+
+	private int addMethods() {
+		int quantityOfMethodsToTest = 0 ;
+		Set<String> methodsList = new HashSet<String>();
+		// * Test only methods of modified classes.
+		for (SMethod method : commonMethods) {
+			String methodString = method.toString();
+			if (this.listContainsString(this.impactedClasses.getModifiedClasses(), methodString)) {
+				textLines.append(method + "\n");
+				methodsList.add(method.toString());
+				quantityOfMethodsToTest++;
+			}
+		}
+		return quantityOfMethodsToTest;
+	}
+
+	private int addConstructors() {
+		int quantityOfMethodsToTest = 0;
+		Set<String> constructorsList = new HashSet<String>();
+		List<String> clazz = new ArrayList<String>();
+		clazz.addAll(this.impactedClasses.getModifiedClasses()); 
+		for (int i = 0; i < clazz.size(); i++) {
+			String clazzToTest = clazz.get(i);
+			for (SConstructor constructor : this.commonConstructors) {
+				String constructorString = constructor.toString();
+				if (constructorString.contains(clazzToTest)) {
+					this.textLines.append(constructor + "\n");
+					constructorsList.add(constructor.toString());
+					List<String> classParameters = constructor.getParameters();
+					for (String classParameter : classParameters) {
+						if (!clazz.contains(classParameter)) {
+							clazz.add(classParameter);
+						}
+					}
+					quantityOfMethodsToTest++;
+				}
+				this.textLines.append(constructorString + "\n");
+				constructorsList.add(constructorString);
+			}
+		}
+		return quantityOfMethodsToTest;
 	}
 
 	private boolean listContainsString(List<String> listClasses, String contrString) {
@@ -259,7 +249,7 @@ public class Analyzer {
 		return srcClazzMapping;
 	}
 
-	public boolean analyzeChange(Criteria criteria) throws MalformedURLException {
+	public boolean analyzeChange() throws MalformedURLException {
 		this.sourceClazzMapping =  this.mapClasses(this.srcProductClassLoader,this.input.getSourceLineDirectory());
 		this.targetClazzMapping = this.mapClasses(this.targetProductClassLoader, this.input.getTargetLineDirectory());
 		for (SClass sourceClazz : this.sourceClazzMapping.values()) {
