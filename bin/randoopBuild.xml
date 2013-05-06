@@ -36,7 +36,14 @@
 	</path>
 
 
-	<target name="clean">
+	<target name="init">
+		<mkdir dir="${randoop.source}" />
+		<mkdir dir="${randoop.target}" />
+		<mkdir dir="${evosuite.tests}/evosuite-tests" />
+		<mkdir dir="${evosuite.tests}/evosuite-report" />
+	</target>
+
+	<target name="clean" depends="init">
 		<delete includeemptydirs="true">
 			<fileset dir="${source}/bin" includes="**/*" />
 			<fileset dir="${target}/bin" includes="**/*" />
@@ -121,7 +128,10 @@
 		<echo>* Run Junit Source Product </echo>
 		<junit printsummary="yes" dir="${source}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
             <classpath>
-                <pathelement path="${project.dir}/lib/" />
+                <pathelement path="${project.dir}/lib/junit-4.5.jar" />
+                <pathelement path="${project.dir}/lib/ant-junit.jar" />
+                <pathelement path="${project.dir}/lib/ant-launcher.jar" />
+                <pathelement path="${project.dir}/lib/ant.jar" />
                 <pathelement location="${source}/bin" />
                 <pathelement location="${source}/lib" />
 			</classpath>
@@ -136,7 +146,10 @@
 		<echo>* Run Junit Target Product</echo>
 		<junit printsummary="yes" dir="${target}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
 			<classpath>
-                <pathelement path="${project.dir}/lib/" />
+                 <pathelement path="${project.dir}/lib/junit-4.5.jar" />
+                <pathelement path="${project.dir}/lib/ant-junit.jar" />
+                <pathelement path="${project.dir}/lib/ant-launcher.jar" />
+                <pathelement path="${project.dir}/lib/ant.jar" />
                 <pathelement location="${target}/bin" />
                 <pathelement location="${target}/lib" />
 			</classpath>
