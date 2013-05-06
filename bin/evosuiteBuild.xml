@@ -16,6 +16,10 @@
 
     <target name="init">
 		<mkdir dir="${source}/evosuite-bin"/>
+		<mkdir dir="${randoop.source}" />
+		<mkdir dir="${randoop.target}" />
+		<mkdir dir="${evosuite.tests}/evosuite-tests" />
+		<mkdir dir="${evosuite.tests}/evosuite-report" />
 	</target>
 
     <target name="clean" depends="init">
