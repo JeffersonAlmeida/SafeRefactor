@@ -1,0 +1,33 @@
+Auto-merging test/br/edu/ufcg/saferefactor/test/SafeRefactorTest.java
+
+OK CONFLICT (content): Merge conflict in test/br/edu/ufcg/saferefactor/test/SafeRefactorTest.java
+
+
+Removing test/br/edu/ufcg/saferefactor/test/SBLP2011Test.java
+Removing test/br/edu/ufcg/saferefactor/test/IEEESoftwareTest.java
+Removing test/br/edu/ufcg/saferefactor/test/DesignPatternTest.java
+CONFLICT (modify/delete): test/br/edu/ufcg/saferefactor/test/AnalysisTest.java deleted in evosuite and modified in HEAD. Version HEAD of test/br/edu/ufcg/saferefactor/test/AnalysisTest.java left in tree.
+Removing test/AcceptanceTest.java
+Removing src/ui/CommandLine.java
+Auto-merging src/br/edu/ufcg/saferefactor/core/util/FileUtil.java
+Auto-merging src/br/edu/ufcg/saferefactor/core/ast/SClass.java
+CONFLICT (content): Merge conflict in src/br/edu/ufcg/saferefactor/core/ast/SClass.java
+CONFLICT (modify/delete): src/br/edu/ufcg/saferefactor/core/TargetAnalyzer.java deleted in evosuite and modified in HEAD. Version HEAD of src/br/edu/ufcg/saferefactor/core/TargetAnalyzer.java left in tree.
+Auto-merging src/br/edu/ufcg/saferefactor/core/Saferefactor.java
+
+
+CONFLICT (content): Merge conflict in src/br/edu/ufcg/saferefactor/core/Saferefactor.java
+
+
+Removing src/br/edu/ufcg/saferefactor/core/Runner.java
+CONFLICT (modify/delete): src/br/edu/ufcg/saferefactor/core/ProjectInfo.java deleted in evosuite and modified in HEAD. Version HEAD of src/br/edu/ufcg/saferefactor/core/ProjectInfo.java left in tree.
+Removing src/br/edu/ufcg/saferefactor/core/Generator.java
+Auto-merging src/br/edu/ufcg/saferefactor/core/Analyzer.java
+CONFLICT (content): Merge conflict in src/br/edu/ufcg/saferefactor/core/Analyzer.java
+Auto-merging filewriter.log
+CONFLICT (content): Merge conflict in filewriter.log
+Auto-merging build.xml
+CONFLICT (content): Merge conflict in build.xml
+Auto-merging .gitignore
+CONFLICT (content): Merge conflict in .gitignore
+Automatic merge failed; fix conflicts and then commit the result.

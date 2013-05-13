@@ -1,0 +1,208 @@
+<project name="SafeRefactor" default="run" basedir=".">
+
+	<path id="classpath">
+		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${source}/" includes="lib/*.jar" />
+		<fileset dir="${target}/" includes="lib/*.jar" />
+		<pathelement location="${source}/bin" />
+		<pathelement location="${source}/src" />
+		<pathelement location="${target}/bin" />
+        <pathelement location="${target}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
+	</path>
+
+	<path id="target_classpath">
+		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${target}/" includes="lib/*.jar" />
+		<pathelement location="${target}/bin" />
+        <pathelement location="${target}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
+		<pathelement path="${randoop.test.bin}/randoop/tests" />
+	</path>
+
+	<path id="source_classpath">
+		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${source}/" includes="lib/*.jar" />
+		<pathelement location="${source}/bin" />
+        <pathelement location="${source}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
+		<pathelement path="${randoop.test.bin}/randoop/tests" />
+	</path>
+
+
+	<target name="init">
+		<mkdir dir="${randoop.source}" />
+		<mkdir dir="${randoop.target}" />
+		<mkdir dir="${evosuite.tests}/evosuite-tests" />
+		<mkdir dir="${evosuite.tests}/evosuite-report" />
+	</target>
+
+	<target name="clean" depends="init">
+		<delete includeemptydirs="true">
+			<fileset dir="${source}/bin" includes="**/*" />
+			<fileset dir="${target}/bin" includes="**/*" />
+			<fileset dir="${junit.output.source}" includes="**/*" />
+			<fileset dir="${junit.output.target}" includes="**/*" />
+			<fileset dir="${randoop.source}" includes="**/*" />
+			<fileset dir="${randoop.target}" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-tests" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-report" includes="**/*" />
+		</delete>
+	</target>
+
+	<target name="compile_source_and_target" depends="clean">
+            <echo>* Compile Source Product</echo>
+            <javac fork="yes" includes="**/*.java" debug="on" srcdir="${source}/src" destdir="${source}/bin">
+                    <classpath>
+                        <fileset dir="${source}/src">
+                            <include name="**/*.java" />
+                            <exclude name="**/Randoop*.java" />
+                        </fileset>
+                    </classpath>
+                    <classpath refid="classpath"/>
+            </javac>
+            <echo>* Compile Target Product</echo>
+            <javac fork="yes" includes="**/*.java" debug="on" srcdir="${target}/src" destdir="${target}/bin">
+                    <classpath>
+                        <fileset dir="${target}/src">
+                            <include name="**/*.java" />
+                        </fileset>
+                    </classpath>
+                   <classpath refid="classpath"/>
+            </javac>
+	</target>
+
+	<target name="analyse_target" depends="compile_source_and_target">
+		<echo>* Analyse target methods</echo>
+		<java classname="br.edu.ufcg.saferefactor.core.TargetAnalyzer" fork="true" maxmemory="256m">
+			<arg value="${target}" />
+			<classpath refid="target_classpath"/>
+		</java>
+	</target>
+
+	 <target name="randoop">
+		<echo>* Generate Tests With Randoop Tool</echo>
+		<echo>* https://code.google.com/p/randoop/</echo>
+		<java classpath="${project.dir}/lib/" classname="randoop.main.Main" fork="true" dir="${project.dir}/lib/">
+             <arg value="gentests"/>
+             <arg value="--methodlist=${method.list.file}"/>
+             <arg value="--timelimit=${time.limit}"/>
+             <arg value="--log=${source}/${log.file.name}"/>
+             <arg value="--junit-output-dir=${output.dir}"/>
+             <arg value="--junit-package-name=${junit.package}"/>
+             <arg value="--output-nonexec=true"/>
+             <arg value="--inputlimit=${input.limit}"/>
+             <arg value="--remove-subsequences=false"/>
+			<classpath refid="classpath"/>
+		</java>
+	</target>
+
+    <target name="compile" depends="randoop">
+		<echo>* Compiling the tests</echo>
+		<javac fork="yes" memorymaximumsize="512m" includes="**/*.java" debug="on" srcdir="${randoop.test.dir}" destdir="${randoop.test.bin}">
+			 <classpath refid="source_classpath" />
+			 <classpath>
+				<fileset dir="${randoop.test.dir}/randoop/tests">
+					<include name="*.java" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="copy-tests" depends="compile">
+         <copy todir="${target}/src/randoop/tests">
+            <fileset dir="${output.dir}/randoop/tests"/>
+         </copy>
+         <copy todir="${target}/bin/randoop/tests">
+            <fileset dir="${randoop.test.bin}/randoop/tests"/>
+         </copy>
+    </target>
+
+	<target name="run" depends="copy-tests">
+		<echo>* Run Junit Source Product </echo>
+		<junit printsummary="yes" dir="${source}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+            <classpath>
+                <pathelement path="${project.dir}/lib/junit-4.5.jar" />
+                <pathelement path="${project.dir}/lib/ant-junit.jar" />
+                <pathelement path="${project.dir}/lib/ant-launcher.jar" />
+                <pathelement path="${project.dir}/lib/ant.jar" />
+                <pathelement location="${source}/bin" />
+                <pathelement location="${source}/lib" />
+			</classpath>
+			<formatter type="xml" />
+                <batchtest todir="${junit.output.source}" haltonfailure="no">
+                    <fileset dir="${source}/bin">
+                        <include name="**/RandoopTest0.class" />
+                        <exclude name="**/RandoopTest.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+		<echo>* Run Junit Target Product</echo>
+		<junit printsummary="yes" dir="${target}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath>
+                 <pathelement path="${project.dir}/lib/junit-4.5.jar" />
+                <pathelement path="${project.dir}/lib/ant-junit.jar" />
+                <pathelement path="${project.dir}/lib/ant-launcher.jar" />
+                <pathelement path="${project.dir}/lib/ant.jar" />
+                <pathelement location="${target}/bin" />
+                <pathelement location="${target}/lib" />
+			</classpath>
+			<formatter type="xml" />
+                <batchtest todir="${junit.output.target}" haltonfailure="no">
+                    <fileset dir="${target}/bin">
+                        <include name="**/RandoopTest0.class" />
+                        <exclude name="**/RandoopTest.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+    </target>
+
+    <target name="coverage">
+		<property name="emma.dir" value="${project.dir}/lib" />
+		<path id="emma.lib" >
+			<pathelement location="${emma.dir}/emma.jar" />
+			<pathelement location="${emma.dir}/emma_ant.jar" />
+		</path>
+		<taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+		<property name="emma.enabled" value="true" />
+		<property name="out.instr.dir" value="${source}/outinstr" />
+		<property name="instr.dir" value="${source}/instr" />
+		<mkdir dir="${out.instr.dir}" />
+		<mkdir dir="${instr.dir}" />
+		<emma enabled="${emma.enabled}">
+			<instr instrpath="${source}/bin" destdir="${out.instr.dir}" metadatafile="${instr.dir}/metadata_source.emma" merge="true" />
+		</emma>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${project.dir}">
+			<classpath>
+				<path refid="emma.lib" />
+				<pathelement path="${out.instr.dir}" />
+			</classpath>
+			<classpath refid="classpath" />
+			<jvmarg value="-Demma.coverage.out.file=${instr.dir}/metadata_source.emma" />
+			<jvmarg value="-Demma.coverage.out.merge=true" />
+			<formatter type="xml" />
+			<batchtest todir="${junit.output.source}" haltonfailure="no">
+				<fileset dir="${randoop.test.bin}/randoop/tests">
+					<include name="*Test*.class" />
+					<exclude name="RandoopTest.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+		<emma>
+			<report sourcepath="${source}/src">
+				<fileset dir="${source}/instr">
+					<include name="*source.emma" />
+				</fileset>
+				<xml outfile="${source}/report.xml" depth="method"/>
+				<html outfile="${source}/report.html" depth="method"/>
+			</report>
+		</emma>
+	</target>
+
+</project>

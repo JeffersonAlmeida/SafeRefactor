@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <project name="RefactoringProject" default="OI" basedir="../">
 
 	<!-- <property file="ant/build.properties" /> -->
@@ -147,3 +148,68 @@
 
 
 </project>
+=======
+<project name="RefactoringProject" default="clean" basedir=".">
+
+    <property name="src" location="src"/>
+    <property name="lib" location="lib"/>
+    <property name="bin" location="bin"/>
+
+    <path id="classpath_source">
+
+    </path>
+
+<property name="src" value="src" />
+<property name="build" value="build" />
+<property name="dist" value="dist" />
+<property name="doc" value="doc" />
+<property name="lib" value="lib" />
+<property name="test.class.name" value="git.teste.suitTest" />
+<property name="test.reports" value="reports" />
+
+<target name="ola">
+	<echo message="Ola, Ant executando!" />
+</target>
+
+<target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${build}" includes="**/*" />
+			<fileset dir="${bin}" includes="**/*" />
+		</delete>
+	</target>
+
+<target name="init" depends="clean">
+<tstamp/>
+<mkdir dir="${build}" />
+<mkdir dir="${reports}"/>
+</target>
+
+
+
+<target name="compile" depends="init">
+     <echo> ${src} </echo>
+     <echo> ${lib} </echo>
+	<javac srcdir="${src}" destdir="${build}" includeAntRuntime="true" includes="**/*.java" excludes="**/*Test.java">
+	<classpath>
+        <fileset dir="${lib}/">
+            <include name="*.jar" />
+        </fileset>
+
+        <fileset dir="/home/jefferson/workspace/saferefactoraj/bin/">
+            <include name="**/*.class" />
+        </fileset>
+
+        <pathelement path="${src}" />
+         <pathelement path="${build}" />
+    </classpath>
+    </javac>
+</target>
+
+<target name="dist" depends="compile">
+<jar jarfile="${lib}/projeto.jar" basedir="${build}"/>
+</target>
+
+
+
+</project>
+>>>>>>> evosuite

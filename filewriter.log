@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Will not use: public static void org.softlang.main.Main.main(java.lang.String[])
   reason: main method not applicable to unit testing.
 Adding sequence to active sequences of type byte
@@ -63270,3 +63271,5 @@ var0.createSampleCompany((org.softlang.company.factory.Factory)var50);
 <randoop.IsNotNull@1f [var49]  : true
 
 allSequences.size()=500
+=======
+>>>>>>> evosuite

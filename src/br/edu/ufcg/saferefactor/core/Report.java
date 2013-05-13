@@ -4,13 +4,10 @@ package br.edu.ufcg.saferefactor.core;
 public class Report {
 	
 	private int genratedTests;
-	
 	private int sourceFailures;
 	private int sourceErrors;
-	
 	private int targetFailures;
 	private int targetErrors;
-	
 	private boolean sameBehavior;
 	private String changes;
 	

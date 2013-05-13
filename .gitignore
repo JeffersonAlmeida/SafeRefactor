@@ -1,9 +1,6 @@
 Resultados/
 ant/
-bin/
 emma/
-lib/
-META-INF/
 .settings/
 .svn/
 .project
@@ -16,5 +13,6 @@ META-INF/
 ScalabilityTest.properties
 files/
 junitv*.properties
-junit1574*.properties
 junit*.properties
+filewriter.log
+
