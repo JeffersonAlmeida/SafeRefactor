@@ -67,8 +67,6 @@
             <arg value="-base_dir"/>
             <arg value="${evosuite.tests}"/>
             <arg value="-generateSuite"/>
-            <arg value="-criterion"/>
-            <arg value="-strongmutation"/>
             <arg value="-class"/>
             <arg value="${clazz}" />
         </java>

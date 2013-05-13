@@ -1,0 +1,149 @@
+<project name="RefactoringProject" default="OI" basedir="../">
+
+	<!-- <property file="ant/build.properties" /> -->
+
+	<path id="cobertura.classpath">
+		<fileset dir="lib">
+			<include name="cobertura.jar" />
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+
+	<path id="classpath">
+		<fileset dir="lib" includes="*.jar" excludes="${aspects}" />
+	</path>
+
+	<path id="classpath_source">
+		<fileset dir="${source}/" includes="${lib}/*.jar" />
+	</path>
+
+	<target name="OI">
+			<echo> OI !</echo>
+	</target>
+	
+	
+	<target name="clean">
+	<echo> Clear all tests. </echo>
+		<delete includeemptydirs="false">
+			<fileset dir="${tests.folder}/" includes="**/*" />
+			<fileset dir="${tests.folder}/bin" includes="**/*" />
+			<fileset dir="${tests.folder}/source" includes="**/*" />
+			<fileset dir="${tests.folder}/target" includes="**/*" />
+		</delete>
+	</target>
+
+	<target name="analyze_target" depends="clean">
+		<echo> Analyzing TARGET methods </echo>
+		<java classname="br.edu.ufcg.saferefactor.core.TargetAnalyzer" fork="true" maxmemory="256m">
+			<arg value="${source}" />
+			<arg value="${target}" />
+			<arg value="${bin}" />
+			<arg value="${src}" />
+			<arg value="${lib}" />
+			<arg value="${timeout}" />
+
+			<classpath>
+				<pathelement path="/Users/felype/Documents/CIn/Mestrado/workspaceMestrado/ferramentaLPSSM/bincopy" />
+				<pathelement path="${target}/${bin}" />
+			</classpath>
+			<classpath refid="classpath_source" />
+			<classpath refid="classpath" />
+		</java>
+	</target>
+
+	<target name="generate_tests" depends="analyze_target">
+		<echo>GENERATING TESTS </echo>
+		<java classname="br.edu.ufcg.saferefactor.core.Saferefactor" fork="true" maxmemory="256m">
+			<arg value="${source}" />
+			<arg value="${target}" />
+			<arg value="${bin}" />
+			<arg value="${src}" />
+			<arg value="${lib}" />
+			<arg value="${timeout}" />
+			<classpath refid="classpath" />
+			<classpath refid="classpath_source" />
+
+			<classpath>
+				<pathelement path="/Users/felype/Documents/CIn/Mestrado/workspaceMestrado/ferramentaLPSSM/bincopy" />
+				<pathelement path="${source}/${bin}" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="compile_tests" depends="generate_tests">
+		<echo>COMPILING THE TESTS</echo>
+		<javac fork="yes" memorymaximumsize="512m" includes="*.java" debug="on" srcdir="${tests.folder}/" destdir="${tests.folder}/bin">
+			<classpath>
+				<fileset dir="${source}/${lib}">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+				</fileset>
+				<pathelement location="${source}/${bin}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!--<target name="instrument" depends="compile_tests">
+		<cobertura-instrument todir="${source}/${build.instrumented.dir}">
+			<fileset dir="${source}/${bin}">
+				<include name="**/*.class" />
+			</fileset>
+		</cobertura-instrument>
+	</target>-->
+
+	<target name="run_tests" depends="compile_tests">
+		<echo>Running JUnit to test the "source"</echo>
+		<junit printsummary="yes" haltonfailure="yes" fork="true" maxmemory="512m">
+			<!--<classpath location="lib/cobertura.jar" />
+			<classpath location="${source}/${build.instrumented.dir}" />-->
+			<classpath>
+				<fileset dir="${source}/${lib}">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+					<exclude name="${aspects}" />
+				</fileset>
+				<pathelement location="${source}/${bin}" />
+				<pathelement location="${tests.folder}/bin" />
+			</classpath>
+			<formatter type="xml" />
+			<batchtest todir="${tests.folder}/source" haltonfailure="no">
+				<fileset dir="${tests.folder}/bin">
+					<include name="*Test.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+		<echo>Running JUnit to test the "target"</echo>
+		<junit printsummary="yes" haltonfailure="yes" fork="true" maxmemory="512m">
+			<classpath>
+				<fileset dir="${target}/${lib}">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+					<exclude name="${aspects}" />
+				</fileset>
+				<pathelement location="${target}/${bin}" />
+				<pathelement location="${tests.folder}/bin" />
+			</classpath>
+			<formatter type="xml" />
+			<batchtest todir="${tests.folder}/target" haltonfailure="no">
+				<fileset dir="${tests.folder}/bin">
+					<include name="*Test.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<!--<target name="coverage" depends="run_tests">
+		<cobertura-report srcdir="${source}/${src}" destdir="${build.coverage.dir}" />
+	</target>-->
+
+
+
+</project>
