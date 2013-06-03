@@ -59,14 +59,21 @@
             </javac>
 	</target>
 
+
+	<target name="generate_evosuite_propertiesFile">
+	    <echo>* Creating EVOSUITE File property</echo>
+        <java jar="${project.dir}/lib/evosuite.jar" fork="true" dir="${source}">
+            <arg value="-setup"/>
+            <arg value="${classpath}"/>
+            <arg value="${source}lib/"/>
+        </java>
+	</target>
+
+
     <target name="generate_with_evosuite">
         <echo>* Creating EVOSUITE tests</echo>
-        <java jar="${project.dir}/lib/evosuite.jar" fork="true" dir="${evosuite.tests}">
-            <arg value="-cp"/>
-            <arg value="${classpath}" />
-            <arg value="-base_dir"/>
-            <arg value="${evosuite.tests}"/>
-            <arg value="-generateSuite"/>
+        <java jar="${project.dir}/lib/evosuite.jar" fork="true" dir="${source}">
+            <arg value="-generateTests"/>
             <arg value="-class"/>
             <arg value="${clazz}" />
         </java>

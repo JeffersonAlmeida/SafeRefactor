@@ -1,12 +1,17 @@
 package br.edu.ufcg.saferefactor.core;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.tools.ant.DefaultLogger;
@@ -102,9 +107,16 @@ public class Saferefactor {
 		
 		if(generateTestsWith.equals("evosuite")){
 			p.executeTarget("compile_source_and_target");
+			p.executeTarget("generate_evosuite_propertiesFile");
+			// manipulate evosuite.properties file
+			manipulatePropertiesFile();
 			Iterator<String> i = this.ic.getModifiedClasses().iterator();
 			while(i.hasNext()){
 				String clazz = i.next();
+				if(clazz.contains("src.")){
+					String[] array = clazz.split("src.");
+					clazz = array[1];
+				}
 				System.out.println("Run evosuite for clazz: " + clazz);
 				p.setProperty("clazz", clazz);
 				p.executeTarget("generate_with_evosuite");
@@ -132,6 +144,29 @@ public class Saferefactor {
 		}
 		
 		return report.isSameBehavior();		
+	}
+
+	/**
+	 *  Manipulate evosuite.properties file
+	 */
+	private void manipulatePropertiesFile() {
+		Properties evosuiteProperties = new Properties();
+		String evosuitePropertiesFile = this.input.getSourceLineDirectory() + "evosuite-files/evosuite.properties";
+		try {
+			InputStream is = new FileInputStream(evosuitePropertiesFile);
+			
+			evosuiteProperties.load(is);
+			evosuiteProperties.setProperty("test_dir", "src/evosuite-tests"); // test_dir=src/evosuite-tests
+			evosuiteProperties.setProperty("report_dir", "src/evosuite-report"); // report_dir=src/evosuite-report
+			evosuiteProperties.setProperty("search_budget", "5000");
+			is.close();
+			OutputStream os = new FileOutputStream(evosuitePropertiesFile);
+			evosuiteProperties.store(os, "changing variable");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
