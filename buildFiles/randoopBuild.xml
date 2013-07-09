@@ -3,6 +3,7 @@
 	<path id="classpath">
 		<fileset dir="." includes="saferefactor.jar" />
 		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
 		<fileset dir="${source}/" includes="lib/*.jar" />
 		<fileset dir="${target}/" includes="lib/*.jar" />
 		<pathelement location="${source}/bin" />

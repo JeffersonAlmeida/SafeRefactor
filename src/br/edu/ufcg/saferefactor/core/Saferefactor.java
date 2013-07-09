@@ -67,6 +67,7 @@ public class Saferefactor {
 		p.setProperty("maxTests", String.valueOf( this.input.getInputLimit()));
 		p.setProperty("criteria", this.input.getWhichMethods().toString());
 		p.setProperty("project.dir", Constants.PROJECT_DIRECTORY);
+		p.setProperty("lib.dir", Constants.LIB_DIR);
 		String classPath = this.input.getSourceLineDirectory()+ "bin";
 		p.setProperty("classpath",classPath);
 		p.setProperty("randoop.source", this.input.getSourceLineDirectory() + "src" + System.getProperty("file.separator") + "randoop");
@@ -117,7 +118,7 @@ public class Saferefactor {
 					String[] array = clazz.split("src.");
 					clazz = array[1];
 				}
-				System.out.println("Run evosuite for clazz: " + clazz);
+				System.out.println("\n\nRun evosuite for clazz: " + clazz);
 				p.setProperty("clazz", clazz);
 				p.executeTarget("generate_with_evosuite");
 			}
