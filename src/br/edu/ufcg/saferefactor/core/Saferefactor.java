@@ -206,10 +206,8 @@ public class Saferefactor {
 		Report report = comparator.generateReport();
 
 		/*print report*/
-		System.out.println(" Print Report :");
-		if (printReport) {
-			System.out.println(report);
-		}
+		/*System.out.println(" Print Report :");
+		System.out.println(report);*/
 
 		if (!report.isSameBehavior()) {
 			System.out.println("\n\nreport changes: " + report.getChanges());
