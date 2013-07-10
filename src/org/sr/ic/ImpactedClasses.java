@@ -1,17 +1,15 @@
 package org.sr.ic;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 public class ImpactedClasses {
 	
-	private List<String> modifiedClasses;
+	private Collection<String> modifiedClasses;
 	
-	public ImpactedClasses(String ic) {
+	public ImpactedClasses(Collection<String> impactedClasses) {
 		super();
-		this.modifiedClasses = new ArrayList<String>();
-		this.getArrayOfImpactedClasses(ic);
+		this.modifiedClasses = impactedClasses;
 	}
 
 	private void getArrayOfImpactedClasses(String ic) {
@@ -22,12 +20,10 @@ public class ImpactedClasses {
 			}
 		}
 	}
-
-	public List<String> getModifiedClasses() {
-		return this.modifiedClasses;
+	public Collection<String> getModifiedClasses() {
+		return modifiedClasses;
 	}
-	public void setModifiedClasses(List<String> modifiedClasses) {
+	public void setModifiedClasses(Collection<String> modifiedClasses) {
 		this.modifiedClasses = modifiedClasses;
 	}
-	
 }

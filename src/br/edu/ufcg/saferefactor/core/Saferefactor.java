@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -31,10 +32,11 @@ public class Saferefactor {
 	private ImpactedClasses ic;
 	private  FilePropertiesObject input;
 	
-	public Saferefactor(String classes, FilePropertiesObject inputObject) {
-		this.ic = new ImpactedClasses(classes);
+	public Saferefactor(Collection<String> impactedClasses, FilePropertiesObject inputObject) {
+		this.ic = new ImpactedClasses(impactedClasses);
 		this.input = inputObject;
 		this.comparator = new ResultComparator();
+		
 	}
 	
 	public Saferefactor(ImpactedClasses ic, FilePropertiesObject input){
@@ -117,6 +119,9 @@ public class Saferefactor {
 				if(clazz.contains("src.")){
 					String[] array = clazz.split("src.");
 					clazz = array[1];
+				}if(clazz.contains(".java")){
+					String[] array = clazz.split(".java");
+					clazz = array[0];
 				}
 				System.out.println("\n\nRun evosuite for clazz: " + clazz);
 				p.setProperty("clazz", clazz);

@@ -9,8 +9,10 @@ import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -151,10 +153,11 @@ public class Analyzer {
 		return quantityOfMethodsToTest;
 	}
 
-	private boolean listContainsString(List<String> listClasses, String contrString) {
+	private boolean listContainsString(Collection<String> listClasses, String contrString) {
 		boolean result = false;
-		for (int i = 0; i < listClasses.size() && !result; i++) {
-			result = contrString.contains(listClasses.get(i));
+		Iterator<String> it = listClasses.iterator();
+		while(it.hasNext() && !result){
+			result = contrString.contains(it.next());
 		}
 		return result;
 	}
