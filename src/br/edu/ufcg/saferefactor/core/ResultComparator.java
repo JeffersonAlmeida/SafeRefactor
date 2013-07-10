@@ -183,6 +183,8 @@ public class ResultComparator {
 	private boolean checkErrorType(Map<String, TestCaseState> sourceMap,	Map<String, TestCaseState> stateMap, String tcName,	boolean hasProblems, Element problem, TestCaseState type) {
 		if(problem.getAttribute("type").equals("java.lang.NoSuchMethodError")){
 			sourceMap.remove(tcName);
+			System.out.println("\nThe tool considers only public methods with the same signatures in source and target.");
+			System.out.println("\nThis test will not be considered:" + tcName);
 		}else{
 			stateMap.put(tcName, type);
 		}
