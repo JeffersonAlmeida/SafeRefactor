@@ -35,14 +35,14 @@ public class Saferefactor {
 	public Saferefactor(Collection<String> impactedClasses, FilePropertiesObject inputObject) {
 		this.ic = new ImpactedClasses(impactedClasses);
 		this.input = inputObject;
-		this.comparator = new ResultComparator();
+		this.comparator = new ResultComparator(this.input);
 		
 	}
 	
 	public Saferefactor(ImpactedClasses ic, FilePropertiesObject input){
 		this.ic = ic;
 		this.input = input;
-		this.comparator = new ResultComparator();
+		this.comparator = new ResultComparator(this.input);
 	}
 	
 	public Analyzer getAnalyzer() {
@@ -164,7 +164,7 @@ public class Saferefactor {
 			evosuiteProperties.load(is);
 			evosuiteProperties.setProperty("test_dir", "src/evosuite-tests"); // test_dir=src/evosuite-tests
 			evosuiteProperties.setProperty("report_dir", "src/evosuite-report"); // report_dir=src/evosuite-report
-			evosuiteProperties.setProperty("search_budget", "5000");
+			evosuiteProperties.setProperty("search_budget", "10000");
 			is.close();
 			OutputStream os = new FileOutputStream(evosuitePropertiesFile);
 			evosuiteProperties.store(os, "changing variable");

@@ -1,0 +1,91 @@
+
+------------------------------------------------------------------------------
+
+14-07-2013   17:59:15
+
+Pair ID: Bank1.0
+
+Impacted Classes:
+
+[org.bank.account.Account.java]
+
+Extended Impacted Classes:
+
+[org.bank.facade.Facade.java, org.bank.client.Client.java, org.bank.gui.GUI.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test5()  throws Throwable  {
+      Account account0 = new Account();
+      boolean boolean0 = account0.withdraw(1412);
+      assertEquals(false, boolean0);
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+14-07-2013   18:03:14
+
+Pair ID: Bank1.0
+
+Impacted Classes:
+
+[org.bank.account.Account.java]
+
+Extended Impacted Classes:
+
+[org.bank.facade.Facade.java, org.bank.client.Client.java, org.bank.gui.GUI.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test5()  throws Throwable  {
+      Account account0 = new Account();
+      boolean boolean0 = account0.teste();
+      assertEquals(false, account0.teste());
+      assertEquals(false, boolean0);
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+  public void test0()  throws Throwable  {
+      Facade facade0 = new Facade();
+      Account account0 = new Account();
+      double double0 = Double.NaN;
+      boolean boolean0 = facade0.withdraw(account0, Double.NaN);
+      assertEquals(false, boolean0);
+  }
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+

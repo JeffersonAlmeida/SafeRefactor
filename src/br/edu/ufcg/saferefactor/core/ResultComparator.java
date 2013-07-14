@@ -1,17 +1,21 @@
 package br.edu.ufcg.saferefactor.core;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import org.sr.input.FilePropertiesObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -24,6 +28,7 @@ public class ResultComparator {
 	private Map<String, TestCaseState> sourceMap;
 	private Map<String, TestCaseState> targetMap;
 	private Report result;
+	private  FilePropertiesObject input;
 
 	public ResultComparator(String testsrc, String testtgt) {
 		this.testsrc = testsrc;
@@ -36,7 +41,19 @@ public class ResultComparator {
 		super();
 	}
 
+	public ResultComparator(FilePropertiesObject in) {
+		this.input = in;
+	}
+
 	public Report generateReport() {
+		BufferedWriter logFile = LogFile.getInstance().getLog();
+		try {
+			logFile.newLine();
+			logFile.write("Failed Tests:\n\n");
+			logFile.flush();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		this.result = new Report();
 		boolean sameBehavior = false;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -99,7 +116,7 @@ public class ResultComparator {
 
 	}
 
-	private String getChanges() {
+	private String getChanges() throws IOException {
 		StringBuilder changes = new StringBuilder();
 		for (String key : sourceMap.keySet()) {
 			TestCaseState sourceState = sourceMap.get(key);
@@ -109,9 +126,52 @@ public class ResultComparator {
 			TestCaseState targetState = targetMap.get(key);
 			if (sourceState != targetState) {
 				changes.append(key + " in source is " + sourceState + " while in target is " + targetState + "\n");
+				this.getFailedTests(key, sourceState, targetState);
 			}
 		}
 		return changes.toString();
+	}
+
+	private void getFailedTests(String key, TestCaseState sourceState, TestCaseState targetState) throws IOException {
+		String evosuiteTestDir = this.input.getSourceLineDirectory() + "src/evosuite-tests/";
+		String randoopTestDir = this.input.getSourceLineDirectory() + "src/randoop/";
+		// org.bank.account.TestAccount.test4
+		String[] array = key.split("\\.");
+		String testNumber = array[array.length-1];
+		String[] v = key.split("."+testNumber);
+		String clazz = v[0];
+		String testClazz = "";
+		if(this.input.getGenerateTestsWith().equals("evosuite")){
+			testClazz = evosuiteTestDir + clazz.replaceAll("\\.", "/") + ".java";
+		}else if(this.input.getGenerateTestsWith().equals("randoop")){
+			testClazz = randoopTestDir + clazz.replaceAll("\\.", "/") + ".java";
+		}
+		File file = new File(testClazz);
+		findFailedTests(testNumber, file);
+		
+	}
+	
+	public void findFailedTests(String testNumber, File file) throws IOException{
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		String line = "", test = "", newLine = "";
+        int openbraces = 0;
+        while((line = reader.readLine()) != null){
+            if(line.contains(testNumber)){
+            	test = line; openbraces++;
+            	 while((newLine=reader.readLine())!=null && openbraces >0){
+            		 test = test + "\n" + newLine ;
+            		 if(newLine.contains("{"))
+            			 openbraces++;
+            		 if(newLine.contains("}"))
+            			 openbraces--;
+            	 }
+            test = test + "\n";	 
+            break;
+            }
+        }
+        System.out.println("\n" + test);
+        LogFile.getInstance().getLog().write("\n" + test + "\n");
+        reader.close();
 	}
 
 	private boolean hasChanges(Document source, Document target) {
