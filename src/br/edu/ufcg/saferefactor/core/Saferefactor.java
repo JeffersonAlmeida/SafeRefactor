@@ -54,6 +54,7 @@ public class Saferefactor {
 	}
 	
 	public boolean isRefactoring(String timeout, boolean printReport, String generateTestsWith) throws MalformedURLException {
+
 		FileUtil.createFolders(this.input);
 		URL file;
 		if(generateTestsWith.equals("randoop")){
@@ -115,14 +116,20 @@ public class Saferefactor {
 			manipulatePropertiesFile();
 			Iterator<String> i = this.ic.getModifiedClasses().iterator();
 			while(i.hasNext()){
-				String clazz = i.next();
-				if(clazz.contains("src.")){
+				String clazz = i.next();  // TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.ErrorsUtil.java
+		/*		if(clazz.contains("src.")){
 					String[] array = clazz.split("src.");
 					clazz = array[1];
-				}if(clazz.contains(".java")){
+				}*/
+				if(clazz.contains(".java")){
 					String[] array = clazz.split(".java");
 					clazz = array[0];
+					array = clazz.split("src.");
+					clazz = array[1];
+					/*String array[] = clazz.split(".java");
+					clazz = array[0] + ".java" + array[1];*/
 				}
+				
 				System.out.println("\n\nRun evosuite for clazz: " + clazz);
 				p.setProperty("clazz", clazz);
 				p.executeTarget("generate_with_evosuite");

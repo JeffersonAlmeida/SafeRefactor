@@ -89,3 +89,283 @@ Approach: EIC<randoop>
 
 Failed Tests:
 
+------------------------------------------------------------------------------
+
+15-07-2013   10:01:19
+
+Pair ID: branch1.0
+
+Impacted Classes:
+
+[]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Approach: IC<randoop>
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+15-07-2013   10:16:16
+
+Pair ID: branch2.0
+
+Impacted Classes:
+
+[]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Approach: IC<randoop>
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+15-07-2013   15:58:13
+
+Pair ID: branch5.0
+
+Impacted Classes:
+
+[TaRGeT XML Output Plug-in.src.aspects.testlink.TestLinkAspect.aj]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+15-07-2013   16:59:10
+
+Pair ID: branch6.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+15-07-2013   17:11:33
+
+Pair ID: branch6.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+15-07-2013   17:25:48
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+15-07-2013   17:39:48
+
+Pair ID: branch11.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+15-07-2013   18:06:41
+
+Pair ID: branch12.0
+
+Impacted Classes:
+
+[TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.ErrorsUtil.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+15-07-2013   18:24:53
+
+Pair ID: branch12.0
+
+Impacted Classes:
+
+[TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.ErrorsUtil.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+15-07-2013   19:37:44
+
+Pair ID: branch12.0
+
+Impacted Classes:
+
+[TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.ErrorsUtil.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+15-07-2013   19:54:11
+
+Pair ID: branch15.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+15-07-2013   20:15:24
+
+Pair ID: branch15.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+15-07-2013   20:39:29
+
+Pair ID: branch15.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+15-07-2013   20:57:21
+
+Pair ID: branch15.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
