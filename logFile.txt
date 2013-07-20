@@ -369,3 +369,45 @@ Failed Tests:
 
 
 Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+20-07-2013   16:47:37
+
+Pair ID: branch15.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+20-07-2013   16:50:21
+
+Pair ID: branch15.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
