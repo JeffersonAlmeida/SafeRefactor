@@ -15,6 +15,8 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DefaultLogger;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
@@ -110,32 +112,40 @@ public class Saferefactor {
 		Report report = new Report();
 		
 		if(generateTestsWith.equals("evosuite")){
-			p.executeTarget("compile_source_and_target");
+			try {
+				p.executeTarget("compile_source_and_target");	
+			} catch (BuildException e) {
+				System.out.println("\nIt was impossible to compile source/target code");
+			}
 			p.executeTarget("generate_evosuite_propertiesFile");
 			// manipulate evosuite.properties file
 			manipulatePropertiesFile();
 			Iterator<String> i = this.ic.getModifiedClasses().iterator();
 			while(i.hasNext()){
 				String clazz = i.next();  // TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.ErrorsUtil.java
-		/*		if(clazz.contains("src.")){
-					String[] array = clazz.split("src.");
-					clazz = array[1];
-				}*/
-				if(clazz.contains(".java")){
-					String[] array = clazz.split(".java");
-					clazz = array[0];
-					array = clazz.split("src.");
-					clazz = array[1];
-					/*String array[] = clazz.split(".java");
-					clazz = array[0] + ".java" + array[1];*/
+				if(clazz.contains(".src.java.")){
+					String str[] = clazz.split(".src.java.");
+					clazz = str[1];
 				}
-				
+				if(clazz.contains(".src.")){
+					String str[] = clazz.split(".src.");
+					clazz = str[1];
+				}
+				if(clazz.contains(".java.br")){
+					String str[] = clazz.split(".java.");
+					clazz = str[1];
+				}
+				if(clazz.contains(".java")){
+					String str[] = clazz.split(".java");
+					clazz = str[0];
+				}
 				System.out.println("\n\nRun evosuite for clazz: " + clazz);
 				p.setProperty("clazz", clazz);
 				p.executeTarget("generate_with_evosuite");
 			}
 			p.executeTarget("run");
 			report = report(printReport);
+			
 		}else{
 			
 			if(file1.delete()){
@@ -144,7 +154,11 @@ public class Saferefactor {
     			System.out.println("Delete operation is failed.");
     		}
 			
-			p.executeTarget("compile_source_and_target");
+			try {
+				p.executeTarget("compile_source_and_target");	
+			} catch (BuildException e) {
+				System.out.println("\nIt was impossible to compile source/target code");
+			}
 			
 			this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
 		
@@ -155,7 +169,6 @@ public class Saferefactor {
 			
 			//p.executeTarget("coverage");
 		}
-		
 		return report.isSameBehavior();		
 	}
 

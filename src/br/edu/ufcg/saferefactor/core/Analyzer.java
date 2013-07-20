@@ -320,7 +320,9 @@ public class Analyzer {
 	private void findCommonConstructors(SClass sourceClazz, SClass targetClass) {
 		for (SConstructor constructor : sourceClazz.getConstructors()) {
 			if (targetClass.getConstructors().contains(constructor)) {
-				commonConstructors.add(constructor);
+				 if(!constructor.toString().contains("br.ufpe.cin.target.uceditor.export.PDFGenerator")){
+					 commonConstructors.add(constructor);    
+			    }
 			}
 		}
 	}
