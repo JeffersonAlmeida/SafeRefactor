@@ -1,0 +1,122 @@
+<project name="SafeRefactor" default="run_tests" basedir=".">
+
+	<path id="classpath">
+		<fileset dir="." includes="saferefactor.jar" />
+		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+		<fileset dir="${source}/" includes="lib/*.jar" />
+		<fileset dir="${target}/" includes="lib/*.jar" />
+		<pathelement location="${source}/bin" />
+		<pathelement location="${source}/src" />
+		<pathelement location="${target}/bin" />
+        <pathelement location="${target}/src" />
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${project.dir}/bin" />
+		<pathelement path="${source}/evosuite-bin" />
+	</path>
+
+    <target name="init">
+		<mkdir dir="${source}/evosuite-bin"/>
+		<mkdir dir="${randoop.source}" />
+		<mkdir dir="${randoop.target}" />
+		<mkdir dir="${evosuite.tests}/evosuite-tests" />
+		<mkdir dir="${evosuite.tests}/evosuite-report" />
+	</target>
+
+    <target name="clean" depends="init">
+		<delete includeemptydirs="true">
+			<fileset dir="${source}/bin" includes="**/*" />
+			<fileset dir="${target}/bin" includes="**/*" />
+			<fileset dir="${junit.output.source}" includes="**/*" />
+			<fileset dir="${junit.output.target}" includes="**/*" />
+			<fileset dir="${randoop.source}" includes="**/*" />
+			<fileset dir="${randoop.target}" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-tests" includes="**/*" />
+			<fileset dir="${evosuite.tests}/evosuite-report" includes="**/*" />
+			<fileset dir="${source}/evosuite-bin" includes="**/*" />
+		</delete>
+	</target>
+
+
+	<target name="compile_source_and_target" depends="clean">
+            <echo>* Compile Source Product</echo>
+            <javac fork="yes" includes="**/*.java" debug="on" srcdir="${source}/src" destdir="${source}/bin">
+                    <classpath>
+                        <fileset dir="${source}/src">
+                            <include name="**/*.java" />
+                            <exclude name="**/Randoop*.java" />
+                        </fileset>
+                    </classpath>
+                    <classpath refid="classpath"/>
+            </javac>
+            <echo>* Compile Target Product</echo>
+            <javac fork="yes" includes="**/*.java" debug="on" srcdir="${target}/src" destdir="${target}/bin">
+                    <classpath>
+                        <fileset dir="${target}/src">
+                            <include name="**/*.java" />
+                        </fileset>
+                    </classpath>
+                   <classpath refid="classpath"/>
+            </javac>
+	</target>
+
+
+	<target name="generate_evosuite_propertiesFile">
+	    <echo>* Creating EVOSUITE File property</echo>
+        <java jar="${project.dir}/lib/evosuite.jar" fork="true" dir="${source}">
+            <arg value="-setup"/>
+            <arg value="${classpath}"/>
+            <arg value="${classpath}:${lib.dir}/org.eclipse.ui.workbench_3.5.2.M20100113-0800.jar:${lib.dir}/org.eclipse.jface_3.5.2.M20100120-0800.jar:${lib.dir}/org.eclipse.swt.gtk.linux.x86_64_3.5.2.v3557f.jar:${lib.dir}/br.ufpe.cin.cnlframework_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.cm_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.cnl_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.common_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.core_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.onthefly_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.pm_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.tcg_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.xmlinput_1.0.0.jar:${lib.dir}/br.ufpe.cin.target.xmloutput_1.0.0.jar:${lib.dir}/com.ibm.icu_4.0.1.v20090822.jar:${lib.dir}/javax.servlet_2.5.0.v200806031605.jar:${lib.dir}/javax.transaction_1.1.1.v201002111330.jar:${lib.dir}/Junit.jar:${lib.dir}/lucene-core-2.1.0.jar:${lib.dir}/org.eclipse.aspectj_2.1.1.e35x-release-20101021-0900.jar:${lib.dir}/org.eclipse.core.commands_3.5.0.I20090525-2000.jar:${lib.dir}/org.eclipse.core.contenttype_3.4.1.R35x_v20090826-0451.jar:${lib.dir}/org.eclipse.core.databinding.observable_1.2.0.M20090902-0800.jar:${lib.dir}/org.eclipse.core.databinding.property_1.2.0.M20090819-0800.jar:${lib.dir}/org.eclipse.core.databinding_1.2.0.M20090819-0800.jar:${lib.dir}/org.eclipse.core.expressions_3.4.101.R35x_v20100209.jar:${lib.dir}/org.eclipse.core.jobs_3.4.100.v20090429-1800.jar:${lib.dir}/org.eclipse.core.runtime.compatibility.auth_3.2.100.v20090413.jar:${lib.dir}/org.eclipse.core.runtime_3.5.0.v20090525.jar:${lib.dir}/org.eclipse.equinox.app_1.2.1.R35x_v20091203.jar:${lib.dir}/org.eclipse.equinox.common_3.5.1.R35x_v20090807-1100.jar:${lib.dir}/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar:${lib.dir}/org.eclipse.equinox.preferences_3.2.301.R35x_v20091117.jar:${lib.dir}/org.eclipse.equinox.registry_3.4.100.v20090520-1800.jar:${lib.dir}/org.eclipse.equinox.weaving.hook_1.0.0.v20100108.jar:${lib.dir}/org.eclipse.help_3.4.1.v20090805_35x.jar:${lib.dir}/org.eclipse.jface.databinding_1.3.1.M20090826-0800.jar:${lib.dir}/org.eclipse.jface_3.5.2.M20100120-0800.jar:${lib.dir}/org.eclipse.nebula.widgets.grid_1.0.0.jar:${lib.dir}/org.eclipse.osgi.services_3.2.0.v20090520-1800.jar:${lib.dir}/org.eclipse.osgi_3.5.2.R35x_v20100126.jar:${lib.dir}/org.eclipse.persistence.jpa.equinox.weaving_1.1.3.v20091002-r5404.jar:${lib.dir}/org.eclipse.swt.gtk.linux.x86_64_3.5.2.v3557f.jar:${lib.dir}/org.eclipse.ui.forms_3.4.1.v20090714_35x.jar:${lib.dir}/org.eclipse.ui.workbench_3.5.2.M20100113-0800.jar:${lib.dir}/org.eclipse.ui_3.5.2.M20100120-0800.jar:${lib.dir}/poi-3.2-FINAL.jar:${lib.dir}/ant.jar:${lib.dir}/aspectjrt.jar:${lib.dir}/avalon-framework-4.2.0.jar:${lib.dir}/batik-all-1.7.jar:${lib.dir}/commons-io-1.3.1.jar:${lib.dir}/commons-logging-1.0.4.jar:${lib.dir}/dom4j-1.6.jar:${lib.dir}/fop.jar:${lib.dir}/i4jruntime.jar:${lib.dir}/jericho-html-3.1.jar:${lib.dir}/serializer-2.7.0.jar:${lib.dir}/wordnet_jwi_api_2.1.5.jar:${lib.dir}/xalan-2.7.0.jar:${lib.dir}/xercesImpl-2.7.1.jar:${lib.dir}/xml-apis-1.3.04.jar:${lib.dir}/xml-apis-ext-1.3.04.jar:${lib.dir}/xmlgraphics-commons-1.3.1.jar:${lib.dir}/xstream-1.3.1.jar:${lib.dir}/cglib-nodep-2.2.jar:${lib.dir}/dom4j-1.6.1.jar:${lib.dir}/jdom-1.1.jar:${lib.dir}/jericho-html-3.1.jar:${lib.dir}/jettison-1.0.1.jar:${lib.dir}/joda-time-1.6.jar:${lib.dir}/stax-1.2.0.jar:${lib.dir}/wstx-asl-3.2.7.jar:${lib.dir}/xml-writer-0.2.jar:${lib.dir}/xpp3_min-1.1.4c.jar:${lib.dir}/xstream-1.3.1.jar:${lib.dir}/xstream-benchmark-1.3.1.jar"/>
+        </java>
+	</target>
+
+
+    <target name="generate_with_evosuite">
+        <echo>* Creating EVOSUITE tests</echo>
+        <java jar="${project.dir}/lib/evosuite.jar" fork="true" dir="${source}">
+            <arg value="-generateTests"/>
+            <arg value="-class"/>
+            <arg value="${clazz}" />
+        </java>
+    </target>
+
+      <target name="compile_tests_evosuite" >
+		<echo>Compiling EVOSUITE generated tests</echo>
+		<javac fork="yes" memorymaximumsize="512m" includes="*.java" debug="on" srcdir="${evosuite.tests}/evosuite-tests" destdir="${source}/evosuite-bin">
+			 <include name="**/*.java"/>
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<target name="run" depends="compile_tests_evosuite">
+		<echo>* Run Junit to Source Product</echo>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath>
+			<pathelement path="${project.dir}/lib/evosuite.jar" />
+			<pathelement location="${source}/bin" />
+			</classpath>
+			<classpath refid="classpath" />
+			<formatter type="xml" />
+                <batchtest todir="${junit.output.source}" haltonfailure="no">
+                    <fileset dir="${source}/evosuite-bin">
+                        <include name="**/*.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+		<echo>* Run Junit to Target Product</echo>
+		<junit printsummary="yes" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
+			<classpath>
+			<pathelement path="${project.dir}/lib/evosuite.jar" />
+			<pathelement location="${target}/bin" />
+			</classpath>
+			<classpath refid="classpath" />
+			<formatter type="xml" />
+                <batchtest todir="${junit.output.target}" haltonfailure="no">
+                    <fileset dir="${source}/evosuite-bin">
+                        <include name="**/*.class" />
+                    </fileset>
+                </batchtest>
+		</junit>
+    </target>
+
+</project>
