@@ -411,3 +411,262 @@ Failed Tests:
 Approach: EIC<evosuite>
 
 Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+21-07-2013   16:18:22
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+21-07-2013   18:13:52
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+21-07-2013   18:27:39
+
+Pair ID: branch12.0
+
+Impacted Classes:
+
+[TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.ErrorsUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.editors.UseCaseHTMLGenerator.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+21-07-2013   18:44:32
+
+Pair ID: branch15.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+21-07-2013   19:09:47
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+21-07-2013   20:15:46
+
+Pair ID: branch27.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+22-07-2013   03:52:55
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+22-07-2013   03:59:04
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+22-07-2013   04:08:11
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test0()  throws Throwable  {
+      Activator activator0 = new Activator();
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
