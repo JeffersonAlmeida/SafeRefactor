@@ -670,3 +670,164 @@ Failed Tests:
 Approach: EIC<evosuite>
 
 Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+22-07-2013   04:26:20
+
+Pair ID: branch30.0
+
+Impacted Classes:
+
+[]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Approach: IC<randoop>
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+22-07-2013   04:32:58
+
+Pair ID: branch32.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+22-07-2013   04:40:25
+
+Pair ID: branch34.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyGeneratedTestCasesPage.java, TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java, TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.TestCaseTable.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+22-07-2013   04:53:12
+
+Pair ID: branch36.0
+
+Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.wizard.ConsistencyManagementWizard.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.ConsistencyManagerExtensionImplementation.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+22-07-2013   05:02:52
+
+Pair ID: branch38.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.RemoveStepAction.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.AddNewFlowAction.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.AddStepBellowAction.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.AddStepAboveAction.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   09:48:18
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
