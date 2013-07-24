@@ -134,7 +134,7 @@ public class ResultComparator {
 
 	private void getFailedTests(String key, TestCaseState sourceState, TestCaseState targetState) throws IOException {
 		String evosuiteTestDir = this.input.getSourceLineDirectory() + "src/evosuite-tests/";
-		String randoopTestDir = this.input.getSourceLineDirectory() + "src/randoop/";
+		String randoopTestDir = this.input.getSourceLineDirectory() + "src/";
 		// org.bank.account.TestAccount.test4
 		String[] array = key.split("\\.");
 		String testNumber = array[array.length-1];

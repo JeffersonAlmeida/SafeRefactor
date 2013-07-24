@@ -157,7 +157,24 @@ public class Analyzer {
 		boolean result = false;
 		Iterator<String> it = listClasses.iterator();
 		while(it.hasNext() && !result){
-			result = contrString.contains(it.next());
+			String clazz = it.next();
+			if(clazz.contains(".src.java.")){
+				String str[] = clazz.split(".src.java.");
+				clazz = str[1];
+			}
+			if(clazz.contains(".src.")){
+				String str[] = clazz.split(".src.");
+				clazz = str[1];
+			}
+			if(clazz.contains(".java.br")){
+				String str[] = clazz.split(".java.");
+				clazz = str[1];
+			}
+			if(clazz.contains(".java")){
+				String str[] = clazz.split(".java");
+				clazz = str[0];
+			}
+			result = contrString.contains(clazz);
 		}
 		return result;
 	}

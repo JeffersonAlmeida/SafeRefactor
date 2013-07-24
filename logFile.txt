@@ -831,3 +831,912 @@ Failed Tests:
 
 
 Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   10:09:49
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+23-07-2013   10:11:43
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test2()  throws Throwable  {
+      Activator activator0 = new Activator();
+      assertEquals(false, activator0.isDebugging());
+      
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: EIC<randoop>
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+23-07-2013   10:57:52
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   11:02:59
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   11:12:03
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+23-07-2013   12:13:29
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+23-07-2013   12:20:28
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test0()  throws Throwable  {
+      Activator activator0 = new Activator();
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+23-07-2013   12:40:44
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   14:32:53
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+23-07-2013   14:51:40
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+23-07-2013   15:08:18
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+23-07-2013   15:12:55
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+23-07-2013   15:26:33
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   15:33:42
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   15:39:58
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   15:49:43
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   15:54:49
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   16:17:23
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   16:24:33
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   16:49:32
+
+Pair ID: branch27.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   17:17:23
+
+Pair ID: branch27.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   17:37:56
+
+Pair ID: branch27.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   17:52:36
+
+Pair ID: branch32.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+23-07-2013   18:04:16
+
+Pair ID: branch34.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyGeneratedTestCasesPage.java, TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java, TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.TestCaseTable.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+23-07-2013   20:58:26
+
+Pair ID: branch36.0
+
+Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.wizard.ConsistencyManagementWizard.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.ConsistencyManagerExtensionImplementation.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   21:16:39
+
+Pair ID: branch36.0
+
+Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.wizard.ConsistencyManagementWizard.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.ConsistencyManagerExtensionImplementation.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+23-07-2013   21:29:54
+
+Pair ID: branch38.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.RemoveStepAction.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.AddNewFlowAction.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.AddStepBellowAction.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.AddStepAboveAction.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+

@@ -214,15 +214,18 @@ public class FileUtil {
 	    	}else{
 	    		//if file, then copy it
 	    		//Use bytes stream to support all file types
-	    		InputStream in = new FileInputStream(src);
-	    	    OutputStream out = new FileOutputStream(dest); 
-	    	    byte[] buffer = new byte[1024];
+	    	    if(dest.exists())
+	    	    	System.out.println("delete: " + dest.delete());
+	    	    InputStream in = new FileInputStream(src);
+	    	    OutputStream out = new FileOutputStream(dest);
+	    	    byte[] buffer = new byte[2024];
 	    	    int length;
 	    	    //copy the file content in bytes 
 	    	    while ((length = in.read(buffer)) > 0){
 	    	    	   out.write(buffer, 0, length);
 	    	    }
 	    	    in.close();
+	    	    out.flush();
 		        out.close();
 		        System.out.println("File copied from " + src + " to " + dest);
 	    	}

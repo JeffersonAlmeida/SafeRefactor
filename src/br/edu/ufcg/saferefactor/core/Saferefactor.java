@@ -184,7 +184,7 @@ public class Saferefactor {
 			evosuiteProperties.load(is);
 			evosuiteProperties.setProperty("test_dir", "src/evosuite-tests"); // test_dir=src/evosuite-tests
 			evosuiteProperties.setProperty("report_dir", "src/evosuite-report"); // report_dir=src/evosuite-report
-			evosuiteProperties.setProperty("search_budget", "10000");
+			evosuiteProperties.setProperty("search_budget", "20000");
 			is.close();
 			OutputStream os = new FileOutputStream(evosuitePropertiesFile);
 			evosuiteProperties.store(os, "changing variable");
