@@ -167,7 +167,7 @@ public class Saferefactor {
 			
 			report = report(printReport);
 			
-			p.executeTarget("coverage");
+			p.executeTarget("coverageReport");
 		}
 		return report.isSameBehavior();		
 	}

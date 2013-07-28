@@ -1,5 +1,18 @@
 <project name="SafeRefactor" default="run" basedir=".">
 
+	<!-- Emma source code -->
+	<property name="emma.bin.dir" value="${source}/emma/bin" />
+	<property name="emma.metadate.dir" value="${source}/emma/metadate" />
+	<property name="emma.report.dir" value="${source}/emma/report" />
+
+    <!-- Emma task definitions that you will find inside the jar -->
+	<taskdef resource="emma_ant.properties">
+		<classpath refid="classpath" />
+	</taskdef>
+
+	<!-- JUnit task definition -->
+	<taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask" />
+
 	<path id="classpath">
 		<fileset dir="." includes="saferefactor.jar" />
 		<fileset dir="${project.dir}/lib/" includes="**/*.jar" />
@@ -42,6 +55,10 @@
 		<mkdir dir="${randoop.target}" />
 		<mkdir dir="${evosuite.tests}/evosuite-tests" />
 		<mkdir dir="${evosuite.tests}/evosuite-report" />
+        <mkdir dir="${source}/emma"/>
+        <mkdir dir="${source}/emma/bin"/>
+        <mkdir dir="${source}/emma" />
+        <mkdir dir="${source}/emma/metadate" />
 	</target>
 
 	<target name="clean" depends="init">
@@ -77,6 +94,50 @@
                     </classpath>
                    <classpath refid="classpath"/>
             </javac>
+	</target>
+
+	<!-- Generate the Emma  -->
+	<target name="Instrumentation">
+		<emma>
+			<instr instrpath="${source}/bin" destdir="${source}/emma/bin" metadatafile="${source}/emma/metadate/metadate.emma" merge="false" mode="fullcopy" />
+		</emma>
+	</target>
+
+	<!-- Runs JUnit Tests -->
+	<target name="RunTests" depends="Instrumentation">
+		<junit haltonfailure="false" haltonerror="false" fork="true">
+			<classpath>
+				<pathelement location="${emma.bin.dir}/classes" />
+				<pathelement location="${emma.bin.dir}/lib" />
+				<path refid="classpath" />
+			</classpath>
+
+			<formatter type="plain" usefile="false" />
+			 <batchtest todir="${emma.report.dir}" haltonfailure="no">
+                <fileset dir="${source}/bin">
+                      <include name="**/RandoopTest0.class" />
+                      <exclude name="**/RandoopTest.class" />
+                    </fileset>
+            </batchtest>
+			<jvmarg value="-Demma.coverage.out.file=${emma.metadate.dir}/coverage.emma" />
+			<jvmarg value="-Demma.coverage.out.merge=true" />
+		</junit>
+	</target>
+
+	<!-- Creates the report -->
+	<target name="coverageReport" depends="RunTests">
+		<delete dir="${emma.report.dir}" />
+		<mkdir dir="${emma.report.dir}" />
+		<emma enabled="true">
+			<report sourcepath="${source}/src/TaRGeT HTML Output Plug-in/src/" sort="+block,+name,+method,+class" metrics="method:70,block:80,line:80,class:100">
+				<fileset dir="${emma.metadate.dir}">
+					<include name="*.emma" />
+				</fileset>
+				<html outfile="${emma.report.dir}/report.html" depth="method" columns="name,class,method,block,line" />
+			</report>
+		</emma>
+		<delete dir="${source}/emma/bin" />
+		<delete dir="${source}/emma/metadate" />
 	</target>
 
 	<target name="analyse_target" depends="compile_source_and_target">
@@ -146,6 +207,8 @@
                         <exclude name="**/RandoopTest.class" />
                     </fileset>
                 </batchtest>
+                <jvmarg value="-Demma.coverage.out.file=${emma.metadate.dir}/coverage.emma" />
+			    <jvmarg value="-Demma.coverage.out.merge=true" />
 		</junit>
 		<echo>* Run Junit Target Product</echo>
 		<junit printsummary="yes" dir="${target}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">

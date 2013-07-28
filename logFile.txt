@@ -1758,3 +1758,330 @@ Approach: IC<randoop>
 
 Failed Tests:
 
+------------------------------------------------------------------------------
+
+28-07-2013   11:54:45
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   12:31:37
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   12:34:43
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+28-07-2013   12:46:55
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+28-07-2013   12:50:37
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:04:59
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:10:37
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:14:33
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:24:25
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:27:12
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:34:56
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+28-07-2013   13:43:04
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:47:34
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   13:53:57
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   14:02:30
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
