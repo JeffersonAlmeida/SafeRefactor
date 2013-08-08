@@ -114,9 +114,8 @@
 
 			<formatter type="plain" usefile="false" />
 			 <batchtest todir="${emma.report.dir}" haltonfailure="no">
-                <fileset dir="${source}/bin">
-                      <include name="**/RandoopTest0.class" />
-                      <exclude name="**/RandoopTest.class" />
+                <fileset dir="${source}/bin/">
+                      <include name="**/*RandoopTest*.class" />
                     </fileset>
             </batchtest>
 			<jvmarg value="-Demma.coverage.out.file=${emma.metadate.dir}/coverage.emma" />
@@ -188,6 +187,8 @@
 
 	<target name="run" depends="copy-tests">
 		<echo>* Run Junit Source Product </echo>
+		<delete file="${target}/bin/randoop/tests/RandoopTest.class" />
+		<delete file="${source}/bin/randoop/tests/RandoopTest.class" />
 		<junit printsummary="yes" dir="${source}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
             <classpath>
                 <pathelement path="${project.dir}/lib/junit-4.5.jar" />
@@ -202,9 +203,8 @@
 			</classpath>
 			<formatter type="xml" />
                 <batchtest todir="${junit.output.source}" haltonfailure="no">
-                    <fileset dir="${source}/bin">
-                        <include name="**/RandoopTest0.class" />
-                        <exclude name="**/RandoopTest.class" />
+                    <fileset dir="${source}/bin/">
+                        <include name="**/*RandoopTest*.class" />
                     </fileset>
                 </batchtest>
                 <jvmarg value="-Demma.coverage.out.file=${emma.metadate.dir}/coverage.emma" />
@@ -213,7 +213,7 @@
 		<echo>* Run Junit Target Product</echo>
 		<junit printsummary="yes" dir="${target}/bin" showoutput="no" haltonfailure="yes" fork="true" maxmemory="1024m" tempdir="${temp.dir}">
 			<classpath>
-                 <pathelement path="${project.dir}/lib/junit-4.5.jar" />
+                <pathelement path="${project.dir}/lib/junit-4.5.jar" />
                 <pathelement path="${project.dir}/lib/ant-junit.jar" />
                 <pathelement path="${project.dir}/lib/ant-launcher.jar" />
                 <pathelement path="${project.dir}/lib/ant.jar" />
@@ -225,9 +225,8 @@
 			</classpath>
 			<formatter type="xml" />
                 <batchtest todir="${junit.output.target}" haltonfailure="no">
-                    <fileset dir="${target}/bin">
-                        <include name="**/RandoopTest0.class" />
-                        <exclude name="**/RandoopTest.class" />
+                    <fileset dir="${target}/bin/">
+                       <include name="**/*RandoopTest*.class" />
                     </fileset>
                 </batchtest>
 		</junit>

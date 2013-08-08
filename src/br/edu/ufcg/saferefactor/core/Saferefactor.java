@@ -116,6 +116,7 @@ public class Saferefactor {
 				p.executeTarget("compile_source_and_target");	
 			} catch (BuildException e) {
 				System.out.println("\nIt was impossible to compile source/target code");
+				return false;
 			}
 			p.executeTarget("generate_evosuite_propertiesFile");
 			// manipulate evosuite.properties file
@@ -158,6 +159,7 @@ public class Saferefactor {
 				p.executeTarget("compile_source_and_target");	
 			} catch (BuildException e) {
 				System.out.println("\nIt was impossible to compile source/target code");
+				return false;
 			}
 			
 			this.getAnalyzer().generateMethodListFile(input.getWhichMethods());
@@ -184,7 +186,7 @@ public class Saferefactor {
 			evosuiteProperties.load(is);
 			evosuiteProperties.setProperty("test_dir", "src/evosuite-tests"); // test_dir=src/evosuite-tests
 			evosuiteProperties.setProperty("report_dir", "src/evosuite-report"); // report_dir=src/evosuite-report
-			evosuiteProperties.setProperty("search_budget", "20000");
+			evosuiteProperties.setProperty("search_budget", "20000"); //30000
 			is.close();
 			OutputStream os = new FileOutputStream(evosuitePropertiesFile);
 			evosuiteProperties.store(os, "changing variable");

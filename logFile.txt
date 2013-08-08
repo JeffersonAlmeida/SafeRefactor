@@ -937,7 +937,7 @@ Failed Tests:
   public void test2()  throws Throwable  {
       Activator activator0 = new Activator();
       assertEquals(false, activator0.isDebugging());
-      
+
       try {
         activator0.stop((BundleContext) null);
         fail("Expecting exception: NullPointerException");
@@ -2085,3 +2085,4289 @@ Approach: IC<randoop>
 
 Failed Tests:
 
+------------------------------------------------------------------------------
+
+28-07-2013   14:33:03
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   14:38:48
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+28-07-2013   14:41:11
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+28-07-2013   14:43:33
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: EIC<randoop>
+------------------------------------------------------------------------------
+
+28-07-2013   14:50:39
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   14:54:22
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   15:04:08
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test0()  throws Throwable  {
+      Activator activator0 = new Activator();
+      assertEquals(false, activator0.isDebugging());
+
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   15:12:38
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test3()  throws Throwable  {
+      Activator activator0 = new Activator();
+      String[] stringArray0 = new String[10];
+      BaseAdaptor baseAdaptor0 = new BaseAdaptor(stringArray0);
+      baseAdaptor0.getContext();
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   15:25:26
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   15:57:54
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test3()  throws Throwable  {
+      Activator activator0 = new Activator();
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+  public void test3()  throws Throwable  {
+      Activator activator0 = new Activator();
+      String[] stringArray0 = new String[7];
+      BaseAdaptor baseAdaptor0 = new BaseAdaptor(stringArray0);
+      baseAdaptor0.getContext();
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   16:19:37
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test3()  throws Throwable  {
+      Activator activator0 = new Activator();
+      String[] stringArray0 = new String[1];
+      BaseAdaptor baseAdaptor0 = new BaseAdaptor(stringArray0);
+      baseAdaptor0.getContext();
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+  public void test0()  throws Throwable  {
+      Activator activator0 = new Activator();
+      assertEquals(false, activator0.isDebugging());
+
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+28-07-2013   16:31:05
+
+Pair ID: branch3.0
+
+Impacted Classes:
+
+[TaRGeT HTML Output Plug-in.src.br.ufpe.cin.target.htmloutput.Activator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test37() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test37");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    org.osgi.framework.Bundle var1 = var0.getBundle();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test27() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test27");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test18() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test18");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test12() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test12");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(true);
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+  public void test13() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test13");
+
+
+    br.ufpe.cin.target.htmloutput.Activator var0 = new br.ufpe.cin.target.htmloutput.Activator();
+    var0.setDebugging(false);
+    org.eclipse.core.runtime.ILog var3 = var0.getLog();
+    var0.internalInitializeDefaultPluginPreferences();
+
+  }
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+  public void test3()  throws Throwable  {
+      Activator activator0 = new Activator();
+      try {
+        activator0.stop((BundleContext) null);
+        fail("Expecting exception: NullPointerException");
+      } catch(NullPointerException e) {
+      }
+  }
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+29-07-2013   17:29:11
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+31-07-2013   16:10:43
+
+Pair ID: branch27.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+31-07-2013   16:39:04
+
+Pair ID: branch27.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+01-08-2013   08:27:20
+
+Pair ID: branch32.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+01-08-2013   08:34:09
+
+Pair ID: branch32.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+01-08-2013   09:00:16
+
+Pair ID: branch34.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyGeneratedTestCasesPage.java, TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java, TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.TestCaseTable.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+04-08-2013   16:23:30
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+04-08-2013   16:40:19
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+04-08-2013   17:03:11
+
+Pair ID: branch26.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+04-08-2013   18:38:33
+
+Pair ID: branch36.0
+
+Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.wizard.ConsistencyManagementWizard.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.ConsistencyManagerExtensionImplementation.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+05-08-2013   09:44:35
+
+Pair ID: branch44.0
+
+Impacted Classes:
+
+[]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<randoop>
+
+Approach: IC<evosuite>
+
+Approach: EIC<randoop>
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+05-08-2013   09:51:08
+
+Pair ID: branch46.0
+
+Impacted Classes:
+
+[TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.controller.ProjectManagerController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.artifacts.ArtifactsTreeViewLabelProvider.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.editor.TestComparisonPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java, TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.progressbars.CompareTestCasesProgress.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.editors.UseCaseViewer.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.NewProjectWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.GUIUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.verify.UseCaseVerifier.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.export.PDFGenerator.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.ReloadProjectShellListener.java, TaRGeTTest.java.br.ufpe.cin.target.tcg.excel.ExcelFileFormatterTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.ImportFeaturesProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.features.FeaturesTreeViewLabelProvider.java, TaRGeTTest.java.br.ufpe.cin.target.pm.search.SearchControllerTests.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.artifacts.ArtifactsView.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.search.Searcher.java, TaRGeTTest.java.br.ufpe.cin.target.pm.PMUnitTestUtil.java, TaRGeTTest.java.br.ufpe.cin.target.cm.controller.ConsistencyManagementControllerTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.ReloadProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.ImportFeaturesWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.OpenProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.export.ProjectManagerExternalFacade.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.SearchResultsView.java, TaRGeT CNL Plugin.src.java.br.ufpe.cin.target.cnl.controller.CNLPluginController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.OpenProjectWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.features.FeaturesView.java, TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.controller.ConsistencyManagementController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.GUIManager.java, TaRGeT STD Output Plug-in.src.br.ufpe.cin.target.stdoutput.excel.ExcelFileFormatter.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.CreateProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.ErrorView.java, TaRGeTTest.java.br.ufpe.cin.target.tcg.controller.TestCaseGeneratorControllerTest.java, TaRGeTTest.java.br.ufpe.cin.target.pm.editors.UseCaseHTMLGeneratorTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.common.TargetTreeView.java]
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+05-08-2013   09:56:00
+
+Pair ID: branch46.0
+
+Impacted Classes:
+
+[TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.controller.ProjectManagerController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.artifacts.ArtifactsTreeViewLabelProvider.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.editor.TestComparisonPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java, TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.progressbars.CompareTestCasesProgress.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.editors.UseCaseViewer.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.NewProjectWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.GUIUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.verify.UseCaseVerifier.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.export.PDFGenerator.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.ReloadProjectShellListener.java, TaRGeTTest.java.br.ufpe.cin.target.tcg.excel.ExcelFileFormatterTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.ImportFeaturesProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.features.FeaturesTreeViewLabelProvider.java, TaRGeTTest.java.br.ufpe.cin.target.pm.search.SearchControllerTests.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.artifacts.ArtifactsView.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.search.Searcher.java, TaRGeTTest.java.br.ufpe.cin.target.pm.PMUnitTestUtil.java, TaRGeTTest.java.br.ufpe.cin.target.cm.controller.ConsistencyManagementControllerTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.ReloadProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.ImportFeaturesWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.OpenProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.export.ProjectManagerExternalFacade.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.SearchResultsView.java, TaRGeT CNL Plugin.src.java.br.ufpe.cin.target.cnl.controller.CNLPluginController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.OpenProjectWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.features.FeaturesView.java, TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.controller.ConsistencyManagementController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.GUIManager.java, TaRGeT STD Output Plug-in.src.br.ufpe.cin.target.stdoutput.excel.ExcelFileFormatter.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.CreateProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.ErrorView.java, TaRGeTTest.java.br.ufpe.cin.target.tcg.controller.TestCaseGeneratorControllerTest.java, TaRGeTTest.java.br.ufpe.cin.target.pm.editors.UseCaseHTMLGeneratorTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.common.TargetTreeView.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+05-08-2013   10:07:09
+
+Pair ID: branch46.0
+
+Impacted Classes:
+
+[TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.controller.ProjectManagerController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.artifacts.ArtifactsTreeViewLabelProvider.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.editor.TestComparisonPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java, TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.progressbars.CompareTestCasesProgress.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.editors.UseCaseViewer.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.NewProjectWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.util.GUIUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.verify.UseCaseVerifier.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.export.PDFGenerator.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.ReloadProjectShellListener.java, TaRGeTTest.java.br.ufpe.cin.target.tcg.excel.ExcelFileFormatterTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.ImportFeaturesProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.features.FeaturesTreeViewLabelProvider.java, TaRGeTTest.java.br.ufpe.cin.target.pm.search.SearchControllerTests.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.artifacts.ArtifactsView.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.search.Searcher.java, TaRGeTTest.java.br.ufpe.cin.target.pm.PMUnitTestUtil.java, TaRGeTTest.java.br.ufpe.cin.target.cm.controller.ConsistencyManagementControllerTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.ReloadProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.ImportFeaturesWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.OpenProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.export.ProjectManagerExternalFacade.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.SearchResultsView.java, TaRGeT CNL Plugin.src.java.br.ufpe.cin.target.cnl.controller.CNLPluginController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.wizards.OpenProjectWizard.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.features.FeaturesView.java, TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.controller.ConsistencyManagementController.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.GUIManager.java, TaRGeT STD Output Plug-in.src.br.ufpe.cin.target.stdoutput.excel.ExcelFileFormatter.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.progressbars.CreateProjectProgressBar.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.views.ErrorView.java, TaRGeTTest.java.br.ufpe.cin.target.tcg.controller.TestCaseGeneratorControllerTest.java, TaRGeTTest.java.br.ufpe.cin.target.pm.editors.UseCaseHTMLGeneratorTest.java, TaRGeT Project Manager.src.java.br.ufpe.cin.target.pm.common.TargetTreeView.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+05-08-2013   16:59:56
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+05-08-2013   17:18:18
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+05-08-2013   17:27:47
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+05-08-2013   17:42:28
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test4()  throws Throwable  {
+      UseCaseEditor useCaseEditor0 = new UseCaseEditor();
+      // Undeclared exception!
+      try {
+        useCaseEditor0.doSaveAs();
+        fail("Expecting exception: ArrayIndexOutOfBoundsException");
+      } catch(ArrayIndexOutOfBoundsException e) {
+        /*
+         * -1
+         */
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+05-08-2013   17:54:25
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test0()  throws Throwable  {
+      UseCaseEditor useCaseEditor0 = new UseCaseEditor();
+      // Undeclared exception!
+      try {
+        useCaseEditor0.doSaveAs();
+        fail("Expecting exception: ArrayIndexOutOfBoundsException");
+      } catch(ArrayIndexOutOfBoundsException e) {
+        /*
+         * -1
+         */
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+06-08-2013   08:28:59
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test0()  throws Throwable  {
+      UseCaseEditor useCaseEditor0 = new UseCaseEditor();
+      // Undeclared exception!
+      try {
+        useCaseEditor0.doSaveAs();
+        fail("Expecting exception: ArrayIndexOutOfBoundsException");
+      } catch(ArrayIndexOutOfBoundsException e) {
+        /*
+         * -1
+         */
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   09:17:08
+
+Pair ID: branch59.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   09:35:12
+
+Pair ID: branch61.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+06-08-2013   09:52:39
+
+Pair ID: branch61.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   09:58:45
+
+Pair ID: branch63.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+06-08-2013   10:06:47
+
+Pair ID: branch67.0
+
+Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.tcsimilarity.metrics.Metrics2.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Consistency Manager.src.java.br.ufpe.cin.target.cm.tcsimilarity.logic.SimilarTC.java]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+06-08-2013   10:14:28
+
+Pair ID: branch69.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   10:27:47
+
+Pair ID: branch70.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+06-08-2013   10:55:21
+
+Pair ID: branch79.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   13:48:46
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   14:59:25
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+06-08-2013   15:12:28
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   16:09:31
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   16:36:40
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   16:48:43
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   16:53:35
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+06-08-2013   17:11:52
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+06-08-2013   17:30:16
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+07-08-2013   09:49:11
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+------------------------------------------------------------------------------
+
+07-08-2013   09:52:43
+
+Pair ID: branch41.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+------------------------------------------------------------------------------
+
+07-08-2013   10:14:07
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test9()  throws Throwable  {
+      UseCaseEditor useCaseEditor0 = new UseCaseEditor();
+      // Undeclared exception!
+      try {
+        useCaseEditor0.doSaveAs();
+        fail("Expecting exception: ArrayIndexOutOfBoundsException");
+      } catch(ArrayIndexOutOfBoundsException e) {
+        /*
+         * -1
+         */
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+------------------------------------------------------------------------------
+
+07-08-2013   10:37:00
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test2()  throws Throwable  {
+      UseCaseEditor useCaseEditor0 = new UseCaseEditor();
+      // Undeclared exception!
+      try {
+        useCaseEditor0.doSaveAs();
+        fail("Expecting exception: ArrayIndexOutOfBoundsException");
+      } catch(ArrayIndexOutOfBoundsException e) {
+        /*
+         * -1
+         */
+      }
+  }
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   11:26:09
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   11:33:28
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test290() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test290");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.widgets.FormToolkit var3 = var0.getToolkit();
+    var0.setDirty(true);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var3);
+
+  }
+
+
+  public void test489() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test489");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.widgets.FormToolkit var3 = var0.getToolkit();
+    int var4 = var0.getOrientation();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var3);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var4 == 0);
+
+  }
+
+
+  public void test388() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test388");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    var0.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.setActivePage("");
+    var0.showBusy(false);
+    java.lang.String var8 = var0.getContentDescription();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var8 + "' != '" + ""+ "'", var8.equals(""));
+
+  }
+
+
+  public void test143() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test143");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    org.eclipse.ui.forms.editor.IFormPage var11 = var0.setActivePage("");
+    boolean var12 = var0.isDirty();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var8 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var11);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var12 == false);
+
+  }
+
+
+  public void test419() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test419");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    var0.editorDirtyStateChanged();
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.getActivePageInstance();
+    java.lang.String var6 = var0.getTitleToolTip();
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var9 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException("hi!");
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var10 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var9);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var11 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var10);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var12 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var11);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var13 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var12);
+    org.eclipse.ui.forms.editor.IFormPage var14 = var0.setActivePage("", (java.lang.Object)var13);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var14);
+
+  }
+
+
+  public void test414() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test414");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    var0.editorDirtyStateChanged();
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.getActivePageInstance();
+    org.eclipse.ui.forms.editor.IFormPage var7 = var0.findPage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.findPage("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var7);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+  }
+
+
+  public void test129() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test129");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    org.eclipse.ui.IEditorInput var2 = var0.getEditorInput();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+  }
+
+
+  public void test339() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test339");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var6 = var0.findPage("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var6);
+
+  }
+
+
+  public void test430() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test430");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.String var7 = var0.getTitle();
+    org.eclipse.ui.IEditorSite var8 = var0.getEditorSite();
+    java.lang.String var10 = var0.getPartProperty("");
+    var0.refresh(false);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var10);
+
+  }
+
+
+  public void test323() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test323");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    int var3 = var0.getOrientation();
+    var0.setPartProperty("hi!", "hi!");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var3 == 0);
+
+  }
+
+
+  public void test180() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test180");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    org.eclipse.ui.forms.widgets.FormToolkit var10 = var0.getToolkit();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var8 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var10);
+
+  }
+
+
+  public void test167() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test167");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    var0.updateTitle("hi!");
+    br.ufpe.cin.target.pm.common.TreeObject var7 = new br.ufpe.cin.target.pm.common.TreeObject((java.lang.Object)var0);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+  }
+
+
+  public void test164() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test164");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+  }
+
+
+  public void test87() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test87");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var8 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+  }
+
+
+  public void test415() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test415");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    var0.updateTitle("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var8 = var0.setActivePage("hi!");
+    java.lang.String var9 = var0.getTitle();
+    boolean var10 = var0.isSaveOnCloseNeeded();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var9 + "' != '" + "hi!"+ "'", var9.equals("hi!"));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var10 == false);
+
+  }
+
+
+  public void test163() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test163");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    var0.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.findPage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var6 = var0.getActivePageInstance();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var8 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var10 = var8.setActivePage("hi!");
+    var8.editorDirtyStateChanged();
+    java.lang.Object var12 = var8.getSelectedPage();
+    var8.updateTitle("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var16 = var8.setActivePage("hi!");
+    java.lang.String var17 = var8.getTitle();
+    var8.refresh(true);
+    java.lang.String var20 = var8.getPartName();
+    org.eclipse.ui.forms.editor.IFormPage var21 = var0.setActivePage("hi!", (java.lang.Object)var8);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var8.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var6);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var10);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var12);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var16);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var17 + "' != '" + "hi!"+ "'", var17.equals("hi!"));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var20 + "' != '" + "hi!"+ "'", var20.equals("hi!"));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var21);
+
+  }
+
+
+  public void test164() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test164");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    org.eclipse.ui.IEditorInput var2 = var0.getEditorInput();
+    var0.setFocus();
+    java.util.Map var4 = var0.getPartProperties();
+    java.lang.String var6 = var0.getPartProperty("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNotNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var6);
+
+  }
+
+
+  public void test204() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test204");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.String var7 = var0.getTitle();
+    org.eclipse.ui.IEditorSite var8 = var0.getEditorSite();
+    boolean var9 = var0.isSaveAsAllowed();
+    var0.refresh(false);
+    org.eclipse.ui.IEditorPart var12 = var0.getActiveEditor();
+    boolean var13 = var0.isSaveOnCloseNeeded();
+    var0.setPartProperty("hi!", "");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var9 == false);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var12);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var13 == false);
+
+  }
+
+
+  public void test195() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test195");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    boolean var5 = var0.isDirty();
+    int var6 = var0.getOrientation();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var7 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var7.setActivePage("hi!");
+    var7.editorDirtyStateChanged();
+    var7.editorDirtyStateChanged();
+    org.eclipse.ui.forms.editor.IFormPage var12 = var7.getActivePageInstance();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var13 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var15 = var13.setActivePage("hi!");
+    var13.editorDirtyStateChanged();
+    java.lang.Object var17 = var13.getSelectedPage();
+    var13.refresh(true);
+    org.eclipse.ui.forms.editor.IFormPage var20 = var7.selectReveal((java.lang.Object)var13);
+    org.eclipse.ui.forms.editor.IFormPage var21 = var0.selectReveal((java.lang.Object)var7);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var7.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var5 == false);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var6 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var12);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var15);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var17);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var20);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var21);
+
+  }
+
+
+  public void test437() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test437");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var10 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var12 = var10.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var14 = var10.setActivePage("");
+    var10.refresh(true);
+    java.lang.String var17 = var10.getTitle();
+    org.eclipse.ui.IEditorSite var18 = var10.getEditorSite();
+    org.eclipse.ui.IEditorPart var19 = var10.getActiveEditor();
+    var10.dispose();
+    var0.setActiveEditor((org.eclipse.ui.IEditorPart)var10);
+    var10.doSaveAs();
+
+  }
+
+
+  public void test425() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test425");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.String var7 = var0.getTitle();
+    org.eclipse.ui.IEditorSite var8 = var0.getEditorSite();
+    org.eclipse.ui.IEditorInput var9 = var0.getEditorInput();
+    var0.editorDirtyStateChanged();
+    var0.showBusy(true);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+  }
+
+
+  public void test458() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test458");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.Object var7 = var0.getSelectedPage();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var7);
+
+  }
+
+
+  public void test456() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test456");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    java.lang.Object var5 = var0.getSelectedPage();
+    var0.setFocus();
+    org.eclipse.ui.forms.widgets.FormToolkit var7 = var0.getToolkit();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures th------------------------------------------------------------------------------
+
+07-08-2013   11:37:53
+
+Pair ID: branch51.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java,
+ TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.save.XMLFileGenerator.java,
+  TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java,
+   TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportCommand.java]
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+
+  public void test290() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test290");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.widgets.FormToolkit var3 = var0.getToolkit();
+    var0.setDirty(true);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var3);
+
+  }
+
+
+  public void test489() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test489");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.widgets.FormToolkit var3 = var0.getToolkit();
+    int var4 = var0.getOrientation();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var3);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var4 == 0);
+
+  }
+
+
+  public void test388() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test388");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    var0.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.setActivePage("");
+    var0.showBusy(false);
+    java.lang.String var8 = var0.getContentDescription();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var8 + "' != '" + ""+ "'", var8.equals(""));
+
+  }
+
+
+  public void test143() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test143");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    org.eclipse.ui.forms.editor.IFormPage var11 = var0.setActivePage("");
+    boolean var12 = var0.isDirty();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var8 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var11);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var12 == false);
+
+  }
+
+
+  public void test419() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test419");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    var0.editorDirtyStateChanged();
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.getActivePageInstance();
+    java.lang.String var6 = var0.getTitleToolTip();
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var9 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException("hi!");
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var10 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var9);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var11 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var10);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var12 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var11);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var13 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var12);
+    org.eclipse.ui.forms.editor.IFormPage var14 = var0.setActivePage("", (java.lang.Object)var13);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var14);
+
+  }
+
+
+  public void test414() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test414");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    var0.editorDirtyStateChanged();
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.getActivePageInstance();
+    org.eclipse.ui.forms.editor.IFormPage var7 = var0.findPage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.findPage("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var7);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+  }
+
+
+  public void test129() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test129");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    org.eclipse.ui.IEditorInput var2 = var0.getEditorInput();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+  }
+
+
+  public void test339() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test339");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var6 = var0.findPage("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var6);
+
+  }
+
+
+  public void test430() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test430");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.String var7 = var0.getTitle();
+    org.eclipse.ui.IEditorSite var8 = var0.getEditorSite();
+    java.lang.String var10 = var0.getPartProperty("");
+    var0.refresh(false);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var10);
+
+  }
+
+
+  public void test323() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test323");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    int var3 = var0.getOrientation();
+    var0.setPartProperty("hi!", "hi!");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var3 == 0);
+
+  }
+
+
+  public void test180() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test180");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    org.eclipse.ui.forms.widgets.FormToolkit var10 = var0.getToolkit();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var8 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var10);
+
+  }
+
+
+  public void test167() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test167");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    var0.updateTitle("hi!");
+    br.ufpe.cin.target.pm.common.TreeObject var7 = new br.ufpe.cin.target.pm.common.TreeObject((java.lang.Object)var0);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+  }
+
+
+  public void test164() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test164");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+  }
+
+
+  public void test87() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest0.test87");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var8 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+  }
+
+
+  public void test415() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test415");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    var0.updateTitle("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var8 = var0.setActivePage("hi!");
+    java.lang.String var9 = var0.getTitle();
+    boolean var10 = var0.isSaveOnCloseNeeded();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var9 + "' != '" + "hi!"+ "'", var9.equals("hi!"));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var10 == false);
+
+  }
+
+
+  public void test163() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test163");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    var0.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.findPage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var6 = var0.getActivePageInstance();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var8 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var10 = var8.setActivePage("hi!");
+    var8.editorDirtyStateChanged();
+    java.lang.Object var12 = var8.getSelectedPage();
+    var8.updateTitle("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var16 = var8.setActivePage("hi!");
+    java.lang.String var17 = var8.getTitle();
+    var8.refresh(true);
+    java.lang.String var20 = var8.getPartName();
+    org.eclipse.ui.forms.editor.IFormPage var21 = var0.setActivePage("hi!", (java.lang.Object)var8);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var8.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var6);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var10);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var12);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var16);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var17 + "' != '" + "hi!"+ "'", var17.equals("hi!"));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var20 + "' != '" + "hi!"+ "'", var20.equals("hi!"));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var21);
+
+  }
+
+
+  public void test164() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test164");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    org.eclipse.ui.IEditorInput var2 = var0.getEditorInput();
+    var0.setFocus();
+    java.util.Map var4 = var0.getPartProperties();
+    java.lang.String var6 = var0.getPartProperty("");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNotNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var6);
+
+  }
+
+
+  public void test204() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test204");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.String var7 = var0.getTitle();
+    org.eclipse.ui.IEditorSite var8 = var0.getEditorSite();
+    boolean var9 = var0.isSaveAsAllowed();
+    var0.refresh(false);
+    org.eclipse.ui.IEditorPart var12 = var0.getActiveEditor();
+    boolean var13 = var0.isSaveOnCloseNeeded();
+    var0.setPartProperty("hi!", "");
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var9 == false);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var12);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var13 == false);
+
+  }
+
+
+  public void test195() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test195");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    boolean var5 = var0.isDirty();
+    int var6 = var0.getOrientation();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var7 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var7.setActivePage("hi!");
+    var7.editorDirtyStateChanged();
+    var7.editorDirtyStateChanged();
+    org.eclipse.ui.forms.editor.IFormPage var12 = var7.getActivePageInstance();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var13 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var15 = var13.setActivePage("hi!");
+    var13.editorDirtyStateChanged();
+    java.lang.Object var17 = var13.getSelectedPage();
+    var13.refresh(true);
+    org.eclipse.ui.forms.editor.IFormPage var20 = var7.selectReveal((java.lang.Object)var13);
+    org.eclipse.ui.forms.editor.IFormPage var21 = var0.selectReveal((java.lang.Object)var7);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var7.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var5 == false);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var6 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var12);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var15);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var17);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var20);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var21);
+
+  }
+
+
+  public void test437() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test437");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    br.ufpe.cin.target.pm.views.artifacts.ArtifactsView var3 = new br.ufpe.cin.target.pm.views.artifacts.ArtifactsView();
+    java.lang.String var5 = var3.getPartProperty("");
+    java.lang.String var6 = var3.getPartName();
+    java.lang.String var7 = var3.getTitle();
+    int var8 = var3.getOrientation();
+    org.eclipse.ui.forms.editor.IFormPage var9 = var0.setActivePage("hi!", (java.lang.Object)var3);
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var10 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var12 = var10.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var14 = var10.setActivePage("");
+    var10.refresh(true);
+    java.lang.String var17 = var10.getTitle();
+    org.eclipse.ui.IEditorSite var18 = var10.getEditorSite();
+    org.eclipse.ui.IEditorPart var19 = var10.getActiveEditor();
+    var10.dispose();
+    var0.setActiveEditor((org.eclipse.ui.IEditorPart)var10);
+    var10.doSaveAs();
+
+  }
+
+
+  public void test425() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test425");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.String var7 = var0.getTitle();
+    org.eclipse.ui.IEditorSite var8 = var0.getEditorSite();
+    org.eclipse.ui.IEditorInput var9 = var0.getEditorInput();
+    var0.editorDirtyStateChanged();
+    var0.showBusy(true);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+  }
+
+
+  public void test458() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test458");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.Object var7 = var0.getSelectedPage();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var7);
+
+  }
+
+
+  public void test456() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test456");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    java.lang.Object var4 = var0.getSelectedPage();
+    java.lang.Object var5 = var0.getSelectedPage();
+    var0.setFocus();
+    org.eclipse.ui.forms.widgets.FormToolkit var7 = var0.getToolkit();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var7);
+
+  }
+
+
+  public void test449() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test449");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    var0.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.setActivePage("");
+    org.eclipse.ui.forms.editor.IFormPage var7 = var0.findPage("hi!");
+    var0.showBusy(false);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var7);
+
+  }
+
+
+  public void test474() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test474");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.String var1 = var0.getTitleToolTip();
+    int var2 = var0.getOrientation();
+    var0.setDirty(false);
+    boolean var5 = var0.isSaveAsAllowed();
+    boolean var6 = var0.isSaveOnCloseNeeded();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var1 + "' != '" + ""+ "'", var1.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var2 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var5 == false);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var6 == false);
+
+  }
+
+
+  public void test473() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test473");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    org.eclipse.ui.IEditorInput var2 = var0.getEditorInput();
+    java.lang.Object var3 = var0.getSelectedPage();
+    var0.showBusy(true);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var3);
+
+  }
+
+
+  public void test142() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test142");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.editorDirtyStateChanged();
+    var0.editorDirtyStateChanged();
+    org.eclipse.ui.forms.editor.IFormPage var5 = var0.getActivePageInstance();
+    java.lang.String var6 = var0.getTitleToolTip();
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var9 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException("hi!");
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var10 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var9);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var11 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var10);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var12 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var11);
+    br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException var13 = new br.ufpe.cin.target.common.exceptions.UseCaseDocumentXMLException((java.lang.Exception)var12);
+    org.eclipse.ui.forms.editor.IFormPage var14 = var0.setActivePage("", (java.lang.Object)var13);
+    var0.updateTitle("");
+    java.lang.Object var17 = var0.getSelectedPage();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var5);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var6 + "' != '" + ""+ "'", var6.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var14);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var17);
+
+  }
+
+
+  public void test491() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test491");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    org.eclipse.ui.forms.editor.IFormPage var4 = var0.setActivePage("");
+    var0.refresh(true);
+    java.lang.String var7 = var0.getTitle();
+    org.eclipse.ui.IEditorSite var8 = var0.getEditorSite();
+    org.eclipse.ui.IEditorInput var9 = var0.getEditorInput();
+    var0.editorDirtyStateChanged();
+    var0.showBusy(true);
+    org.eclipse.ui.forms.widgets.FormToolkit var13 = var0.getToolkit();
+    java.lang.String var14 = var0.getContentDescription();
+    java.util.Map var15 = var0.getPartProperties();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var4);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var7 + "' != '" + ""+ "'", var7.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var13);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var14 + "' != '" + ""+ "'", var14.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNotNull(var15);
+
+  }
+
+
+  public void test499() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test499");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var1 = var0.getSelectedPage();
+    var0.showBusy(true);
+    var0.refresh(true);
+    org.eclipse.ui.forms.editor.IFormPage var7 = var0.findPage("");
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var8 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var9 = var8.getSelectedPage();
+    var8.showBusy(true);
+    org.eclipse.ui.forms.editor.IFormPage var13 = var8.setActivePage("hi!");
+    java.lang.String var14 = var8.getPartName();
+    org.eclipse.ui.forms.editor.IFormPage var15 = var0.selectReveal((java.lang.Object)var14);
+    var0.refresh(true);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var1);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var7);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var9);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var13);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var14 + "' != '" + ""+ "'", var14.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var15);
+
+  }
+
+
+  public void test240() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test240");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    int var1 = var0.getOrientation();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var2 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    java.lang.Object var3 = var2.getSelectedPage();
+    var2.showBusy(true);
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var6 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var8 = var6.setActivePage("hi!");
+    var6.showBusy(true);
+    var2.setActiveEditor((org.eclipse.ui.IEditorPart)var6);
+    org.eclipse.ui.forms.editor.IFormPage var12 = var0.selectReveal((java.lang.Object)var2);
+    java.lang.String var13 = var0.getTitleToolTip();
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var14 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var16 = var14.setActivePage("hi!");
+    var14.editorDirtyStateChanged();
+    java.lang.Object var18 = var14.getSelectedPage();
+    java.lang.Object var19 = var14.getSelectedPage();
+    boolean var20 = var14.isSaveAsAllowed();
+    org.eclipse.ui.forms.editor.IFormPage var21 = var0.selectReveal((java.lang.Object)var14);
+    java.lang.String var22 = var14.getTitleToolTip();
+    var14.editorDirtyStateChanged();
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var14.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var1 == 0);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var3);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var8);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var12);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var13 + "' != '" + ""+ "'", var13.equals(""));
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var16);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var18);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var19);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue(var20 == false);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var21);
+
+    // Regression assertion (captures the current behavior of the code)
+    assertTrue("'" + var22 + "' != '" + ""+ "'", var22.equals(""));
+
+  }
+
+
+  public void test242() throws Throwable {
+
+    if (debug) System.out.printf("%nRandoopTest1.test242");
+
+
+    br.ufpe.cin.target.uceditor.editor.UseCaseEditor var0 = new br.ufpe.cin.target.uceditor.editor.UseCaseEditor();
+    org.eclipse.ui.forms.editor.IFormPage var2 = var0.setActivePage("hi!");
+    var0.showBusy(true);
+    var0.showBusy(false);
+    // The following exception was thrown during execution.
+    // This behavior will recorded for regression testing.
+    try {
+      var0.doSaveAs();
+      fail("Expected exception of type java.lang.ArrayIndexOutOfBoundsException");
+    } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+      // Expected exception.
+    }
+
+
+    // Regression assertion (captures the current behavior of the code)
+    assertNull(var2);
+
+  }
+
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+  public void test8()  throws Throwable  {
+      UseCaseEditor useCaseEditor0 = new UseCaseEditor();
+      // Undeclared exception!
+      try {
+        useCaseEditor0.doSaveAs();
+        fail("Expecting exception: ArrayIndexOutOfBoundsException");
+      } catch(ArrayIndexOutOfBoundsException e) {
+        /*
+         * -1
+         */
+      }
+  }
+
+
+Approach: EIC<randoop>
+
+Failed Tests:
+
+
+Approach: EIC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   14:25:10
+
+Pair ID: branch59.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.SaveAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   14:37:20
+
+Pair ID: branch61.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   14:51:50
+
+Pair ID: branch63.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   16:43:04
+
+Pair ID: branch69.0
+
+Impacted Classes:
+
+[TaRGeT On The Fly Generation.src.br.ufpe.cin.target.onthefly.editors.OnTheFlyTraceabilityMatrixPage.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+
+Approach: IC<randoop>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   16:59:27
+
+Pair ID: branch79.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.providers.TableEditingSupport.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   17:20:39
+
+Pair ID: branch96.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   17:29:58
+
+Pair ID: branch100.0
+
+Impacted Classes:
+
+[TaRGeT TC Generation GUI.src.java.br.ufpe.cin.target.tcg.util.ExcelExtractor.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Test Central 4 Output Plug-in.src.java.br.ufpe.cin.target.tc4output.excel.ExcelExtractor.java, TaRGeT STD Output Plug-in.src.br.ufpe.cin.target.stdoutput.excel.ExcelFileFormatter.java, TaRGeT XLS Input Plug-in.src.br.ufpe.cin.target.xlsinput.extractor.UseCaseDocumentExtractor.java, TaRGeT Test Central 4 Input Template Plug-in.src.java.br.ufpe.cin.target.tc4input.InputTemplateTestCentral4.java, TaRGeT Test Central 3 Output Plug-in.src.java.br.ufpe.cin.target.tc3output.excel.ExcelExtractor.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+07-08-2013   17:45:18
+
+Pair ID: branch102.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+08-08-2013   08:40:10
+
+Pair ID: branch102.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java, TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.actions.ExportUseCaseAction.java]
+
+Extended Impacted Classes:
+
+[]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+08-08-2013   09:48:26
+
+Pair ID: branch105.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Failed Tests:
+
+------------------------------------------------------------------------------
+
+08-08-2013   10:04:51
+
+Pair ID: branch105.0
+
+Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.util.UseCaseEditorUtil.java]
+
+Extended Impacted Classes:
+
+[TaRGeT Use Case Editor.src.br.ufpe.cin.target.uceditor.editor.UseCaseEditorPage.java]
+
+Approach: IC<evosuite>
+
+Approach: IC<randoop>
