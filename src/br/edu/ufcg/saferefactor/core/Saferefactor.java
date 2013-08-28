@@ -169,7 +169,7 @@ public class Saferefactor {
 			
 			report = report(printReport);
 			
-			p.executeTarget("coverageReport");
+			//p.executeTarget("coverageReport");
 		}
 		return report.isSameBehavior();		
 	}
@@ -186,7 +186,7 @@ public class Saferefactor {
 			evosuiteProperties.load(is);
 			evosuiteProperties.setProperty("test_dir", "src/evosuite-tests"); // test_dir=src/evosuite-tests
 			evosuiteProperties.setProperty("report_dir", "src/evosuite-report"); // report_dir=src/evosuite-report
-			evosuiteProperties.setProperty("search_budget", "20000"); //30000
+			evosuiteProperties.setProperty("search_budget", "90000"); //30000
 			is.close();
 			OutputStream os = new FileOutputStream(evosuitePropertiesFile);
 			evosuiteProperties.store(os, "changing variable");
